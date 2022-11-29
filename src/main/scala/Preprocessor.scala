@@ -98,6 +98,10 @@ trait Preprocessor {
               structs: Map[String, FeatureExpr] = Map(),
               unions: Map[String, FeatureExpr] = Map()): TranslationUnit = {
     val shouldKeep = loop(getExternalDefs(names, types, enums, structs, unions))
-    TranslationUnit(translationUnit.defs.zipWithIndex.collect { case (value, i) if shouldKeep(i) => value })
+    val preprocessedTranslationUnit = TranslationUnit(translationUnit.defs.zipWithIndex.collect {
+      case (value, i) if shouldKeep(i) => value
+    })
+    new VariabilitySearcher(featureModel)(preprocessedTranslationUnit)
+    preprocessedTranslationUnit
   }
 }

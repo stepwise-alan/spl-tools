@@ -28,44 +28,13 @@ trait Analyzer extends CaseStudy {
           case ParameterDeclarationAD(specifiers, decl, _) =>
             specifiers.map(s => layout(prettyPrint(s.entry))).mkString("", " ", "") + " "
               + decl.pointers.map(s => layout(prettyPrint(s.entry))).mkString("", "", "")
-          case args: VarArgs => "#VarArgs"
+          case _: VarArgs => "#VarArgs"
         ).mkString("", ", ", "")
-        case access: DeclArrayAccess => "#DeclArrayAccess"
+        case _: DeclArrayAccess => "#DeclArrayAccess"
       }
-      case list: DeclIdentifierList => "#DeclIdentifierList"
+      case _: DeclIdentifierList => "#DeclIdentifierList"
     ).mkString("", ", ", "")
     case NestedNamedDeclarator(_, nestedDecl, _, _) => getInputAsString(nestedDecl)
-  }
-
-  def areAllInputsIntegers(declarator: Declarator): Boolean = declarator match {
-    case AtomicNamedDeclarator(_, _, extensions) => extensions.forall(f => f.entry match
-      case extension: DeclaratorAbstrExtension => extension match {
-        case DeclParameterDeclList(parameterDecls) => parameterDecls.forall(p => p.entry match
-          case PlainParameterDeclaration(specifiers, _) => specifiers.forall(s =>
-            s.entry.isInstanceOf[IntSpecifier] || s.entry.isInstanceOf[CharSpecifier]
-            || s.entry.isInstanceOf[LongSpecifier] || s.entry.isInstanceOf[Int128Specifier]
-            || s.entry.isInstanceOf[UnsignedSpecifier] || s.entry.isInstanceOf[SignedSpecifier]
-            || s.entry.isInstanceOf[ConstSpecifier]
-          )
-          case ParameterDeclarationD(specifiers, decl, _) => specifiers.forall(s =>
-            s.entry.isInstanceOf[IntSpecifier] || s.entry.isInstanceOf[CharSpecifier]
-              || s.entry.isInstanceOf[LongSpecifier] || s.entry.isInstanceOf[Int128Specifier]
-              || s.entry.isInstanceOf[UnsignedSpecifier] || s.entry.isInstanceOf[SignedSpecifier]
-              || s.entry.isInstanceOf[ConstSpecifier]
-          ) && decl.pointers.isEmpty
-          case ParameterDeclarationAD(specifiers, decl, _) => specifiers.forall(s =>
-            s.entry.isInstanceOf[IntSpecifier] || s.entry.isInstanceOf[CharSpecifier]
-              || s.entry.isInstanceOf[LongSpecifier] || s.entry.isInstanceOf[Int128Specifier]
-              || s.entry.isInstanceOf[UnsignedSpecifier] || s.entry.isInstanceOf[SignedSpecifier]
-              || s.entry.isInstanceOf[ConstSpecifier]
-          ) && decl.pointers.isEmpty
-          case VarArgs() => true
-        )
-        case DeclArrayAccess(_) => true
-      }
-      case DeclIdentifierList(_) => true
-    )
-    case NestedNamedDeclarator(_, nestedDecl, _, _) => areAllInputsIntegers(nestedDecl)
   }
 
   override def process(translationUnit: TranslationUnit, filepath: String,
@@ -84,7 +53,7 @@ trait Analyzer extends CaseStudy {
                 filepath, functionDef.getName, result.features.size.toString,
                 result.optCount.toString, result.choiceCount.toString,
                 getInputAsString(functionDef.declarator),
-                (result.features.nonEmpty && areAllInputsIntegers(functionDef.declarator)).toString)
+                result.features.nonEmpty.toString)
               println(output.mkString("", "; ", ""))
               csvWriter.writeNext(output)
               println(s"$filepath: ${functionDef.getName}: $result")
@@ -102,8 +71,8 @@ trait Analyzer extends CaseStudy {
 
   override def run(): Unit = {
     csvWriter.writeNext(Array(
-      "File Path", "Function Name", "Number of Distinct Features",
-      "Number of Opts", "Number of Choices", "Inputs", "Analyzable"))
+      "File Path", "Function Name", "Feature Count",
+      "Opt Count", "Choice Count", "Inputs", "Analyzable"))
     super.run()
     csvWriter.close()
   }

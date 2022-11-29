@@ -5,6 +5,7 @@ import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureModel}
 import de.fosd.typechef.options.{FrontendOptions, FrontendOptionsWithConfigFiles, Options}
 import de.fosd.typechef.parser.c.PrettyPrinter.{layout, prettyPrint}
 import de.fosd.typechef.parser.c.{AST, AsmExpr, AtomicNamedDeclarator, CParser, Declaration, Declarator, EmptyExternalDef, EnumSpecifier, ExternalDef, FunctionDef, InitDeclarator, NestedNamedDeclarator, ParserMain, Pragma, StructOrUnionSpecifier, TranslationUnit, TypedefSpecifier, TypelessDeclaration}
+import de.fosd.typechef.featureexpr.FeatureExprFactory
 
 import java.io.{BufferedWriter, File, FileWriter}
 import java.lang.reflect.Field
@@ -25,14 +26,18 @@ object Util {
 
   def resetMaxOptionId(): Unit = maxOptionIdField.set(null, maxOptionId)
 
-  def parse(args: Array[String]): (TranslationUnit, FeatureModel, Set[String]) = {
+  def parse(args: Array[String],
+            parserResults: Boolean = false,
+            parserStatistics: Boolean = false,
+            isPrintingLexingSuccess: Boolean = false
+           ): (TranslationUnit, FeatureModel, Set[String]) = {
     val opt = new FrontendOptionsWithConfigFiles {
-      override def isPrintLexingSuccess: Boolean = false
+      override def isPrintLexingSuccess: Boolean = isPrintingLexingSuccess
     }
     resetMaxOptionId()
     opt.parseOptions(args)
-    opt.parserResults = false
-    opt.parserStatistics = false
+    opt.parserResults = parserResults
+    opt.parserStatistics = parserStatistics
 
     val errorXML = new ErrorXML(opt.getErrorXMLFile)
     opt.setRenderParserError(errorXML.renderParserError)
@@ -77,4 +82,8 @@ object Util {
     
   def isConcreteEnum(enumSpecifier: EnumSpecifier): Boolean =
     enumSpecifier.enumerators.isDefined
+
+  def optTrue[T](t: T): Opt[T] = {
+    Opt(FeatureExprFactory.True, t)
+  }
 }
