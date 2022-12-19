@@ -1,0 +1,118 @@
+** expand-pob: query!0 level: 0 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 0 exprID: 2 pobID: 1
+query!0
+false
+
+
+* LEVEL 1
+
+** expand-pob: query!0 level: 1 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: main@verifier.error.split level: 0 depth: 0 exprID: 1 pobID: 1
+true
+
+** add-lemma: 0 exprID: 2 pobID: 1
+main@verifier.error.split
+false
+
+** expand-pob: query!0 level: 1 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 1 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 2
+
+** expand-pob: query!0 level: 2 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: main@verifier.error.split level: 1 depth: 0 exprID: 1 pobID: 1
+true
+
+** expand-pob: p_init level: 0 depth: 0 exprID: 6150 pobID: 1
+(and p_init_14_n
+     p_init_15_n
+     (not p_init_13_n)
+     (not p_init_10_n)
+     (not p_init_11_n)
+     (= p_init_9_n 0)
+     (not p_init_16_n)
+     (not p_init_12_n))
+
+** add-lemma: 0 exprID: 2 pobID: 6150
+p_init
+false
+
+** expand-pob: main@verifier.error.split level: 1 depth: 0 exprID: 1 pobID: 1
+true
+
+** add-lemma: 1 exprID: 2 pobID: 1
+main@verifier.error.split
+false
+
+** expand-pob: query!0 level: 2 depth: 0 exprID: 1 pobID: none
+true
+
+** add-lemma: 2 exprID: 2 pobID: 1
+query!0
+false
+
+Propagating
+
+
+* LEVEL 3
+
+** expand-pob: query!0 level: 3 depth: 0 exprID: 1 pobID: none
+true
+
+** expand-pob: main@verifier.error.split level: 2 depth: 0 exprID: 1 pobID: 1
+true
+
+** expand-pob: main@entry level: 1 depth: 0 exprID: 1 pobID: 1
+true
+
+** expand-pob: main@verifier.error.split level: 2 depth: 0 exprID: 1 pobID: 1
+true
+
+** expand-pob: p_init level: 1 depth: 0 exprID: 6637 pobID: 1
+(and p_init_12_n
+     p_init_15_n
+     (not p_init_10_n)
+     (not p_init_11_n)
+     (= p_init_9_n 0)
+     (not p_init_16_n)
+     (= (+ p_init_4_n p_init_5_n) 0)
+     (< (+ (div (+ p_init_5_n (* (- 1) p_init_4_n)) 4294967296)
+           (mod (div (+ p_init_5_n (* (- 1) p_init_4_n)) 4294967296) 2))
+        0)
+     (> p_init_4_n p_init_5_n))
+
+** expand-pob: target level: 0 depth: 0 exprID: 6772 pobID: 6637
+(and target_12_n
+     target_15_n
+     (not target_10_n)
+     (not target_11_n)
+     (not target_16_n)
+     (= target_9_n 0)
+     (> target_4_n target_5_n))
+
+** expand-pob: p_init level: 1 depth: 0 exprID: 6637 pobID: 1
+(and p_init_12_n
+     p_init_15_n
+     (not p_init_10_n)
+     (not p_init_11_n)
+     (= p_init_9_n 0)
+     (not p_init_16_n)
+     (= (+ p_init_4_n p_init_5_n) 0)
+     (< (+ (div (+ p_init_5_n (* (- 1) p_init_4_n)) 4294967296)
+           (mod (div (+ p_init_5_n (* (- 1) p_init_4_n)) 4294967296) 2))
+        0)
+     (> p_init_4_n p_init_5_n))
+

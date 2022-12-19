@@ -38,7 +38,7 @@ object NaiveEquivalenceChecker {
         case functionDef: FunctionDef if functionDef.getName == libraryName =>
           functionDef.declarator.extensions.foreach(f => f.entry match {
             case extension: DeclaratorAbstrExtension => extension match {
-              case DeclParameterDeclList(parameterDecls) => parameterDecls.foreach(f => f.entry match {
+              case DeclParameterDeclList(parameterDecls) => parameterDecls.foreach(_.entry match {
                 case PlainParameterDeclaration(specifiers, attr) => args :+= specifiers
                 case ParameterDeclarationD(specifiers, decl, attr) => args :+= specifiers
                 case ParameterDeclarationAD(specifiers, decl, attr) => args :+= specifiers

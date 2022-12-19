@@ -3,18 +3,15 @@ import de.fosd.typechef.parser.c.TranslationUnit
 
 object BusyBoxBenchmarkPreprocessor extends BusyBox with Preprocessor {
   override val filePaths: Iterator[String] = List(
-    "clever/coreutils.ls.6b01b71e/old.c",
-    "clever/coreutils.ls.6b01b71e/new.c",
+    "busybox-1.18.5/util-linux/fsck_minix.c",
   ).iterator
 
   private val getFunctionName: Map[String, String] = Map(
-    ("clever/coreutils.ls.6b01b71e/old.c", "sortcmp"),
-    ("clever/coreutils.ls.6b01b71e/new.c", "sortcmp"),
+    ("busybox-1.18.5/util-linux/fsck_minix.c", "check_counts"),
   )
 
   private val getNewFilePath: Map[String, String] = Map(
-    ("clever/coreutils.ls.6b01b71e/old.c", "clever/coreutils.ls.6b01b71e/old.processed.c"),
-    ("clever/coreutils.ls.6b01b71e/new.c", "clever/coreutils.ls.6b01b71e/new.processed.c"),
+    ("busybox-1.18.5/util-linux/fsck_minix.c", "fsck_minix.preprocessed.c"),
   )
 
   override def process(translationUnit: TranslationUnit, filePath: String, featureModel: FeatureModel, features: Set[String]): Unit = {

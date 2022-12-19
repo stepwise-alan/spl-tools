@@ -1,6 +1,6 @@
 import de.fosd.typechef.conditional.Opt
 import de.fosd.typechef.featureexpr.FeatureExprFactory
-import de.fosd.typechef.parser.c.{Id, *}
+import de.fosd.typechef.parser.c.*
 import org.bytedeco.javacpp.BytePointer
 import org.bytedeco.javacpp.LLVM.*
 
@@ -60,43 +60,9 @@ class Verifier(seaPath: String, z3Path: String) {
     map
   }
 
-  //  def sExprCdrToExpr(cdr: SExp, op: String, llVariableNames: List[String], llMapping: Map[String, String]): Expr = {
-  //    cdr match {
-  //      case SCons(car, SNil()) => sExprToCExpr(car, llVariableNames, llMapping)
-  //      case SCons(car, cdr) =>
-  //        NAryExpr(sExprToCExpr(car, llVariableNames, llMapping),
-  //          List(Util.optTrue(NArySubExpr(op, sExprCdrToExpr(cdr, op, llVariableNames, llMapping)))))
-  //      case _ => sExprToCExpr(cdr, llVariableNames, llMapping)
-  //    }
-  //  }
-  //
-  //  def sExprToCExpr(sExpr: SExp, llVariableNames: List[String], llMapping: Map[String, String]): Expr = {
-  //    val regex = "p_init_(\\d+)_n".r
-  //    sExpr match {
-  //      case SInt(value) => Constant(value.toString())
-  //      case SSymbol(value) => regex.findFirstMatchIn(value) match {
-  //        case Some(regex(idxString)) => Id(llMapping(llVariableNames(idxString.toInt)))
-  //        case Some(_) => assert(false)
-  //        case None => assert(false)
-  //      }
-  //      case STrue() => Constant("1")
-  //      case SFalse() => Constant("0")
-  //      case SCons(car, cdr) => car match {
-  //        case SSymbol("and" | "&") => sExprCdrToExpr(cdr, "&&", llVariableNames, llMapping)
-  //        case SSymbol("or" | "|") => sExprCdrToExpr(cdr, "||", llVariableNames, llMapping)
-  //        case SSymbol("=") => sExprCdrToExpr(cdr, "==", llVariableNames, llMapping)
-  //        case SSymbol("div") => sExprCdrToExpr(cdr, "/", llVariableNames, llMapping)
-  //        case SSymbol("not") => UnaryExpr("!", sExprToCExpr(cdr, llVariableNames, llMapping))
-  //        case SSymbol(op) => sExprCdrToExpr(cdr, op, llVariableNames, llMapping)
-  //        case _ => assert(false)
-  //      }
-  //      case SNil() => assert(false)
-  //    }
-  //  }
-
   def sExprToCExpr(sExpr: SExpr, llVariableNames: List[String], llMapping: Map[String, String],
                    isFeature: String => Boolean): Either[Expr, Expr] = {
-    val regex = "p_init_(\\d+)_n".r
+    val regex = "p_init[^_]*_(\\d+)_n".r
     sExpr match {
       case SNumber(value) => Left(Constant(value))
       case SSymbol(value) => regex.findFirstMatchIn(value) match
@@ -110,7 +76,7 @@ class Verifier(seaPath: String, z3Path: String) {
           case _ => assert(false)
       case SString(value) => Left(StringLit(List(Util.optTrue(value))))
       case SList(SSymbol(sExprOp) :: sExprs) =>
-        val op = Map("and" -> "&&", "or" -> "||", "=" -> "==", "not" -> "!", "div" -> "/").getOrElse(sExprOp, sExprOp)
+        val op = Map("and" -> "&&", "or" -> "||", "=" -> "==", "not" -> "!", "div" -> "/", "mod" -> "%").getOrElse(sExprOp, sExprOp)
         val (exprs, allLeft) = sExprs.map(sExprToCExpr(_, llVariableNames, llMapping, isFeature))
           .foldLeft((List[Expr](), true))((acc, e) => e match
             case Left(value) => (acc._1 :+ value, acc._2)
