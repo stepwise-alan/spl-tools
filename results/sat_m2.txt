@@ -1,0 +1,564 @@
+/home/shuolin/.jdks/openjdk-18.0.1.1/bin/java -ea -Xmx1536m -Xms128m -Xss10m -javaagent:/home/shuolin/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.7571.182/lib/idea_rt.jar=42579:/home/shuolin/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.7571.182/bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath /home/shuolin/IdeaProjects/spl-tools/target/scala-3.1.3/classes:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/scopt/scopt_2.13/4.1.0/scopt_2.13-4.1.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/errorprone/error_prone_annotations/2.5.1/error_prone_annotations-2.5.1.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/guava/30.1.1-jre/guava-30.1.1-jre.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/opencsv/opencsv/5.6/opencsv-5.6.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/com/regblanc/scala-smtlib_2.13/0.2.1-42-gc68dbaa/scala-smtlib_2.13-0.2.1-42-gc68dbaa.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/conditionallib_2.13/0.4.2/jars/conditionallib_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/cparser_2.13/0.4.2/jars/cparser_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/crewrite_2.13/0.4.2/jars/crewrite_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/ctypechecker_2.13/0.4.2/jars/ctypechecker_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/errorlib_2.13/0.4.2/jars/errorlib_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/featureexprlib_2.13/0.4.2/jars/featureexprlib_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/frontend_2.13/0.4.2/jars/frontend_2.13.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/de/fosd/typechef/javabdd_repackaged/1.0b2/javabdd_repackaged-1.0b2.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/javaparser_2.13/0.4.2/jars/javaparser_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/parserframework_2.13/0.4.2/jars/parserframework_2.13.jar:/home/shuolin/.ivy2/local/de.fosd.typechef/partialpreprocessor_2.13/0.4.2/jars/partialpreprocessor_2.13.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/gnu/getopt/java-getopt/1.0.13/java-getopt-1.0.13.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/ant/ant-launcher/1.10.12/ant-launcher-1.10.12.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/ant/ant/1.10.12/ant-1.10.12.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/commons/commons-text/1.9/commons-text-1.9.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/logging/log4j/log4j-api/2.19.0/log4j-api-2.19.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/logging/log4j/log4j-core/2.19.0/log4j-core-2.19.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/bitbucket/inkytonik/kiama/kiama_2.13/2.5.0/kiama_2.13-2.5.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/bytedeco/javacpp-presets/llvm/7.0.1-1.4.4/llvm-7.0.1-1.4.4.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/bytedeco/javacpp/1.4.4/javacpp-1.4.4.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/checkerframework/checker-qual/3.8.0/checker-qual-3.8.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/ow2/sat4j/org.ow2.sat4j.core/2.3.6/org.ow2.sat4j.core-2.3.6.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-parser-combinators_2.13/2.1.1/scala-parser-combinators_2.13-2.1.1.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/2.1.0/scala-xml_2.13-2.1.0.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.8/scala-library-2.13.8.jar:/home/shuolin/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala3-library_3/3.1.3/scala3-library_3-3.1.3.jar EquivalenceChecker examples/coreutils.ls.6b01b71e.sat.m2/old.processed.bak.c examples/coreutils.ls.6b01b71e.sat.m2/new.processed.bak.c sortcmp /home/shuolin/CLionProjects/seahorn/build/run/bin/sea /home/shuolin/CLionProjects/seahorn/build/run/bin/z3 /home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis
+Warning: No platform header specified
+True	parsing succeeded
+
+Warning: No platform header specified
+True	parsing succeeded
+
+Warning: No platform header specified
+1.c:94:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_old == 0)) {
+       ~~~~~~~~^~~~
+1.c:94:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_old == 0)) {
+      ~        ^   ~
+1.c:94:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_old == 0)) {
+               ^~
+               =
+1.c:102:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_new == 0)) {
+       ~~~~~~~~^~~~
+1.c:102:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_new == 0)) {
+      ~        ^   ~
+1.c:102:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_new == 0)) {
+               ^~
+               =
+1.c:140:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+3 warnings generated.
+(transform N7datalog13mk_coi_filterE...5 rules 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0.002s)
+(transform N7datalog27mk_quantifier_instantiationE...no-op 0s)
+(transform N7datalog8mk_scaleE...no-op 0s)
+(transform N7datalog18mk_karr_invariantsE...no-op 0s)
+(transform N7datalog14mk_array_blastE...no-op 0s)
+(transform N7datalog16mk_elim_term_iteE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog12mk_bit_blastE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog13mk_coi_filterE...no-op 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog13mk_coi_filterE...no-op 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog8mk_sliceE...no-op 0s)
+; rule count: 5
+; predicate count: 5
+; output: query!0
+<null>:
+main@entry().
+<null>:
+main@verifier.error.split() :-
+ main@entry(),
+ p_init(#68,#69,#72,#73,#76,#77,#80,#81,#32,#31,#70,#74,#78,#82,#66,#3,#33),
+ (not (= (:var 1) (:var 0))),
+ (= (:var 0) (ite (:var 3) (:var 2) (:var 4))),
+ (= (:var 2) (* (- 1) (:var 4))),
+ (= (:var 5) (* (- 1) (:var 6))),
+ (or (:var 51)
+    (not (:var 24))
+    (and (:var 24) (:var 39))
+    (and (:var 42) (:var 24))
+    (and (:var 45) (:var 24))
+    (and (:var 48) (:var 24))
+    (and (:var 54) (:var 24))),
+ (or (not (:var 39)) (not (:var 71)) (:var 70)),
+ (or (not (:var 24)) (not (:var 39)) (= (:var 38) (:var 56))),
+ (or (not (:var 24)) (not (:var 39)) (= (:var 27) (:var 40))),
+ (or (not (:var 24)) (not (:var 39)) (= (:var 40) (:var 57))),
+ (or (not (:var 24)) (not (:var 39)) (= (:var 34) (:var 38))),
+ (or (not (:var 14)) (not (:var 13)) (not (:var 10))),
+ (or (not (:var 20)) (not (:var 14)) (= (:var 19) (:var 22))),
+ (or (not (:var 20)) (not (:var 14)) (= (:var 6) (:var 19))),
+ (or (:var 18) (not (:var 14)) (and (:var 20) (:var 14))),
+ (or (not (:var 83)) (not (:var 82)) (not (:var 67))),
+ (or (not (:var 83)) (not (:var 79)) (not (:var 78))),
+ (or (not (:var 75)) (not (:var 71)) (not (:var 70))),
+ (or (not (:var 75)) (not (:var 79)) (not (:var 74))),
+ (or (not (:var 54)) (not (:var 24)) (= (:var 27) (:var 55))),
+ (or (not (:var 54)) (not (:var 24)) (= (:var 55) (:var 65))),
+ (or (not (:var 54)) (not (:var 24)) (= (:var 53) (:var 64))),
+ (or (not (:var 54)) (= (:var 34) (:var 53)) (not (:var 24))),
+ (or (not (:var 54)) (:var 66) (not (:var 67))),
+ (or (not (:var 48)) (not (:var 24)) (= (:var 27) (:var 49))),
+ (or (not (:var 48)) (not (:var 24)) (= (:var 49) (:var 63))),
+ (or (not (:var 48)) (not (:var 24)) (= (:var 47) (:var 62))),
+ (or (not (:var 48)) (= (:var 34) (:var 47)) (not (:var 24))),
+ (or (not (:var 48)) (not (:var 83)) (:var 82)),
+ (or (not (:var 24)) (not (:var 45)) (= (:var 27) (:var 46))),
+ (or (not (:var 24)) (not (:var 45)) (= (:var 46) (:var 61))),
+ (or (not (:var 24)) (not (:var 45)) (= (:var 44) (:var 60))),
+ (or (not (:var 24)) (not (:var 45)) (= (:var 34) (:var 44))),
+ (or (not (:var 45)) (not (:var 79)) (:var 78)),
+ (or (not (:var 24)) (not (:var 42)) (= (:var 27) (:var 43))),
+ (or (= (:var 43) (:var 59)) (not (:var 24)) (not (:var 42))),
+ (or (not (:var 24)) (not (:var 42)) (= (:var 41) (:var 58))),
+ (or (not (:var 24)) (not (:var 42)) (= (:var 34) (:var 41))),
+ (or (not (:var 42)) (not (:var 75)) (:var 74)),
+ (or (not (:var 23)) (not (:var 20)) (not (:var 24))),
+ (or (not (:var 71)) (and (:var 96) (:var 71))),
+ (or (not (:var 10)) (= (:var 4) (:var 9))),
+ (or (not (:var 10)) (= (:var 9) (:var 12))),
+ (or (not (:var 10)) (= (:var 12) (+ (:var 16) (:var 15)))),
+ (or (not (:var 10)) (= (:var 15) (mod (:var 16) 2))),
+ (or (not (:var 10)) (= (:var 16) (div (:var 11) 4294967296))),
+ (or (not (:var 10)) (and (:var 14) (:var 10))),
+ (or (not (:var 39)) (= (:var 57) (+ (:var 69) (:var 68)))),
+ (or (not (:var 39)) (= (:var 56) (+ (:var 69) (* (- 1) (:var 68))))),
+ (or (not (:var 39)) (and (:var 39) (:var 71))),
+ (or (not (:var 24)) (= (:var 36) (= (:var 34) 0))),
+ (or (not (:var 24)) (= (:var 29) (= (:var 27) 0))),
+ (or (not (:var 24)) (= (:var 23) (= (:var 21) 0))),
+ (or (not (:var 24)) (= (:var 37) (ite (:var 33) (:var 32) (:var 31)))),
+ (or (not (:var 24)) (= (:var 35) (:var 37))),
+ (or (not (:var 24)) (= (:var 30) (ite (:var 33) (:var 32) (:var 31)))),
+ (or (not (:var 24)) (= (:var 28) (:var 30))),
+ (or (not (:var 24)) (= (:var 21) (ite (:var 36) (:var 35) (:var 34)))),
+ (or (not (:var 24)) (= (:var 11) (ite (:var 29) (:var 28) (:var 27)))),
+ (or (not (:var 14)) (= (:var 13) (= (:var 11) 0))),
+ (or (not (:var 20)) (= (:var 22) (+ (:var 26) (:var 25)))),
+ (or (not (:var 20)) (= (:var 26) (div (:var 21) 4294967296))),
+ (or (not (:var 20)) (= (:var 25) (mod (:var 26) 2))),
+ (or (not (:var 20)) (and (:var 20) (:var 24))),
+ (or (not (:var 96)) (and (:var 97) (:var 96))),
+ (or (not (:var 18)) (= (:var 17) (:var 21))),
+ (or (not (:var 18)) (= (:var 6) (:var 17))),
+ (or (not (:var 18)) (:var 24)),
+ (or (not (:var 8)) (= (:var 4) (:var 7))),
+ (or (not (:var 8)) (= (:var 7) (:var 11))),
+ (or (not (:var 8)) (:var 13)),
+ (or (:var 8) (:var 10)),
+ (or (not (:var 8)) (:var 14)),
+ (or (not (:var 67)) (and (:var 83) (:var 67))),
+ (or (not (:var 83)) (and (:var 79) (:var 83))),
+ (or (not (:var 79)) (and (:var 75) (:var 79))),
+ (or (not (:var 75)) (and (:var 75) (:var 71))),
+ (or (not (:var 54)) (= (:var 94) (= (:var 95) 16384))),
+ (or (not (:var 54)) (= (:var 86) (= (:var 87) 16384))),
+ (or (not (:var 54)) (= (:var 92) (= (:var 93) 16384))),
+ (or (not (:var 54)) (= (:var 88) (= (:var 89) 16384))),
+ (or (not (:var 54)) (= (:var 91) (ite (:var 92) (- 1) 0))),
+ (or (not (:var 54)) (= (:var 84) (ite (:var 88) 1 0))),
+ (or (not (:var 54)) (= (:var 90) (ite (:var 94) 1 0))),
+ (or (not (:var 54)) (= (:var 85) (ite (:var 86) (- 1) 0))),
+ (or (not (:var 54)) (= (:var 65) (+ (:var 85) (:var 84)))),
+ (or (not (:var 54)) (= (:var 64) (+ (:var 91) (:var 90)))),
+ (or (not (:var 54)) (and (:var 54) (:var 67))),
+ (or (not (:var 51)) (= (:var 27) (:var 52))),
+ (or (not (:var 51)) (= (:var 52) 0)),
+ (or (not (:var 51)) (= (:var 50) 0)),
+ (or (not (:var 51)) (= (:var 34) (:var 50))),
+ (or (not (:var 51)) (:var 67)),
+ (or (not (:var 51)) (not (:var 66))),
+ (or (not (:var 48)) (= (:var 63) (+ (:var 81) (* (- 1) (:var 80))))),
+ (or (not (:var 48)) (= (:var 62) (+ (:var 81) (* (- 1) (:var 80))))),
+ (or (not (:var 48)) (and (:var 48) (:var 83))),
+ (or (not (:var 45)) (= (:var 60) (+ (:var 77) (* (- 1) (:var 76))))),
+ (or (not (:var 45)) (= (:var 61) (+ (:var 77) (* (- 1) (:var 76))))),
+ (or (not (:var 45)) (and (:var 45) (:var 79))),
+ (or (not (:var 42)) (= (:var 59) (+ (:var 73) (* (- 1) (:var 72))))),
+ (or (not (:var 42)) (= (:var 58) (+ (:var 73) (* (- 1) (:var 72))))),
+ (or (not (:var 42)) (and (:var 42) (:var 75))),
+ (or (:var 23) (not (:var 18))),
+ (= (:var 1) (ite (:var 3) (:var 5) (:var 6))).
+<null>:
+p_init(#16,#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0) :-
+ target(#16,#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0).
+<null>:
+target(#16,#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0).
+<null>:
+query!0() :-
+ main@verifier.error.split().
+expand: query!0 (0, 0) FAR  w(0) 1(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 9.15 :after-memory 9.35)
+Entering level 1
+expand: query!0 (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (0, 1) FAR 1 U 0.00
+expand: main@verifier.error.split (0, 0) FAR  w(0) 1(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: query!0 (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 9.35 :after-memory 10.00)
+Propagating: 0 (smt.searching)
+1 (smt.searching)
+ ! 2
+(spacer::context::propagate :time 0.00 :before-memory 10.00 :after-memory 10.30)
+Entering level 2
+expand: query!0 (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (1, 2) FAR 1 U 0.00
+expand: main@verifier.error.split (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: p_init (0, 2) FAR 6911 UNDEF 0.00
+expand: p_init (0, 0) FAR  w(0) 6911(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: main@verifier.error.split (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: query!0 (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 10.30 :after-memory 10.69)
+Propagating: 0 (smt.searching)
+1 (smt.searching)
+2  ! 3
+(spacer::context::propagate :time 0.00 :before-memory 10.69 :after-memory 10.69)
+Entering level 3
+expand: query!0 (3, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (2, 3) FAR 1 U 0.00
+expand: main@verifier.error.split (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@entry (1, 3) FAR 1 UNDEF 0.00
+expand: main@entry (1, 0) FAR  w(0) 1(smt.searching)
+. T 0.00
+is-reachable: main@verifier.error.split (2, 0) FAR 1(smt.searching)
+(smt.searching)
+ F 0.00
+expand: main@verifier.error.split (2, 0) FAR  w(1) 1(smt.searching)
+(smt.searching)
+.
+	create_child: p_init (1, 3) FAR 7285 U 0.00
+expand: p_init (1, 0) FAR  w(0) 7285(smt.searching)
+.
+	create_child: target (0, 3) FAR 7440 UNDEF 0.00
+expand: target (0, 0) FAR  w(0) 7440(smt.searching)
+. UNDEF 0.00
+expand: target (0, 0) FAR  w(1) 7440(smt.searching)
+. T 0.00
+is-reachable: p_init (1, 0) FAR 7285(smt.searching)
+ F 0.00
+expand: p_init (1, 0) FAR  w(1) 7285(smt.searching)
+.(smt.searching)
+ T 0.00
+is-reachable: main@verifier.error.split (2, 0) FAR 1(smt.searching)
+ T 0.00
+is-reachable: query!0 (3, 0) FAR 1(smt.searching)
+ T 0.00
+(spacer::context::check_reachability :time 0.01 :before-memory 10.69 :after-memory 11.47)
+2.c:94:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_old == 0)) {
+       ~~~~~~~~^~~~
+2.c:94:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_old == 0)) {
+      ~        ^   ~
+2.c:94:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_old == 0)) {
+               ^~
+               =
+2.c:102:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_new == 0)) {
+       ~~~~~~~~^~~~
+2.c:102:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_new == 0)) {
+      ~        ^   ~
+2.c:102:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_new == 0)) {
+               ^~
+               =
+2.c:140:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+3 warnings generated.
+(transform N7datalog13mk_coi_filterE...5 rules 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0.003s)
+(transform N7datalog27mk_quantifier_instantiationE...no-op 0s)
+(transform N7datalog8mk_scaleE...no-op 0s)
+(transform N7datalog18mk_karr_invariantsE...no-op 0s)
+(transform N7datalog14mk_array_blastE...no-op 0s)
+(transform N7datalog16mk_elim_term_iteE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog12mk_bit_blastE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog13mk_coi_filterE...no-op 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog13mk_coi_filterE...no-op 0s)
+(transform N7datalog25mk_interp_tail_simplifierE...5 rules 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog15mk_rule_inlinerE...no-op 0s)
+(transform N7datalog22mk_subsumption_checkerE...no-op 0s)
+(transform N7datalog8mk_sliceE...5 rules 0s)
+; rule count: 5
+; predicate count: 5
+; output: query!0
+<null>:
+target!slice!2(#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0).
+<null>:
+main@entry().
+<null>:
+main@verifier.error.split() :-
+ main@entry(),
+ p_init!slice!1(#62,#63,#66,#67,#70,#71,#74,#75,#27,#64,#68,#72,#76,#60,#0,true),
+ (or (:var 45)
+    (not (:var 20))
+    (and (:var 20) (:var 36))
+    (and (:var 20) (:var 39))
+    (and (:var 20) (:var 42))
+    (and (:var 20) (:var 48))
+    (and (:var 33) (:var 20))),
+ (or (not (:var 20)) (not (:var 48)) (= (:var 49) (:var 59))),
+ (or (not (:var 20)) (not (:var 48)) (= (:var 28) (:var 47))),
+ (or (not (:var 20)) (not (:var 48)) (= (:var 23) (:var 49))),
+ (or (not (:var 20)) (not (:var 48)) (= (:var 47) (:var 58))),
+ (or (not (:var 20)) (not (:var 42)) (= (:var 43) (:var 57))),
+ (or (not (:var 20)) (not (:var 42)) (= (:var 28) (:var 41))),
+ (or (not (:var 20)) (not (:var 42)) (= (:var 23) (:var 43))),
+ (or (not (:var 20)) (not (:var 42)) (= (:var 41) (:var 56))),
+ (or (not (:var 20)) (not (:var 39)) (= (:var 40) (:var 55))),
+ (or (not (:var 20)) (not (:var 39)) (= (:var 28) (:var 38))),
+ (or (not (:var 20)) (not (:var 39)) (= (:var 23) (:var 40))),
+ (or (not (:var 20)) (not (:var 39)) (= (:var 38) (:var 54))),
+ (or (not (:var 20)) (not (:var 36)) (= (:var 37) (:var 53))),
+ (or (not (:var 20)) (not (:var 36)) (= (:var 28) (:var 35))),
+ (or (not (:var 20)) (not (:var 36)) (= (:var 23) (:var 37))),
+ (or (not (:var 20)) (not (:var 36)) (= (:var 35) (:var 52))),
+ (or (not (:var 10)) (not (:var 9)) (not (:var 6))),
+ (or (:var 76) (not (:var 42)) (not (:var 77))),
+ (or (:var 72) (not (:var 73)) (not (:var 39))),
+ (or (not (:var 72)) (not (:var 73)) (not (:var 77))),
+ (or (not (:var 69)) (not (:var 65)) (not (:var 64))),
+ (or (not (:var 69)) (:var 68) (not (:var 36))),
+ (or (not (:var 68)) (not (:var 69)) (not (:var 73))),
+ (or (:var 14) (not (:var 10)) (and (:var 16) (:var 10))),
+ (or (not (:var 61)) (not (:var 76)) (not (:var 77))),
+ (or (not (:var 48)) (:var 60) (not (:var 61))),
+ (or (not (:var 16)) (not (:var 10)) (= (:var 15) (:var 18))),
+ (or (not (:var 16)) (not (:var 10)) (= (:var 2) (:var 15))),
+ (or (not (:var 33)) (not (:var 65)) (:var 64)),
+ (or (not (:var 20)) (not (:var 33)) (= (:var 28) (:var 32))),
+ (or (not (:var 20)) (not (:var 33)) (= (:var 23) (:var 34))),
+ (or (not (:var 20)) (not (:var 33)) (= (:var 34) (:var 51))),
+ (or (not (:var 20)) (not (:var 33)) (= (:var 32) (:var 50))),
+ (or (not (:var 19)) (not (:var 16)) (not (:var 20))),
+ (or (not (:var 65)) (and (:var 90) (:var 65))),
+ (or (not (:var 6)) (= (:var 1) (:var 5))),
+ (or (not (:var 6)) (= (:var 5) (:var 8))),
+ (or (not (:var 6)) (= (:var 8) (+ (:var 12) (:var 11)))),
+ (or (not (:var 6)) (= (:var 11) (mod (:var 12) 2))),
+ (or (not (:var 6)) (= (:var 12) (div (:var 7) 4294967296))),
+ (or (not (:var 6)) (and (:var 10) (:var 6))),
+ (or (not (:var 48)) (= (:var 88) (= (:var 89) 16384))),
+ (or (not (:var 48)) (= (:var 80) (= (:var 81) 16384))),
+ (or (not (:var 48)) (= (:var 86) (= (:var 87) 16384))),
+ (or (not (:var 48)) (= (:var 82) (= (:var 83) 16384))),
+ (or (not (:var 48)) (= (:var 79) (ite (:var 80) (- 1) 0))),
+ (or (not (:var 48)) (= (:var 78) (ite (:var 82) 1 0))),
+ (or (not (:var 48)) (= (:var 58) (+ (:var 85) (:var 84)))),
+ (or (not (:var 48)) (= (:var 85) (ite (:var 86) (- 1) 0))),
+ (or (not (:var 48)) (= (:var 84) (ite (:var 88) 1 0))),
+ (or (not (:var 48)) (= (:var 59) (+ (:var 79) (:var 78)))),
+ (or (not (:var 48)) (and (:var 61) (:var 48))),
+ (or (not (:var 45)) (= (:var 46) 0)),
+ (or (not (:var 45)) (= (:var 28) (:var 44))),
+ (or (not (:var 45)) (= (:var 23) (:var 46))),
+ (or (not (:var 45)) (= (:var 44) 0)),
+ (or (not (:var 42)) (= (:var 57) (+ (:var 75) (* (- 1) (:var 74))))),
+ (or (not (:var 42)) (= (:var 56) (+ (:var 75) (* (- 1) (:var 74))))),
+ (or (not (:var 42)) (and (:var 77) (:var 42))),
+ (or (not (:var 39)) (= (:var 55) (+ (:var 71) (* (- 1) (:var 70))))),
+ (or (not (:var 39)) (= (:var 54) (+ (:var 71) (* (- 1) (:var 70))))),
+ (or (not (:var 39)) (and (:var 73) (:var 39))),
+ (or (not (:var 36)) (= (:var 52) (+ (:var 67) (* (- 1) (:var 66))))),
+ (or (not (:var 36)) (= (:var 53) (+ (:var 67) (* (- 1) (:var 66))))),
+ (or (not (:var 36)) (and (:var 69) (:var 36))),
+ (or (not (:var 20)) (= (:var 30) (= (:var 28) 0))),
+ (or (not (:var 20)) (= (:var 25) (= (:var 23) 0))),
+ (or (not (:var 20)) (= (:var 19) (= (:var 17) 0))),
+ (or (not (:var 20)) (= (:var 31) (:var 27))),
+ (or (not (:var 20)) (= (:var 29) (:var 31))),
+ (or (not (:var 20)) (= (:var 26) (:var 27))),
+ (or (not (:var 20)) (= (:var 24) (:var 26))),
+ (or (not (:var 20)) (= (:var 17) (ite (:var 30) (:var 29) (:var 28)))),
+ (or (not (:var 20)) (= (:var 7) (ite (:var 25) (:var 24) (:var 23)))),
+ (or (not (:var 10)) (= (:var 9) (= (:var 7) 0))),
+ (or (not (:var 77)) (and (:var 73) (:var 77))),
+ (or (not (:var 73)) (and (:var 69) (:var 73))),
+ (or (not (:var 69)) (and (:var 69) (:var 65))),
+ (or (not (:var 14)) (= (:var 13) (:var 17))),
+ (or (not (:var 14)) (= (:var 2) (:var 13))),
+ (or (not (:var 14)) (:var 20)),
+ (or (not (:var 4)) (= (:var 1) (:var 3))),
+ (or (not (:var 4)) (= (:var 3) (:var 7))),
+ (or (not (:var 4)) (:var 9)),
+ (or (:var 4) (:var 6)),
+ (or (not (:var 4)) (:var 10)),
+ (or (not (:var 61)) (and (:var 61) (:var 77))),
+ (or (:var 61) (not (:var 45))),
+ (or (not (:var 45)) (not (:var 60))),
+ (or (not (:var 16)) (= (:var 18) (+ (:var 22) (:var 21)))),
+ (or (not (:var 16)) (= (:var 22) (div (:var 17) 4294967296))),
+ (or (not (:var 16)) (= (:var 21) (mod (:var 22) 2))),
+ (or (not (:var 16)) (and (:var 16) (:var 20))),
+ (or (not (:var 90)) (and (:var 90) (:var 91))),
+ (or (not (:var 33)) (= (:var 51) (+ (:var 63) (:var 62)))),
+ (or (not (:var 33)) (= (:var 50) (+ (:var 63) (* (- 1) (:var 62))))),
+ (or (not (:var 33)) (and (:var 33) (:var 65))),
+ (or (:var 19) (not (:var 14))),
+ (not (= (ite (:var 0) (* (- 1) (:var 2)) (:var 2))
+        (ite (:var 0) (* (- 1) (:var 1)) (:var 1)))).
+<null>:
+query!0() :-
+ main@verifier.error.split().
+<null>:
+p_init!slice!1(#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0) :-
+ target!slice!2(#15,#14,#13,#12,#11,#10,#9,#8,#7,#6,#5,#4,#3,#2,#1,#0).
+expand: query!0 (0, 0) FAR  w(0) 1(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 9.19 :after-memory 9.39)
+Entering level 1
+expand: query!0 (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (0, 1) FAR 1 U 0.00
+expand: main@verifier.error.split (0, 0) FAR  w(0) 1(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: query!0 (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 9.39 :after-memory 10.10)
+Propagating: 0 (smt.searching)
+1 (smt.searching)
+ ! 2
+(spacer::context::propagate :time 0.00 :before-memory 10.10 :after-memory 10.30)
+Entering level 2
+expand: query!0 (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (1, 2) FAR 1 U 0.00
+expand: main@verifier.error.split (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: p_init!slice!1 (0, 2) FAR 6380 UNDEF 0.00
+expand: p_init!slice!1 (0, 0) FAR  w(0) 6380(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: main@verifier.error.split (1, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+expand: query!0 (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+IUC Core:
+
+. F 0.00
+(spacer::context::check_reachability :time 0.00 :before-memory 10.30 :after-memory 10.58)
+Propagating: 0 (smt.searching)
+1 (smt.searching)
+2  ! 3
+(spacer::context::propagate :time 0.00 :before-memory 10.58 :after-memory 10.58)
+Entering level 3
+expand: query!0 (3, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@verifier.error.split (2, 3) FAR 1 U 0.00
+expand: main@verifier.error.split (2, 0) FAR  w(0) 1(smt.searching)
+(smt.searching)
+.
+	create_child: main@entry (1, 3) FAR 1 UNDEF 0.00
+expand: main@entry (1, 0) FAR  w(0) 1(smt.searching)
+. T 0.00
+is-reachable: main@verifier.error.split (2, 0) FAR 1(smt.searching)
+(smt.searching)
+ F 0.00
+expand: main@verifier.error.split (2, 0) FAR  w(1) 1(smt.searching)
+(smt.searching)
+.
+	create_child: p_init!slice!1 (1, 3) FAR 7109 U 0.00
+expand: p_init!slice!1 (1, 0) FAR  w(0) 7109(smt.searching)
+.
+	create_child: target!slice!2 (0, 3) FAR 7227 UNDEF 0.00
+expand: target!slice!2 (0, 0) FAR  w(0) 7227(smt.searching)
+. T 0.00
+is-reachable: p_init!slice!1 (1, 0) FAR 7109(smt.searching)
+ F 0.00
+expand: p_init!slice!1 (1, 0) FAR  w(1) 7109(smt.searching)
+.(smt.searching)
+ T 0.00
+is-reachable: main@verifier.error.split (2, 0) FAR 1(smt.searching)
+ T 0.00
+is-reachable: query!0 (3, 0) FAR 1(smt.searching)
+ T 0.00
+(spacer::context::check_reachability :time 0.01 :before-memory 10.58 :after-memory 11.55)
+3.c:94:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_old == 0)) {
+       ~~~~~~~~^~~~
+3.c:94:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_old == 0)) {
+      ~        ^   ~
+3.c:94:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_old == 0)) {
+               ^~
+               =
+3.c:102:16: warning: equality comparison with extraneous parentheses [-Wparentheses-equality]
+  if ((dif_new == 0)) {
+       ~~~~~~~~^~~~
+3.c:102:16: note: remove extraneous parentheses around the comparison to silence this warning
+  if ((dif_new == 0)) {
+      ~        ^   ~
+3.c:102:16: note: use '=' to turn this equality comparison into an assignment
+  if ((dif_new == 0)) {
+               ^~
+               =
+3.c:140:1: warning: non-void function does not return a value [-Wreturn-type]
+}
+^
+3 warnings generated.
+Counter Example 0:
+	!CONFIG_LOCALE_SUPPORT     &&     (sort_size && (st_size2 < st_size1) && (strcmp12 < 0) && !sort_reverse && ((st_size1 + st_size2) == 0))
+Counter Example 1:
+	1     &&     (sort_reverse && strcmp12 && ((((st_size2 + (1 * st_size1)) / 4294967296) % 2) == 0) && (strcoll12 > 0) && (st_size1 < st_size2))
+Parser:              1432 ms
+Preprocessor:          65 ms
+Superposer:             6 ms
+SelfComposer:         450 ms
+Verifier:             649 ms
+
+Total:               2602 ms
+
+Process finished with exit code 0
