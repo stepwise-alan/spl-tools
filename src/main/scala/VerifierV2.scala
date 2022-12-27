@@ -252,7 +252,7 @@ class VerifierV2(seaPath: String, z3Path: String) {
       s"${majorNumberOfIterations}_$minorNumberOfIterations") match {
       case Some(left, right) =>
         generalizeFeaturedCounterExample(isVariable, externalDefs, declarationStatements, otherStatements,
-          isFeature, assumes, lefts :+ left, rights :+ right, majorNumberOfIterations, minorNumberOfIterations)
+          isFeature, assumes, lefts :+ left, rights :+ right, majorNumberOfIterations, minorNumberOfIterations + 1)
       case None =>
         (createNAryExpr(lefts, "||"), createNAryExpr(rights, "&&"))
     }

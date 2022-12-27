@@ -34,6 +34,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_SETCONSOLE)
 
 
+#define __gnu_linux__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_HUSH_MODE_X if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_HUSH_MODE_X)
@@ -62,6 +67,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_TRACEROUTE6)
 		 => 1 if def(CONFIG_TRACEROUTE6)
+
+
+#define __DEC128_EPSILON__ if True 
+	expansions 
+		 => 1E-33DL if True
 
 
 #define IF_NOT_FEATURE_HDPARM_HDIO_DRIVE_RESET if True 
@@ -122,6 +132,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_SHADOWPASSWDS)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_SHADOWPASSWDS)
+
+
+#define __x86_64__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_CKSUM if True 
@@ -254,6 +269,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_BUFFERS_GO_ON_STACK)
 
 
+#define __LONG_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
+
+
 #define ENABLE_FEATURE_ADDUSER_TO_GROUP if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_ADDUSER_TO_GROUP)
@@ -270,6 +290,16 @@
 	expansions 
 		 => 0 if !def(CONFIG_CHGRP)
 		 => 1 if def(CONFIG_CHGRP)
+
+
+#define __INT32_MAX__ if True 
+	expansions 
+		 => 2147483647 if True
+
+
+#define __DECIMAL_DIG__ if True 
+	expansions 
+		 => 21 if True
 
 
 #define IF_NOT_PLATFORM_LINUX if True 
@@ -318,16 +348,26 @@
 		 => 1 if def(CONFIG_FEATURE_START_STOP_DAEMON_FANCY)
 
 
-#define ENABLE_IOCTL_HEX2STR_ERROR if True 
+#define __SSP__ if True 
 	expansions 
-		 => 0 if !def(CONFIG_IOCTL_HEX2STR_ERROR)
-		 => 1 if def(CONFIG_IOCTL_HEX2STR_ERROR)
+		 => 1 if True
 
 
 #define IF_NOT_FEATURE_KLOGD_KLOGCTL if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_KLOGD_KLOGCTL)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_KLOGD_KLOGCTL)
+
+
+#define ENABLE_IOCTL_HEX2STR_ERROR if True 
+	expansions 
+		 => 0 if !def(CONFIG_IOCTL_HEX2STR_ERROR)
+		 => 1 if def(CONFIG_IOCTL_HEX2STR_ERROR)
+
+
+#define __WCHAR_TYPE__ if True 
+	expansions 
+		 => int if True
 
 
 #define IF_NOT_FEATURE_MDEV_CONF if True 
@@ -426,18 +466,6 @@
 		(__VA_ARGS__...) if def(CONFIG_VOLUMEID)
 
 
-#define ENABLE_HUSH_FUNCTIONS if True 
-	expansions 
-		 => 0 if !def(CONFIG_HUSH_FUNCTIONS)
-		 => 1 if def(CONFIG_HUSH_FUNCTIONS)
-
-
-#define ENABLE_COMM if True 
-	expansions 
-		 => 0 if !def(CONFIG_COMM)
-		 => 1 if def(CONFIG_COMM)
-
-
 #define ENABLE_FSCK if True 
 	expansions 
 		 => 0 if !def(CONFIG_FSCK)
@@ -448,6 +476,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_MDEV_RENAME_REGEXP)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_MDEV_RENAME_REGEXP)
+
+
+#define __PRAGMA_REDEFINE_EXTNAME if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_FEATURE_SEAMLESS_LZMA if True 
@@ -548,6 +581,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_PASSWD)
 		(__VA_ARGS__...) if def(CONFIG_PASSWD)
+
+
+#define __UINT8_C if True 
+	expansions 
+		(c) => c if True
 
 
 #define IF_NOT_FEATURE_DATE_COMPAT if True 
@@ -680,6 +718,11 @@
 		 if def(CONFIG_FEATURE_LS_COLOR)
 
 
+#define __INTPTR_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
 #define IF_NOT_DMALLOC if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_DMALLOC)
@@ -690,6 +733,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME)
+
+
+#define __LP64__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_FEATURE_DEVPTS if True 
@@ -718,6 +766,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_BOOTCHARTD)
 		(__VA_ARGS__...) if def(CONFIG_BOOTCHARTD)
+
+
+#define __FLT_HAS_INFINITY__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_NICE if True 
@@ -774,6 +827,22 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_ROTATE_LOGFILE)
 
 
+#define __UINT_LEAST8_MAX__ if True 
+	expansions 
+		 => 255 if True
+
+
+#define ENABLE_HUSH_FUNCTIONS if True 
+	expansions 
+		 => 0 if !def(CONFIG_HUSH_FUNCTIONS)
+		 => 1 if def(CONFIG_HUSH_FUNCTIONS)
+
+
+#define __INT_FAST32_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
 #define ENABLE_FEATURE_LS_COLOR_IS_DEFAULT if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_LS_COLOR_IS_DEFAULT)
@@ -784,6 +853,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_USE_TERMIOS)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_USE_TERMIOS)
+
+
+#define __FLT_MAX_EXP__ if True 
+	expansions 
+		 => 128 if True
 
 
 #define ENABLE_NMETER if True 
@@ -815,6 +889,17 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_VI_USE_SIGNALS)
 
 
+#define __DBL_MANT_DIG__ if True 
+	expansions 
+		 => 53 if True
+
+
+#define ENABLE_COMM if True 
+	expansions 
+		 => 0 if !def(CONFIG_COMM)
+		 => 1 if def(CONFIG_COMM)
+
+
 #define ENABLE_FEATURE_CHAT_IMPLICIT_CR if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_CHAT_IMPLICIT_CR)
@@ -839,6 +924,11 @@
 		 => 1 if def(CONFIG_CHROOT)
 
 
+#define __STDC_VERSION__ if True 
+	expansions 
+		 => 199901L if True
+
+
 #define IF_UNICODE_COMBINING_WCHARS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_UNICODE_COMBINING_WCHARS)
@@ -849,6 +939,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_WHICH)
 		 => 1 if def(CONFIG_WHICH)
+
+
+#define __CHAR_BIT__ if True 
+	expansions 
+		 => 8 if True
 
 
 #define ENABLE_PASSWORD_MINLEN if True 
@@ -890,6 +985,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_FIND_GROUP)
 		 => 1 if def(CONFIG_FEATURE_FIND_GROUP)
+
+
+#define __LDBL_MAX__ if True 
+	expansions 
+		 => 1.18973149535723176502e+4932L if True
 
 
 #define CONFIG_TELINIT_PATH if True 
@@ -950,16 +1050,26 @@
 		 => 1 if def(CONFIG_TCPSVD)
 
 
+#define IF_NOT_UNXZ if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_UNXZ)
+		(__VA_ARGS__...) if def(CONFIG_UNXZ)
+
+
+#define __LDBL_MAX_10_EXP__ if True 
+	expansions 
+		 => 4932 if True
+
+
 #define IF_NOT_FOLD if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FOLD)
 		(__VA_ARGS__...) if def(CONFIG_FOLD)
 
 
-#define IF_NOT_UNXZ if True 
+#define __DBL_MIN__ if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_UNXZ)
-		(__VA_ARGS__...) if def(CONFIG_UNXZ)
+		 => ((double)2.22507385850720138309e-308L) if True
 
 
 #define IF_RMDIR if True 
@@ -978,6 +1088,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_SH_IS_ASH)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_SH_IS_ASH)
+
+
+#define __UINTPTR_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
 
 
 #define IF_FEATURE_LS_USERNAME if True 
@@ -1063,6 +1178,11 @@
 		(__VA_ARGS__...) if def(CONFIG_DD)
 
 
+#define __LONG_LONG_MAX__ if True 
+	expansions 
+		 => 9223372036854775807LL if True
+
+
 #define ENABLE_TIME if True 
 	expansions 
 		 => 0 if !def(CONFIG_TIME)
@@ -1109,6 +1229,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TRACEROUTE_USE_ICMP)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TRACEROUTE_USE_ICMP)
+
+
+#define __REGISTER_PREFIX__ if True 
+	expansions 
+		 if True
 
 
 #define ENABLE_SMEMCAP if True 
@@ -1224,6 +1349,11 @@
 		(__VA_ARGS__...) if def(CONFIG_DHCPRELAY)
 
 
+#define __GNUC__ if True 
+	expansions 
+		 => 4 if True
+
+
 #define IF_FUSER if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FUSER)
@@ -1270,6 +1400,16 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_ASH_RANDOM_SUPPORT)
 		(__VA_ARGS__...) if def(CONFIG_ASH_RANDOM_SUPPORT)
+
+
+#define __INT64_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
+#define __SIZEOF_INT__ if True 
+	expansions 
+		 => 4 if True
 
 
 #define IF_IOSTAT if True 
@@ -1334,12 +1474,6 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TAR_AUTODETECT)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TAR_AUTODETECT)
-
-
-#define IF_FINDFS if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FINDFS)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FINDFS)
 
 
 #define IF_NOT_FEATURE_DU_DEFAULT_BLOCKSIZE_1K if True 
@@ -1508,6 +1642,17 @@
 		 => 1 if def(CONFIG_GETENFORCE)
 
 
+#define IF_FINDFS if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FINDFS)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FINDFS)
+
+
+#define __DEC32_SUBNORMAL_MIN__ if True 
+	expansions 
+		 => 0.000001E-95DF if True
+
+
 #define IF_NOT_ASH_BUILTIN_PRINTF if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_ASH_BUILTIN_PRINTF)
@@ -1550,12 +1695,6 @@
 		 => 1 if def(CONFIG_FEATURE_WGET_AUTHENTICATION)
 
 
-#define IF_FEATURE_SETFILES_CHECK_OPTION if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_SETFILES_CHECK_OPTION)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_SETFILES_CHECK_OPTION)
-
-
 #define IF_FEATURE_CHAT_IMPLICIT_CR if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_CHAT_IMPLICIT_CR)
@@ -1580,10 +1719,26 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_INIT_SCTTY)
 
 
+#define __INT_FAST32_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
+
+
+#define IF_FEATURE_SETFILES_CHECK_OPTION if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_SETFILES_CHECK_OPTION)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_SETFILES_CHECK_OPTION)
+
+
 #define IF_SH_MATH_SUPPORT_64 if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_SH_MATH_SUPPORT_64)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_SH_MATH_SUPPORT_64)
+
+
+#define __DBL_MAX_10_EXP__ if True 
+	expansions 
+		 => 308 if True
 
 
 #define IF_FEATURE_PASSWD_WEAK_CHECK if True 
@@ -1610,16 +1765,21 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)
 
 
+#define ENABLE_IONICE if True 
+	expansions 
+		 => 0 if !def(CONFIG_IONICE)
+		 => 1 if def(CONFIG_IONICE)
+
+
 #define IF_NOT_FEATURE_VOLUMEID_LINUXSWAP if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_VOLUMEID_LINUXSWAP)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_VOLUMEID_LINUXSWAP)
 
 
-#define ENABLE_IONICE if True 
+#define __unix__ if True 
 	expansions 
-		 => 0 if !def(CONFIG_IONICE)
-		 => 1 if def(CONFIG_IONICE)
+		 => 1 if True
 
 
 #define IF_EXPR if True 
@@ -1680,6 +1840,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_GREP)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_GREP)
+
+
+#define __FLT_EVAL_METHOD__ if True 
+	expansions 
+		 => 0 if True
 
 
 #define IF_MOUNT if True 
@@ -1812,21 +1977,10 @@
 		 => 1 if def(CONFIG_LOGIN)
 
 
-#define IF_FEATURE_MOUNT_LABEL if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_MOUNT_LABEL)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_MOUNT_LABEL)
-
-
 #define IF_FEATURE_IPCALC_FANCY if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_IPCALC_FANCY)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_IPCALC_FANCY)
-
-
-#define IF_NOT_FEATURE_WGET_LONG_OPTIONS if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if True
 
 
 #define IF_NOT_DEVFSD_VERBOSE if True 
@@ -1923,15 +2077,20 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_FDISK_WRITABLE)
 
 
+#define CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS if True 
+	expansions 
+		 => "-R -n" if True
+
+
+#define __DEC64_SUBNORMAL_MIN__ if True 
+	expansions 
+		 => 0.000000000000001E-383DD if True
+
+
 #define IF_NOT_FEATURE_GZIP_LONG_OPTIONS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)
-
-
-#define CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS if True 
-	expansions 
-		 => "-R -n" if True
 
 
 #define IF_NOT_TAC if True 
@@ -1955,6 +2114,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_NOT)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_NOT)
+
+
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_FEATURE_AIX_LABEL if True 
@@ -2027,6 +2191,17 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_BOOTCHARTD_CONFIG_FILE)
 
 
+#define __SHRT_MAX__ if True 
+	expansions 
+		 => 32767 if True
+
+
+#define IF_FEATURE_MOUNT_LABEL if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_MOUNT_LABEL)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_MOUNT_LABEL)
+
+
 #define IF_MONOTONIC_SYSCALL if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_MONOTONIC_SYSCALL)
@@ -2073,6 +2248,16 @@
 	expansions 
 		 => 0 if !def(CONFIG_IPADDR)
 		 => 1 if def(CONFIG_IPADDR)
+
+
+#define __INTMAX_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
+#define IF_NOT_FEATURE_WGET_LONG_OPTIONS if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if True
 
 
 #define IF_NOT_ARPING if True 
@@ -2169,6 +2354,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TAB_COMPLETION)
 
 
+#define __INT_LEAST16_MAX__ if True 
+	expansions 
+		 => 32767 if True
+
+
 #define IF_NOT_FEATURE_DIFF_LONG_OPTIONS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)
@@ -2223,6 +2413,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FDISK_SUPPORT_LARGE_DISKS)
 
 
+#define __SIZE_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
+
+
 #define ENABLE_FEATURE_MODUTILS_SYMBOLS if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_MODUTILS_SYMBOLS)
@@ -2239,6 +2434,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_EXTRA_QUIET)
 		 => 1 if def(CONFIG_FEATURE_EXTRA_QUIET)
+
+
+#define __INT_FAST64_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
 
 
 #define IF_RESTORECON if True 
@@ -2265,6 +2465,11 @@
 		 => 1 if def(CONFIG_MKFS_MINIX)
 
 
+#define __SSE_MATH__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define ENABLE_CHCON if True 
 	expansions 
 		 => 0 if !def(CONFIG_CHCON)
@@ -2275,6 +2480,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_COMPRESS_USAGE)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_COMPRESS_USAGE)
+
+
+#define __UINT_FAST32_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
 
 
 #define ENABLE_FEATURE_ADDUSER_LONG_OPTIONS if True 
@@ -2391,6 +2601,11 @@
 		 => 1 if def(CONFIG_FEATURE_COMPRESS_USAGE)
 
 
+#define __UINT_FAST16_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
+
+
 #define IF_FEATURE_DIFF_LONG_OPTIONS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)
@@ -2419,6 +2634,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_HTTPD_ENCODE_URL_STR)
 		 => 1 if def(CONFIG_FEATURE_HTTPD_ENCODE_URL_STR)
+
+
+#define __GXX_ABI_VERSION if True 
+	expansions 
+		 => 1002 if True
 
 
 #define ENABLE_FEATURE_TUNCTL_UG if True 
@@ -2454,6 +2674,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_VERBOSE_USAGE)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_VERBOSE_USAGE)
+
+
+#define __INT_MAX__ if True 
+	expansions 
+		 => 2147483647 if True
 
 
 #define IF_FEATURE_FIND_NOT if True 
@@ -2496,6 +2721,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN)
+
+
+#define __SIZEOF_LONG__ if True 
+	expansions 
+		 => 8 if True
 
 
 #define IF_FEATURE_HDPARM_HDIO_UNREGISTER_HWIF if True 
@@ -2709,6 +2939,11 @@
 		 => 1 if def(CONFIG_SVLOGD)
 
 
+#define __INT_LEAST32_TYPE__ if True 
+	expansions 
+		 => int if True
+
+
 #define IF_IP if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_IP)
@@ -2737,18 +2972,6 @@
 	expansions 
 		 => 0 if !def(CONFIG_RPM2CPIO)
 		 => 1 if def(CONFIG_RPM2CPIO)
-
-
-#define ENABLE_USE_BB_PWD_GRP if True 
-	expansions 
-		 => 0 if !def(CONFIG_USE_BB_PWD_GRP)
-		 => 1 if def(CONFIG_USE_BB_PWD_GRP)
-
-
-#define ENABLE_TEE if True 
-	expansions 
-		 => 0 if !def(CONFIG_TEE)
-		 => 1 if def(CONFIG_TEE)
 
 
 #define IF_FEATURE_DEL_USER_FROM_GROUP if True 
@@ -2814,6 +3037,16 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_FIND_MMIN)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_FIND_MMIN)
+
+
+#define __x86_64 if True 
+	expansions 
+		 => 1 if True
+
+
+#define __INT32_TYPE__ if True 
+	expansions 
+		 => int if True
 
 
 #define IF_FEATURE_IFUPDOWN_IP_BUILTIN if True 
@@ -2977,6 +3210,33 @@
 		(__VA_ARGS__...) if def(CONFIG_CMP)
 
 
+#define __UINTPTR_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
+
+
+#define __FLT_MAX_10_EXP__ if True 
+	expansions 
+		 => 38 if True
+
+
+#define ENABLE_USE_BB_PWD_GRP if True 
+	expansions 
+		 => 0 if !def(CONFIG_USE_BB_PWD_GRP)
+		 => 1 if def(CONFIG_USE_BB_PWD_GRP)
+
+
+#define __DBL_DENORM_MIN__ if True 
+	expansions 
+		 => ((double)4.94065645841246544177e-324L) if True
+
+
+#define ENABLE_TEE if True 
+	expansions 
+		 => 0 if !def(CONFIG_TEE)
+		 => 1 if def(CONFIG_TEE)
+
+
 #define IF_INCLUDE_SUSv2 if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_INCLUDE_SUSv2)
@@ -2987,6 +3247,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_VOLUMEID_CRAMFS)
 		 => 1 if def(CONFIG_FEATURE_VOLUMEID_CRAMFS)
+
+
+#define __INTPTR_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
 
 
 #define ENABLE_RDATE if True 
@@ -3107,6 +3372,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_STAT)
 
 
+#define __INT8_TYPE__ if True 
+	expansions 
+		 => signed char if True
+
+
 #define ENABLE_RUNCON if True 
 	expansions 
 		 => 0 if !def(CONFIG_RUNCON)
@@ -3116,6 +3386,11 @@
 #define _GNU_SOURCE if True 
 	expansions 
 		 => 1 if True
+
+
+#define __UINT_FAST64_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
 
 
 #define ENABLE_FEATURE_SH_IS_ASH if True 
@@ -3292,6 +3567,11 @@
 		 => 1 if def(CONFIG_DPKG_DEB)
 
 
+#define __FLT_DENORM_MIN__ if True 
+	expansions 
+		 => 1.40129846432481707092e-45F if True
+
+
 #define IF_OPENVT if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_OPENVT)
@@ -3302,12 +3582,6 @@
 	expansions 
 		 => 0 if !def(CONFIG_BUILD_LIBBUSYBOX)
 		 => 1 if def(CONFIG_BUILD_LIBBUSYBOX)
-
-
-#define ENABLE_FSYNC if True 
-	expansions 
-		 => 0 if !def(CONFIG_FSYNC)
-		 => 1 if def(CONFIG_FSYNC)
 
 
 #define IF_FEATURE_HWCLOCK_LONG_OPTIONS if True 
@@ -3456,6 +3730,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_RX)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_RX)
+
+
+#define __MMX__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_FEATURE_VOLUMEID_LUKS if True 
@@ -3626,22 +3905,32 @@
 		 => 1 if def(CONFIG_FEATURE_LAST_FANCY)
 
 
-#define IF_ETHER_WAKE if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_ETHER_WAKE)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_ETHER_WAKE)
-
-
 #define IF_TOP if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_TOP)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_TOP)
 
 
+#define IF_ETHER_WAKE if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_ETHER_WAKE)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_ETHER_WAKE)
+
+
+#define unix if True 
+	expansions 
+		 => 1 if True
+
+
 #define ENABLE_MODPROBE_SMALL if True 
 	expansions 
 		 => 0 if !def(CONFIG_MODPROBE_SMALL)
 		 => 1 if def(CONFIG_MODPROBE_SMALL)
+
+
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_8 if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_HTTPD if True 
@@ -3764,6 +4053,17 @@
 		 => 1 if def(CONFIG_FEATURE_HDPARM_HDIO_SCAN_HWIF)
 
 
+#define __linux__ if True 
+	expansions 
+		 => 1 if True
+
+
+#define ENABLE_FSYNC if True 
+	expansions 
+		 => 0 if !def(CONFIG_FSYNC)
+		 => 1 if def(CONFIG_FSYNC)
+
+
 #define IF_FEATURE_LS_TIMESTAMPS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_LS_TIMESTAMPS)
@@ -3794,10 +4094,9 @@
 		 => 1 if def(CONFIG_ARP)
 
 
-#define IF_FEATURE_INSTALL_LONG_OPTIONS if True 
+#define __DEC128_MAX__ if True 
 	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)
+		 => 9.999999999999999999999999999999999E6144DL if True
 
 
 #define IF_NOT_HOSTID if True 
@@ -3830,9 +4129,19 @@
 		 => 1 if def(CONFIG_MODPROBE)
 
 
+#define __DEC64_MANT_DIG__ if True 
+	expansions 
+		 => 16 if True
+
+
 #define IF_INIT_TERMINAL_TYPE if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if True
+
+
+#define __UINT_LEAST16_MAX__ if True 
+	expansions 
+		 => 65535 if True
 
 
 #define IF_NOT_PSCAN if True 
@@ -3883,10 +4192,20 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_DPKG)
 
 
+#define __FLT_MANT_DIG__ if True 
+	expansions 
+		 => 24 if True
+
+
 #define IF_NOT_ADDUSER if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if (!def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)&!def(CONFIG_ADDUSER))
 		(__VA_ARGS__...) if (def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_ADDUSER))
+
+
+#define __DEC128_SUBNORMAL_MIN__ if True 
+	expansions 
+		 => 0.000000000000000000000000000000001E-6143DL if True
 
 
 #define ENABLE_FEATURE_DIFF_LONG_OPTIONS if True 
@@ -4019,6 +4338,11 @@
 		 => 1 if def(CONFIG_FEATURE_FTPGETPUT_LONG_OPTIONS)
 
 
+#define __DBL_HAS_QUIET_NAN__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_HUSH_FUNCTIONS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_HUSH_FUNCTIONS)
@@ -4061,6 +4385,11 @@
 		 => 1 if def(CONFIG_UDPSVD)
 
 
+#define __DEC32_MAX__ if True 
+	expansions 
+		 => 9.999999E96DF if True
+
+
 #define ENABLE_UMOUNT if True 
 	expansions 
 		 => 0 if !def(CONFIG_UMOUNT)
@@ -4100,6 +4429,17 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FBSPLASH)
 		(__VA_ARGS__...) if def(CONFIG_FBSPLASH)
+
+
+#define __GCC_HAVE_DWARF2_CFI_ASM if True 
+	expansions 
+		 => 1 if True
+
+
+#define IF_FEATURE_INSTALL_LONG_OPTIONS if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)
 
 
 #define IF_NOT_WHO if True 
@@ -4280,6 +4620,11 @@
 		 if def(CONFIG_FEATURE_FIND_CONTEXT)
 
 
+#define __DEC64_EPSILON__ if True 
+	expansions 
+		 => 1E-15DD if True
+
+
 #define ENABLE_FEATURE_SYSLOGD_READ_BUFFER_SIZE if True 
 	expansions 
 		 => 1 if True
@@ -4295,6 +4640,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_LS_FILETYPES)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_LS_FILETYPES)
+
+
+#define __UINTMAX_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
 
 
 #define ENABLE_FEATURE_SHADOWPASSWDS if True 
@@ -4384,8 +4734,8 @@
 
 #define ENABLE_LONG_OPTS if True 
 	expansions 
-		 => 0 if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
-		 => 1 if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
+		 => 0 if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
+		 => 1 if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
 
 
 #define IF_NOT_DMESG if True 
@@ -4434,6 +4784,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_HUSH_BASH_COMPAT)
 		(__VA_ARGS__...) if def(CONFIG_HUSH_BASH_COMPAT)
+
+
+#define __DEC128_MAX_EXP__ if True 
+	expansions 
+		 => 6145 if True
 
 
 #define CONFIG_ADDUSER if (def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_ADDUSER)) 
@@ -4554,6 +4909,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_UTMP)
 
 
+#define __PTRDIFF_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
+
+
 #define IF_NOT_PMAP if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_PMAP)
@@ -4650,6 +5010,11 @@
 		 if def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)
 
 
+#define __unix if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_LENGTH if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_LENGTH)
@@ -4727,6 +5092,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_OSF_LABEL)
 
 
+#define __SIG_ATOMIC_MIN__ if True 
+	expansions 
+		 => (-__SIG_ATOMIC_MAX__ - 1) if True
+
+
 #define IF_NOT_CHVT if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_CHVT)
@@ -4792,12 +5162,6 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_RMMOD)
 
 
-#define ENABLE_USE_BB_CRYPT_SHA if True 
-	expansions 
-		 => 0 if !def(CONFIG_USE_BB_CRYPT_SHA)
-		 => 1 if def(CONFIG_USE_BB_CRYPT_SHA)
-
-
 #define IF_IPADDR if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_IPADDR)
@@ -4820,6 +5184,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_VOLUMEID_SYSV)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_VOLUMEID_SYSV)
+
+
+#define __INT_FAST16_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
 
 
 #define IF_NOT_MATCHPATHCON if True 
@@ -4887,6 +5256,22 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_MODUTILS_ALIAS)
 
 
+#define ENABLE_USE_BB_CRYPT_SHA if True 
+	expansions 
+		 => 0 if !def(CONFIG_USE_BB_CRYPT_SHA)
+		 => 1 if def(CONFIG_USE_BB_CRYPT_SHA)
+
+
+#define __LDBL_MANT_DIG__ if True 
+	expansions 
+		 => 64 if True
+
+
+#define __CHAR32_TYPE__ if True 
+	expansions 
+		 => unsigned int if True
+
+
 #define ENABLE_LSMOD if True 
 	expansions 
 		 => 0 if !def(CONFIG_LSMOD)
@@ -4939,6 +5324,11 @@
 	expansions 
 		 => 0 if (!def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)&!def(CONFIG_INSTALL))
 		 => 1 if (def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_INSTALL))
+
+
+#define __DBL_HAS_DENORM__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_FEATURE_VOLUMEID_LUKS if True 
@@ -5037,6 +5427,16 @@
 		(__VA_ARGS__...) if def(CONFIG_LENGTH)
 
 
+#define __UINT16_TYPE__ if True 
+	expansions 
+		 => short unsigned int if True
+
+
+#define __BIGGEST_ALIGNMENT__ if True 
+	expansions 
+		 => 16 if True
+
+
 #define ENABLE_RDEV if True 
 	expansions 
 		 => 0 if !def(CONFIG_RDEV)
@@ -5103,6 +5503,11 @@
 		 => 1 if def(CONFIG_FEATURE_IPV6)
 
 
+#define __UINT_FAST64_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
+
+
 #define IF_FEATURE_INSMOD_KSYMOOPS_SYMBOLS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INSMOD_KSYMOOPS_SYMBOLS)
@@ -5145,6 +5550,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_EDITING_VI)
 
 
+#define __amd64__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD)
@@ -5185,9 +5595,19 @@
 		 => 1 if def(CONFIG_FEATURE_MDEV_LOAD_FIRMWARE)
 
 
+#define __DBL_MIN_10_EXP__ if True 
+	expansions 
+		 => (-307) if True
+
+
 #define CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE if True 
 	expansions 
 		 => 16 if True
+
+
+#define __LDBL_HAS_QUIET_NAN__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_ASH_ALIAS if True 
@@ -5238,6 +5658,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_MODPROBE_BLACKLIST)
 
 
+#define __DEC32_MAX_EXP__ if True 
+	expansions 
+		 => 97 if True
+
+
 #define IF_NOT_FEATURE_CHAT_NOFAIL if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_CHAT_NOFAIL)
@@ -5248,6 +5673,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_INSTALL_APPLET_SCRIPT_WRAPPERS)
 		 => 1 if def(CONFIG_INSTALL_APPLET_SCRIPT_WRAPPERS)
+
+
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_ASH_MAIL if True 
@@ -5363,16 +5793,21 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_IP_TUNNEL)
 
 
-#define IF_NOT_LOGIN if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_LOGIN)
-		(__VA_ARGS__...) if def(CONFIG_LOGIN)
-
-
 #define ENABLE_FEATURE_TFTP_BLOCKSIZE if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_TFTP_BLOCKSIZE)
 		 => 1 if def(CONFIG_FEATURE_TFTP_BLOCKSIZE)
+
+
+#define __SSE__ if True 
+	expansions 
+		 => 1 if True
+
+
+#define IF_NOT_LOGIN if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_LOGIN)
+		(__VA_ARGS__...) if def(CONFIG_LOGIN)
 
 
 #define ENABLE_FEATURE_FDISK_ADVANCED if True 
@@ -5385,6 +5820,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_HDPARM_HDIO_TRISTATE_HWIF)
 		 => 1 if def(CONFIG_FEATURE_HDPARM_HDIO_TRISTATE_HWIF)
+
+
+#define __UINT32_C if True 
+	expansions 
+		(c) => c ## U if True
 
 
 #define IF_NOT_USE_BB_CRYPT_SHA if True 
@@ -5783,10 +6223,9 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_NAMEIF_EXTENDED)
 
 
-#define IF_NOT_FEATURE_RESIZE_PRINT if True 
+#define __FLT_HAS_DENORM__ if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_RESIZE_PRINT)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_RESIZE_PRINT)
+		 => 1 if True
 
 
 #define IF_FEATURE_FIND_GROUP if True 
@@ -5926,6 +6365,11 @@
 		 => 1 if def(CONFIG_PIVOT_ROOT)
 
 
+#define __PTRDIFF_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
 #define IF_NOT_TIMEOUT if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_TIMEOUT)
@@ -5990,10 +6434,20 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_GREP_EGREP_ALIAS)
 
 
+#define __NO_INLINE__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define ENABLE_FEATURE_PS_WIDE if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_PS_WIDE)
 		 => 1 if def(CONFIG_FEATURE_PS_WIDE)
+
+
+#define __UINT16_C if True 
+	expansions 
+		(c) => c if True
 
 
 #define IF_SOFTLIMIT if True 
@@ -6055,6 +6509,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_HAVE_DOT_CONFIG)
 
 
+#define __DEC128_MIN__ if True 
+	expansions 
+		 => 1E-6143DL if True
+
+
 #define IF_USLEEP if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_USLEEP)
@@ -6109,6 +6568,11 @@
 		 => 1 if (def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_EXPAND))
 
 
+#define __ORDER_BIG_ENDIAN__ if True 
+	expansions 
+		 => 4321 if True
+
+
 #define CONFIG_FEATURE_VI_MAX_LEN if True 
 	expansions 
 		 => 4096 if True
@@ -6144,10 +6608,20 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_UNICODE_USING_LOCALE)
 
 
+#define __UINT_FAST16_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
+
+
 #define ENABLE_DUMPKMAP if True 
 	expansions 
 		 => 0 if !def(CONFIG_DUMPKMAP)
 		 => 1 if def(CONFIG_DUMPKMAP)
+
+
+#define __SIG_ATOMIC_TYPE__ if True 
+	expansions 
+		 => int if True
 
 
 #define IF_FEATURE_VI_SEARCH if True 
@@ -6239,6 +6713,11 @@
 		 => 1 if def(CONFIG_FEATURE_ACPID_COMPAT)
 
 
+#define __UINTMAX_C if True 
+	expansions 
+		(c) => c ## UL if True
+
+
 #define IF_FEATURE_XARGS_SUPPORT_ZERO_TERM if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_XARGS_SUPPORT_ZERO_TERM)
@@ -6311,6 +6790,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_USE_BB_CRYPT_SHA)
 
 
+#define __INT8_C if True 
+	expansions 
+		(c) => c if True
+
+
 #define ENABLE_FEATURE_UDHCP_PORT if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_UDHCP_PORT)
@@ -6347,6 +6831,17 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_SUID)
 
 
+#define IF_NOT_FEATURE_RESIZE_PRINT if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_RESIZE_PRINT)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_RESIZE_PRINT)
+
+
+#define __SIG_ATOMIC_MAX__ if True 
+	expansions 
+		 => 2147483647 if True
+
+
 #define ENABLE_SETCONSOLE if True 
 	expansions 
 		 => 0 if !def(CONFIG_SETCONSOLE)
@@ -6374,12 +6869,6 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_CROND)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_CROND)
-
-
-#define ENABLE_SESTATUS if True 
-	expansions 
-		 => 0 if !def(CONFIG_SESTATUS)
-		 => 1 if def(CONFIG_SESTATUS)
 
 
 #define ENABLE_CTTYHACK if True 
@@ -6450,8 +6939,8 @@
 
 #define IF_LONG_OPTS if True 
 	expansions 
-		(__VA_ARGS__...) if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
-		(__VA_ARGS__...) => __VA_ARGS__ if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
+		(__VA_ARGS__...) if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
+		(__VA_ARGS__...) => __VA_ARGS__ if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
 
 
 #define IF_FEATURE_EDITING_ASK_TERMINAL if True 
@@ -6476,6 +6965,21 @@
 	expansions 
 		 => 0 if !def(CONFIG_HUSH_CASE)
 		 => 1 if def(CONFIG_HUSH_CASE)
+
+
+#define __ORDER_PDP_ENDIAN__ if True 
+	expansions 
+		 => 3412 if True
+
+
+#define __INT_FAST8_TYPE__ if True 
+	expansions 
+		 => signed char if True
+
+
+#define __INT_LEAST64_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
 
 
 #define IF_NOT_SHOWKEY if True 
@@ -6556,6 +7060,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_LOSETUP)
 
 
+#define __INT_FAST64_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
 #define ENABLE_FEATURE_FIND_SIZE if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_FIND_SIZE)
@@ -6596,6 +7105,17 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_ASH_RANDOM_SUPPORT)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_ASH_RANDOM_SUPPORT)
+
+
+#define __SIZEOF_INT128__ if True 
+	expansions 
+		 => 16 if True
+
+
+#define ENABLE_SESTATUS if True 
+	expansions 
+		 => 0 if !def(CONFIG_SESTATUS)
+		 => 1 if def(CONFIG_SESTATUS)
 
 
 #define IF_NOT_LOADKMAP if True 
@@ -6643,6 +7163,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_DNSD)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_DNSD)
+
+
+#define __DBL_EPSILON__ if True 
+	expansions 
+		 => ((double)2.22044604925031308085e-16L) if True
 
 
 #define ENABLE_ASH_MAIL if True 
@@ -6856,12 +7381,6 @@
 		(__VA_ARGS__...) if def(CONFIG_ASH_CMDCMD)
 
 
-#define IF_FEATURE_FIND_PAREN if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_FIND_PAREN)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_FIND_PAREN)
-
-
 #define ENABLE_SETUIDGID if True 
 	expansions 
 		 => 0 if !def(CONFIG_SETUIDGID)
@@ -6939,6 +7458,11 @@
 		(__VA_ARGS__...) if def(CONFIG_IFCONFIG)
 
 
+#define __FLT_RADIX__ if True 
+	expansions 
+		 => 2 if True
+
+
 #define IF_NICE if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_NICE)
@@ -6957,10 +7481,20 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_IFUPDOWN_MAPPING)
 
 
+#define __UINT64_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
+
+
 #define IF_NOT_FEATURE_TAR_OLDGNU_COMPATIBILITY if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_TAR_OLDGNU_COMPATIBILITY)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_TAR_OLDGNU_COMPATIBILITY)
+
+
+#define __LDBL_MIN_EXP__ if True 
+	expansions 
+		 => (-16381) if True
 
 
 #define IF_NOT_HUSH_HELP if True 
@@ -6981,16 +7515,31 @@
 		 => 1 if def(CONFIG_FEATURE_HTTPD_CGI)
 
 
+#define __LDBL_EPSILON__ if True 
+	expansions 
+		 => 1.08420217248550443401e-19L if True
+
+
 #define IF_FEATURE_INETD_RPC if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INETD_RPC)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_INETD_RPC)
 
 
+#define __WCHAR_MIN__ if True 
+	expansions 
+		 => (-__WCHAR_MAX__ - 1) if True
+
+
 #define IF_NOT_FEATURE_IFUPDOWN_MAPPING if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_IFUPDOWN_MAPPING)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_IFUPDOWN_MAPPING)
+
+
+#define __INT64_C if True 
+	expansions 
+		(c) => c ## L if True
 
 
 #define ENABLE_FEATURE_VOLUMEID_ROMFS if True 
@@ -7002,6 +7551,11 @@
 #define CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS if True 
 	expansions 
 		 => 80 if True
+
+
+#define __DBL_HAS_INFINITY__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_ASH_BUILTIN_ECHO if True 
@@ -7020,6 +7574,17 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_INSMOD_LOADINKMEM)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_INSMOD_LOADINKMEM)
+
+
+#define __DEC64_MIN_EXP__ if True 
+	expansions 
+		 => (-382) if True
+
+
+#define IF_FEATURE_FIND_PAREN if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_FIND_PAREN)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_FIND_PAREN)
 
 
 #define IF_NOT_FEATURE_MDEV_LOAD_FIRMWARE if True 
@@ -7340,6 +7905,11 @@
 		 => 1 if def(CONFIG_FEATURE_TAR_TO_COMMAND)
 
 
+#define __DEC64_MAX_EXP__ if True 
+	expansions 
+		 => 385 if True
+
+
 #define IF_NOT_SLEEP if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SLEEP)
@@ -7428,6 +7998,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_MOUNT_VERBOSE)
 		 => 1 if def(CONFIG_FEATURE_MOUNT_VERBOSE)
+
+
+#define __UINT8_MAX__ if True 
+	expansions 
+		 => 255 if True
 
 
 #define IF_NOT_UNICODE_BIDI_SUPPORT if True 
@@ -7663,6 +8238,16 @@
 		 => 1 if def(CONFIG_FEATURE_SGI_LABEL)
 
 
+#define __LDBL_MAX_EXP__ if True 
+	expansions 
+		 => 16384 if True
+
+
+#define __SSE2__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define ENABLE_INSTALL_SH_APPLET_SYMLINK if True 
 	expansions 
 		 => 0 if !def(CONFIG_INSTALL_SH_APPLET_SYMLINK)
@@ -7830,6 +8415,11 @@
 		 => 1 if def(CONFIG_FEATURE_SYSLOGD_DUP)
 
 
+#define __FLT_MAX__ if True 
+	expansions 
+		 => 3.40282346638528859812e+38F if True
+
+
 #define ENABLE_FEATURE_HTTPD_PROXY if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_HTTPD_PROXY)
@@ -7989,6 +8579,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_VI_SEARCH)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_VI_SEARCH)
+
+
+#define __WCHAR_MAX__ if True 
+	expansions 
+		 => 2147483647 if True
 
 
 #define ENABLE_FEATURE_BRCTL_SHOW if True 
@@ -8315,6 +8910,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_TASKSET_FANCY)
 
 
+#define __LDBL_DENORM_MIN__ if True 
+	expansions 
+		 => 3.64519953188247460253e-4951L if True
+
+
 #define ENABLE_PLATFORM_LINUX if True 
 	expansions 
 		 => 0 if !def(CONFIG_PLATFORM_LINUX)
@@ -8362,6 +8962,11 @@
 		 => 1 if def(CONFIG_RESIZE)
 
 
+#define __SIZEOF_FLOAT__ if True 
+	expansions 
+		 => 4 if True
+
+
 #define IF_NOT_FEATURE_MDEV_EXEC if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_MDEV_EXEC)
@@ -8404,12 +9009,6 @@
 		 => 1 if def(CONFIG_FEATURE_FIND_PRINT0)
 
 
-#define ENABLE_FEATURE_INIT_SYSLOG if True 
-	expansions 
-		 => 0 if !def(CONFIG_FEATURE_INIT_SYSLOG)
-		 => 1 if def(CONFIG_FEATURE_INIT_SYSLOG)
-
-
 #define IF_DEBUG if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_DEBUG)
@@ -8445,6 +9044,17 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_UDHCP_RFC3397)
 
 
+#define ENABLE_FEATURE_INIT_SYSLOG if True 
+	expansions 
+		 => 0 if !def(CONFIG_FEATURE_INIT_SYSLOG)
+		 => 1 if def(CONFIG_FEATURE_INIT_SYSLOG)
+
+
+#define __SIZEOF_WCHAR_T__ if True 
+	expansions 
+		 => 4 if True
+
+
 #define ENABLE_MOUNT if True 
 	expansions 
 		 => 0 if !def(CONFIG_MOUNT)
@@ -8457,6 +9067,11 @@
 		 => 1 if def(CONFIG_FEATURE_PS_TIME)
 
 
+#define __FLT_MIN_EXP__ if True 
+	expansions 
+		 => (-125) if True
+
+
 #define IF_FEATURE_WC_LARGE if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_WC_LARGE)
@@ -8467,6 +9082,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_SH_IS_ASH)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_SH_IS_ASH)
+
+
+#define __UINT_LEAST16_TYPE__ if True 
+	expansions 
+		 => short unsigned int if True
 
 
 #define ENABLE_CKSUM if True 
@@ -8514,6 +9134,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_UDPSVD)
 		(__VA_ARGS__...) if def(CONFIG_UDPSVD)
+
+
+#define __DBL_MAX__ if True 
+	expansions 
+		 => ((double)1.79769313486231570815e+308L) if True
 
 
 #define ENABLE_FEATURE_EJECT_SCSI if True 
@@ -8627,6 +9252,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_RUN_PARTS_FANCY)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_RUN_PARTS_FANCY)
+
+
+#define __SIZEOF_SHORT__ if True 
+	expansions 
+		 => 2 if True
 
 
 #define CONFIG_FEATURE_LESS_MAXLINES if True 
@@ -8751,6 +9381,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_HUMAN_READABLE)
 
 
+#define __WINT_MIN__ if True 
+	expansions 
+		 => 0U if True
+
+
 #define ENABLE_FEATURE_EDITING if True 
 	expansions 
 		 => 1 if True
@@ -8863,22 +9498,10 @@
 		(__VA_ARGS__...) if def(CONFIG_SETENFORCE)
 
 
-#define IF_NOT_FEATURE_FIND_INUM if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_INUM)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_INUM)
-
-
 #define IF_NOT_FEATURE_UDHCPC_ARPING if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_UDHCPC_ARPING)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_UDHCPC_ARPING)
-
-
-#define IF_FEATURE_HDPARM_HDIO_DRIVE_RESET if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET)
 
 
 #define ENABLE_KILLALL5 if True 
@@ -8903,12 +9526,6 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_VOLUMEID_BTRFS)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_VOLUMEID_BTRFS)
-
-
-#define IF_NOT_FEATURE_DATE_NANO if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_DATE_NANO)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_DATE_NANO)
 
 
 #define IF_NOT_STATIC if True 
@@ -8969,6 +9586,11 @@
 		(__VA_ARGS__...) if def(CONFIG_READPROFILE)
 
 
+#define _FORTIFY_SOURCE if True 
+	expansions 
+		 => 2 if True
+
+
 #define IF_NOT_FEATURE_DPKG_DEB_EXTRACT_ONLY if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_DPKG_DEB_EXTRACT_ONLY)
@@ -9023,6 +9645,11 @@
 		 => 1 if def(CONFIG_SETSEBOOL)
 
 
+#define __UINT64_C if True 
+	expansions 
+		(c) => c ## UL if True
+
+
 #define IF_FEATURE_BASH_IS_ASH if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_BASH_IS_ASH)
@@ -9053,10 +9680,26 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_LZMA)
 
 
-#define ENABLE_FEATURE_VERBOSE_CP_MESSAGE if True 
+#define IF_NOT_FEATURE_FIND_INUM if True 
 	expansions 
-		 => 0 if !def(CONFIG_FEATURE_VERBOSE_CP_MESSAGE)
-		 => 1 if def(CONFIG_FEATURE_VERBOSE_CP_MESSAGE)
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_INUM)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_INUM)
+
+
+#define __SIZEOF_PTRDIFF_T__ if True 
+	expansions 
+		 => 8 if True
+
+
+#define __GNUC_STDC_INLINE__ if True 
+	expansions 
+		 => 1 if True
+
+
+#define IF_FEATURE_HDPARM_HDIO_DRIVE_RESET if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET)
 
 
 #define IF_EXTRA_CFLAGS if True 
@@ -9068,6 +9711,17 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_PRESERVE_HARDLINKS)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_PRESERVE_HARDLINKS)
+
+
+#define ENABLE_FEATURE_VERBOSE_CP_MESSAGE if True 
+	expansions 
+		 => 0 if !def(CONFIG_FEATURE_VERBOSE_CP_MESSAGE)
+		 => 1 if def(CONFIG_FEATURE_VERBOSE_CP_MESSAGE)
+
+
+#define __amd64 if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_FEATURE_BEEP_FREQ if True 
@@ -9165,6 +9819,11 @@
 		(__VA_ARGS__...) if def(CONFIG_DATE)
 
 
+#define __INT_FAST8_MAX__ if True 
+	expansions 
+		 => 127 if True
+
+
 #define ENABLE_DATE if True 
 	expansions 
 		 => 0 if !def(CONFIG_DATE)
@@ -9224,6 +9883,17 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_TEST_64)
 
 
+#define __GNUC_PATCHLEVEL__ if True 
+	expansions 
+		 => 3 if True
+
+
+#define IF_NOT_FEATURE_DATE_NANO if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_DATE_NANO)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_DATE_NANO)
+
+
 #define IF_SORT if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_SORT)
@@ -9239,6 +9909,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_LESS_REGEXP)
 		 => 1 if def(CONFIG_FEATURE_LESS_REGEXP)
+
+
+#define __UINT_LEAST32_MAX__ if True 
+	expansions 
+		 => 4294967295U if True
 
 
 #define IF_NOT_FEATURE_TRACEROUTE_USE_ICMP if True 
@@ -9262,6 +9937,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_XARGS_SUPPORT_TERMOPT)
 		 => 1 if def(CONFIG_FEATURE_XARGS_SUPPORT_TERMOPT)
+
+
+#define __UINTMAX_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
 
 
 #define ENABLE_PMAP if True 
@@ -9352,6 +10032,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SVLOGD)
 		(__VA_ARGS__...) if def(CONFIG_SVLOGD)
+
+
+#define __UINT8_TYPE__ if True 
+	expansions 
+		 => unsigned char if True
 
 
 #define IF_FEATURE_NETSTAT_WIDE if True 
@@ -9584,6 +10269,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_AR_LONG_FILENAMES)
 
 
+#define __DEC64_MIN__ if True 
+	expansions 
+		 => 1E-383DD if True
+
+
 #define IF_UDHCPC_DEFAULT_SCRIPT if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if True
@@ -9623,6 +10313,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_IPTUNNEL)
 		 => 1 if def(CONFIG_IPTUNNEL)
+
+
+#define __ORDER_LITTLE_ENDIAN__ if True 
+	expansions 
+		 => 1234 if True
 
 
 #define IF_FEATURE_HTTPD_GZIP if True 
@@ -9702,12 +10397,6 @@
 		 => 1 if def(CONFIG_UNLZMA)
 
 
-#define IF_ASH_ALIAS if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_ASH_ALIAS)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_ASH_ALIAS)
-
-
 #define ENABLE_FEATURE_INSMOD_KSYMOOPS_SYMBOLS if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_INSMOD_KSYMOOPS_SYMBOLS)
@@ -9724,6 +10413,17 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_HTTPD_GZIP)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_HTTPD_GZIP)
+
+
+#define __SIZEOF_WINT_T__ if True 
+	expansions 
+		 => 4 if True
+
+
+#define IF_ASH_ALIAS if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_ASH_ALIAS)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_ASH_ALIAS)
 
 
 #define ENABLE_GETTY if True 
@@ -9774,12 +10474,6 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_MDEV_LOAD_FIRMWARE)
 
 
-#define IF_FEATURE_TEST_64 if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TEST_64)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TEST_64)
-
-
 #define IF_NC if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_NC)
@@ -9790,12 +10484,6 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_REV)
 		(__VA_ARGS__...) if def(CONFIG_REV)
-
-
-#define IF_FEATURE_ADDUSER_LONG_OPTIONS if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)
 
 
 #define ENABLE_REFORMIME if True 
@@ -9870,6 +10558,17 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_DD_THIRD_STATUS_LINE)
 
 
+#define __UINT16_MAX__ if True 
+	expansions 
+		 => 65535 if True
+
+
+#define IF_FEATURE_TEST_64 if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TEST_64)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TEST_64)
+
+
 #define ENABLE_DEALLOCVT if True 
 	expansions 
 		 => 0 if !def(CONFIG_DEALLOCVT)
@@ -9880,6 +10579,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_EDITING_SAVEHISTORY)
 		 => 1 if def(CONFIG_FEATURE_EDITING_SAVEHISTORY)
+
+
+#define __BYTE_ORDER__ if True 
+	expansions 
+		 => __ORDER_LITTLE_ENDIAN__ if True
 
 
 #define IF_FEATURE_IFUPDOWN_IPV6 if True 
@@ -9910,6 +10614,17 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_PING6)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_PING6)
+
+
+#define __INT64_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
+
+
+#define IF_FEATURE_ADDUSER_LONG_OPTIONS if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)
 
 
 #define ENABLE_FEATURE_BUFFERS_USE_MALLOC if True 
@@ -9946,6 +10661,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_DELETE)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_DELETE)
+
+
+#define __STDC__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_FEATURE_VI_MAX_LEN if True 
@@ -9989,16 +10709,21 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_MAXDEPTH)
 
 
-#define IF_NOT_FEATURE_FIND_MMIN if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_MMIN)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_MMIN)
-
-
 #define IF_NOT_HUSH_SAVEHISTORY if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_HUSH_SAVEHISTORY)
 		(__VA_ARGS__...) if def(CONFIG_HUSH_SAVEHISTORY)
+
+
+#define __CHAR16_TYPE__ if True 
+	expansions 
+		 => short unsigned int if True
+
+
+#define IF_NOT_FEATURE_FIND_MMIN if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FIND_MMIN)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_MMIN)
 
 
 #define IF_NOT_IFENSLAVE if True 
@@ -10102,16 +10827,21 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_LESS_BRACKETS)
 
 
+#define IF_NOT_CHPST if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_CHPST)
+		(__VA_ARGS__...) if def(CONFIG_CHPST)
+
+
 #define ENABLE_FEATURE_RUN_PARTS_LONG_OPTIONS if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)
 		 => 1 if def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)
 
 
-#define IF_NOT_CHPST if True 
+#define __DEC32_MIN_EXP__ if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_CHPST)
-		(__VA_ARGS__...) if def(CONFIG_CHPST)
+		 => (-94) if True
 
 
 #define IF_FEATURE_FIND_PATH if True 
@@ -10198,15 +10928,14 @@
 		 => 1 if def(CONFIG_FEATURE_BOOTCHARTD_BLOATED_HEADER)
 
 
+#define __INTMAX_MAX__ if True 
+	expansions 
+		 => 9223372036854775807L if True
+
+
 #define IF_NOT_PREFIX if True 
 	expansions 
 		(__VA_ARGS__...) if True
-
-
-#define IF_NOT_FEATURE_LESS_REGEXP if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_LESS_REGEXP)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_LESS_REGEXP)
 
 
 #define IF_READAHEAD if True 
@@ -10281,6 +11010,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_INSTALL_APPLET_SCRIPT_WRAPPERS)
 
 
+#define __STDC_HOSTED__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_NOT_RMDIR if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if (!def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)&!def(CONFIG_RMDIR))
@@ -10296,6 +11030,11 @@
 #define CONFIG_INSTALL if (def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_INSTALL)) 
 	expansions 
 		 if def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)
+
+
+#define __FLT_MIN__ if True 
+	expansions 
+		 => 1.17549435082228750797e-38F if True
 
 
 #define IF_DEVMEM if True 
@@ -10342,6 +11081,11 @@
 #define BB_VER if True 
 	expansions 
 		 => "1.8.5" if True
+
+
+#define __FLT_DIG__ if True 
+	expansions 
+		 => 6 if True
 
 
 #define IF_UDPSVD if True 
@@ -10413,6 +11157,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_LOAD_POLICY)
 		(__VA_ARGS__...) if def(CONFIG_LOAD_POLICY)
+
+
+#define __INT_FAST16_TYPE__ if True 
+	expansions 
+		 => long int if True
 
 
 #define ENABLE_DOS2UNIX if True 
@@ -10613,10 +11362,20 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_HTTPD_AUTH_MD5)
 
 
+#define __LDBL_HAS_INFINITY__ if True 
+	expansions 
+		 => 1 if True
+
+
 #define ENABLE_CHMOD if True 
 	expansions 
 		 => 0 if !def(CONFIG_CHMOD)
 		 => 1 if def(CONFIG_CHMOD)
+
+
+#define __DEC32_EPSILON__ if True 
+	expansions 
+		 => 1E-6DF if True
 
 
 #define IF_NOT_FEATURE_EDITING_SAVEHISTORY if True 
@@ -10629,6 +11388,17 @@
 	expansions 
 		 => 0 if !def(CONFIG_UDHCPC)
 		 => 1 if def(CONFIG_UDHCPC)
+
+
+#define __FLT_DECIMAL_DIG__ if True 
+	expansions 
+		 => 9 if True
+
+
+#define IF_NOT_FEATURE_LESS_REGEXP if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_LESS_REGEXP)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_LESS_REGEXP)
 
 
 #define ENABLE_SHA1SUM if True 
@@ -10647,12 +11417,6 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_AR)
 		(__VA_ARGS__...) if def(CONFIG_AR)
-
-
-#define IF_NOT_INSTALL_SH_APPLET_SCRIPT_WRAPPER if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER)
-		(__VA_ARGS__...) if def(CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER)
 
 
 #define ENABLE_CHAT if True 
@@ -10702,6 +11466,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_DEVFS)
 
 
+#define __SIZEOF_POINTER__ if True 
+	expansions 
+		 => 8 if True
+
+
 #define IF_NOT_DEBUG_PESSIMIZE if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_DEBUG_PESSIMIZE)
@@ -10712,6 +11481,22 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_DD_IBS_OBS)
 		 => 1 if def(CONFIG_FEATURE_DD_IBS_OBS)
+
+
+#define IF_NOT_INSTALL_SH_APPLET_SCRIPT_WRAPPER if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER)
+		(__VA_ARGS__...) if def(CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER)
+
+
+#define __INT8_MAX__ if True 
+	expansions 
+		 => 127 if True
+
+
+#define __UINT64_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
 
 
 #define ENABLE_DNSD if True 
@@ -10736,6 +11521,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_MD5SUM)
 		(__VA_ARGS__...) if def(CONFIG_MD5SUM)
+
+
+#define __GNUC_MINOR__ if True 
+	expansions 
+		 => 6 if True
 
 
 #define ENABLE_FEATURE_FIND_PRUNE if True 
@@ -10874,6 +11664,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_INITRD)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_INITRD)
+
+
+#define __ELF__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_MD5_SIZE_VS_SPEED if True 
@@ -11097,10 +11892,9 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_LOGNAME)
 
 
-#define IF_UDHCPC if True 
+#define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 if True 
 	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_UDHCPC)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_UDHCPC)
+		 => 1 if True
 
 
 #define IF_NOT_FEATURE_CHOWN_LONG_OPTIONS if True 
@@ -11115,15 +11909,9 @@
 		 => 1 if def(CONFIG_ENVDIR)
 
 
-#define IF_NOT_SETSID if True 
+#define CONFIG_LONG_OPTS if (def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)) 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SETSID)
-		(__VA_ARGS__...) if def(CONFIG_SETSID)
-
-
-#define CONFIG_LONG_OPTS if (def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)) 
-	expansions 
-		 if (def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS))
+		 if (def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS))
 
 
 #define IF_NOT_FEATURE_LS_COLOR if True 
@@ -11154,6 +11942,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_SU_SYSLOG)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_SU_SYSLOG)
+
+
+#define __INT_LEAST32_MAX__ if True 
+	expansions 
+		 => 2147483647 if True
 
 
 #define IF_NOT_FEATURE_MOUNT_LOOP if True 
@@ -11255,6 +12048,17 @@
 		 if True
 
 
+#define IF_UDHCPC if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_UDHCPC)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_UDHCPC)
+
+
+#define linux if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_NOT_GETOPT if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_GETOPT)
@@ -11285,6 +12089,11 @@
 		 => 1 if def(CONFIG_DMALLOC)
 
 
+#define __VERSION__ if True 
+	expansions 
+		 => "4.6.3" if True
+
+
 #define ENABLE_TFTP if True 
 	expansions 
 		 => 0 if !def(CONFIG_TFTP)
@@ -11295,6 +12104,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_CRONTAB)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_CRONTAB)
+
+
+#define __INT32_C if True 
+	expansions 
+		(c) => c if True
 
 
 #define ENABLE_IPLINK if True 
@@ -11354,6 +12168,22 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_REALPATH)
 		(__VA_ARGS__...) if def(CONFIG_REALPATH)
+
+
+#define __DBL_DECIMAL_DIG__ if True 
+	expansions 
+		 => 17 if True
+
+
+#define IF_NOT_SETSID if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SETSID)
+		(__VA_ARGS__...) if def(CONFIG_SETSID)
+
+
+#define __UINT_FAST32_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
 
 
 #define ENABLE_UNICODE_COMBINING_WCHARS if True 
@@ -11445,10 +12275,20 @@
 		 => 1 if def(CONFIG_HALT)
 
 
+#define __INT_LEAST8_TYPE__ if True 
+	expansions 
+		 => signed char if True
+
+
 #define IF_NOT_SYSLOGD if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SYSLOGD)
 		(__VA_ARGS__...) if def(CONFIG_SYSLOGD)
+
+
+#define __LDBL_DIG__ if True 
+	expansions 
+		 => 18 if True
 
 
 #define IF_NOT_FEATURE_EDITING_MAX_LEN if True 
@@ -11563,6 +12403,11 @@
 		(__VA_ARGS__...) if def(CONFIG_SWITCH_ROOT)
 
 
+#define __UINT_LEAST8_TYPE__ if True 
+	expansions 
+		 => unsigned char if True
+
+
 #define IF_NOT_FEATURE_PS_ADDITIONAL_COLUMNS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_PS_ADDITIONAL_COLUMNS)
@@ -11615,6 +12460,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TAR_NOPRESERVE_TIME)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TAR_NOPRESERVE_TIME)
+
+
+#define __k8__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_NOT_DEBUG if True 
@@ -11790,6 +12640,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_MSH)
 
 
+#define __LDBL_MIN_10_EXP__ if True 
+	expansions 
+		 => (-4931) if True
+
+
 #define IF_CHATTR if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_CHATTR)
@@ -11956,6 +12811,16 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_HTTPD_RANGES)
 
 
+#define __FLOAT_WORD_ORDER__ if True 
+	expansions 
+		 => __ORDER_LITTLE_ENDIAN__ if True
+
+
+#define __UINT_FAST8_TYPE__ if True 
+	expansions 
+		 => unsigned char if True
+
+
 #define ENABLE_TUNCTL if True 
 	expansions 
 		 => 0 if !def(CONFIG_TUNCTL)
@@ -11983,6 +12848,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_TRACEROUTE_USE_ICMP)
 		 => 1 if def(CONFIG_FEATURE_TRACEROUTE_USE_ICMP)
+
+
+#define __INT_LEAST16_TYPE__ if True 
+	expansions 
+		 => short int if True
 
 
 #define IF_FEATURE_CHAT_SWALLOW_OPTS if True 
@@ -12087,6 +12957,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_AR_LONG_FILENAMES)
 
 
+#define __INT16_MAX__ if True 
+	expansions 
+		 => 32767 if True
+
+
 #define IF_NOT_FEATURE_START_STOP_DAEMON_LONG_OPTIONS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)
@@ -12187,6 +13062,11 @@
 		 => 1 if def(CONFIG_FEATURE_VI_USE_SIGNALS)
 
 
+#define __INTMAX_C if True 
+	expansions 
+		(c) => c ## L if True
+
+
 #define IF_EXPR_MATH_SUPPORT_64 if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_EXPR_MATH_SUPPORT_64)
@@ -12197,6 +13077,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_GREP_CONTEXT)
 		 => 1 if def(CONFIG_FEATURE_GREP_CONTEXT)
+
+
+#define __FINITE_MATH_ONLY__ if True 
+	expansions 
+		 => 0 if True
 
 
 #define IF_NOT_FEATURE_BASH_IS_HUSH if True 
@@ -12311,6 +13196,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_PIVOT_ROOT)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_PIVOT_ROOT)
+
+
+#define __FLT_HAS_QUIET_NAN__ if True 
+	expansions 
+		 => 1 if True
 
 
 #define ENABLE_REMOVE_SHELL if True 
@@ -12492,12 +13382,6 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FIND_PERM)
 
 
-#define ENABLE_PIE if True 
-	expansions 
-		 => 0 if !def(CONFIG_PIE)
-		 => 1 if def(CONFIG_PIE)
-
-
 #define IF_NOT_FEATURE_MOUNT_HELPERS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_MOUNT_HELPERS)
@@ -12508,12 +13392,6 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_MKNOD)
 		(__VA_ARGS__...) if def(CONFIG_MKNOD)
-
-
-#define ENABLE_ENVUIDGID if True 
-	expansions 
-		 => 0 if !def(CONFIG_ENVUIDGID)
-		 => 1 if def(CONFIG_ENVUIDGID)
 
 
 #define IF_TR if True 
@@ -12673,6 +13551,17 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_HUSH_JOB)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_HUSH_JOB)
+
+
+#define __UINT_LEAST64_TYPE__ if True 
+	expansions 
+		 => long unsigned int if True
+
+
+#define ENABLE_PIE if True 
+	expansions 
+		 => 0 if !def(CONFIG_PIE)
+		 => 1 if def(CONFIG_PIE)
 
 
 #define CONFIG_RMDIR if (def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_RMDIR)) 
@@ -12877,6 +13766,11 @@
 		 => 1 if def(CONFIG_UNEXPAND)
 
 
+#define __DEC32_MIN__ if True 
+	expansions 
+		 => 1E-95DF if True
+
+
 #define IF_NOT_FEATURE_BUFFERS_GO_IN_BSS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_BUFFERS_GO_IN_BSS)
@@ -12925,6 +13819,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_PIE)
 
 
+#define __SIZEOF_LONG_DOUBLE__ if True 
+	expansions 
+		 => 16 if True
+
+
 #define IF_NOT_FEATURE_SHOW_THREADS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_SHOW_THREADS)
@@ -12961,10 +13860,31 @@
 		 => 1 if def(CONFIG_DESKTOP)
 
 
+#define __LDBL_MIN__ if True 
+	expansions 
+		 => 3.36210314311209350626e-4932L if True
+
+
+#define __FLT_MIN_10_EXP__ if True 
+	expansions 
+		 => (-37) if True
+
+
+#define ENABLE_ENVUIDGID if True 
+	expansions 
+		 => 0 if !def(CONFIG_ENVUIDGID)
+		 => 1 if def(CONFIG_ENVUIDGID)
+
+
 #define IF_FEATURE_DD_IBS_OBS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_DD_IBS_OBS)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_DD_IBS_OBS)
+
+
+#define __SIZEOF_DOUBLE__ if True 
+	expansions 
+		 => 8 if True
 
 
 #define IF_NOT_FEATURE_CHAT_TTY_HIFI if True 
@@ -13043,6 +13963,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_PMAP)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_PMAP)
+
+
+#define __DEC64_MAX__ if True 
+	expansions 
+		 => 9.999999999999999E384DD if True
 
 
 #define IF_LOCALE_SUPPORT if True 
@@ -13377,6 +14302,11 @@
 		 => 1 if def(CONFIG_FEATURE_VI_OPTIMIZE_CURSOR)
 
 
+#define __UINT_LEAST32_TYPE__ if True 
+	expansions 
+		 => unsigned int if True
+
+
 #define IF_NOT_FEATURE_ADDGROUP_LONG_OPTIONS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)
@@ -13481,12 +14411,6 @@
 		 => 1 if def(CONFIG_HEXDUMP)
 
 
-#define IF_IONICE if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_IONICE)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_IONICE)
-
-
 #define BB_BT if True 
 	expansions 
 		 => "" if True
@@ -13516,12 +14440,6 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FDISK_WRITABLE)
 
 
-#define ENABLE_FEATURE_PIDOF_SINGLE if True 
-	expansions 
-		 => 0 if !def(CONFIG_FEATURE_PIDOF_SINGLE)
-		 => 1 if def(CONFIG_FEATURE_PIDOF_SINGLE)
-
-
 #define IF_FEATURE_ETC_NETWORKS if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_ETC_NETWORKS)
@@ -13532,12 +14450,6 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_CAT)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_CAT)
-
-
-#define IF_NOT_FEATURE_INIT_SCTTY if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_INIT_SCTTY)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_INIT_SCTTY)
 
 
 #define IF_NOT_FEATURE_TAB_COMPLETION if True 
@@ -13558,6 +14470,17 @@
 		 => 1 if def(CONFIG_HUSH_MODE_X)
 
 
+#define __LDBL_HAS_DENORM__ if True 
+	expansions 
+		 => 1 if True
+
+
+#define IF_IONICE if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_IONICE)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_IONICE)
+
+
 #define IF_USE_BB_PWD_GRP if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_USE_BB_PWD_GRP)
@@ -13568,6 +14491,17 @@
 	expansions 
 		 => 0 if !def(CONFIG_YES)
 		 => 1 if def(CONFIG_YES)
+
+
+#define _LP64 if True 
+	expansions 
+		 => 1 if True
+
+
+#define ENABLE_FEATURE_PIDOF_SINGLE if True 
+	expansions 
+		 => 0 if !def(CONFIG_FEATURE_PIDOF_SINGLE)
+		 => 1 if def(CONFIG_FEATURE_PIDOF_SINGLE)
 
 
 #define IF_NOT_TOP if True 
@@ -13719,6 +14653,17 @@
 		 => 1 if def(CONFIG_UUDECODE)
 
 
+#define __DECIMAL_BID_FORMAT__ if True 
+	expansions 
+		 => 1 if True
+
+
+#define IF_NOT_FEATURE_INIT_SCTTY if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_INIT_SCTTY)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_INIT_SCTTY)
+
+
 #define ENABLE_FEATURE_IFUPDOWN_MAPPING if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_IFUPDOWN_MAPPING)
@@ -13735,6 +14680,11 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_INSTALL_SH_APPLET_SYMLINK)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_INSTALL_SH_APPLET_SYMLINK)
+
+
+#define __USER_LABEL_PREFIX__ if True 
+	expansions 
+		 if True
 
 
 #define ENABLE_FEATURE_FIND_LINKS if True 
@@ -13764,6 +14714,16 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_WATCH)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_WATCH)
+
+
+#define __UINT32_TYPE__ if True 
+	expansions 
+		 => unsigned int if True
+
+
+#define __SCHAR_MAX__ if True 
+	expansions 
+		 => 127 if True
 
 
 #define IF_NOT_FEATURE_FAST_TOP if True 
@@ -13898,6 +14858,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_RDATE)
 
 
+#define __WINT_TYPE__ if True 
+	expansions 
+		 => unsigned int if True
+
+
 #define IF_CRYPTPW if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_CRYPTPW)
@@ -13914,12 +14879,6 @@
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_SU_CHECKS_SHELLS)
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_SU_CHECKS_SHELLS)
-
-
-#define IF_DUMPLEASES if True 
-	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_DUMPLEASES)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_DUMPLEASES)
 
 
 #define IF_BEEP if True 
@@ -13976,6 +14935,17 @@
 		 => 1 if def(CONFIG_ASH_RANDOM_SUPPORT)
 
 
+#define __INT16_TYPE__ if True 
+	expansions 
+		 => short int if True
+
+
+#define IF_DUMPLEASES if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_DUMPLEASES)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_DUMPLEASES)
+
+
 #define IF_NOT_LSPCI if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_LSPCI)
@@ -14018,6 +14988,11 @@
 		(__VA_ARGS__...) if def(CONFIG_SCRIPTREPLAY)
 
 
+#define __INT_LEAST8_MAX__ if True 
+	expansions 
+		 => 127 if True
+
+
 #define ENABLE_FEATURE_IFCONFIG_STATUS if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_IFCONFIG_STATUS)
@@ -14040,6 +15015,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_IP_LINK)
 		 => 1 if def(CONFIG_FEATURE_IP_LINK)
+
+
+#define __DBL_MIN_EXP__ if True 
+	expansions 
+		 => (-1021) if True
 
 
 #define IF_FEATURE_LESS_FLAGS if True 
@@ -14224,6 +15204,11 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_TOUCH)
 
 
+#define __linux if True 
+	expansions 
+		 => 1 if True
+
+
 #define IF_NOT_BASE64 if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_BASE64)
@@ -14369,14 +15354,19 @@
 
 #define IF_NOT_LONG_OPTS if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
-		(__VA_ARGS__...) if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)))
+		(__VA_ARGS__...) => __VA_ARGS__ if !macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
+		(__VA_ARGS__...) if macro(CONFIG_LONG_OPTS=(def(CONFIG_FEATURE_UNEXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_ADDUSER_LONG_OPTIONS)|def(CONFIG_FEATURE_MKDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_EXPAND_LONG_OPTIONS)|def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_LONG_OPTS)|def(CONFIG_FEATURE_ADDGROUP_LONG_OPTIONS)|def(CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS)|def(CONFIG_FEATURE_MV_LONG_OPTIONS)|def(CONFIG_FEATURE_RMDIR_LONG_OPTIONS)|def(CONFIG_FEATURE_TAR_LONG_OPTIONS)|def(CONFIG_FEATURE_ENV_LONG_OPTIONS)|def(CONFIG_FEATURE_DIFF_LONG_OPTIONS)|def(CONFIG_FEATURE_GZIP_LONG_OPTIONS)|def(CONFIG_FEATURE_INSTALL_LONG_OPTIONS)))
 
 
 #define IF_NOT_SETLOGCONS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_SETLOGCONS)
 		(__VA_ARGS__...) if def(CONFIG_SETLOGCONS)
+
+
+#define __UINT_FAST8_MAX__ if True 
+	expansions 
+		 => 255 if True
 
 
 #define ENABLE_UNICODE_SUPPORT if True 
@@ -14402,22 +15392,15 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if True
 
 
-#define IF_NOT_HUSH_MODE_X if True 
+#define __DEC128_MIN_EXP__ if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_HUSH_MODE_X)
-		(__VA_ARGS__...) if def(CONFIG_HUSH_MODE_X)
+		 => (-6142) if True
 
 
 #define IF_NOT_FEATURE_IPCALC_FANCY if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_IPCALC_FANCY)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_IPCALC_FANCY)
-
-
-#define IF_NOT_FEATURE_SETFONT_TEXTUAL_MAP if True 
-	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_SETFONT_TEXTUAL_MAP)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_SETFONT_TEXTUAL_MAP)
 
 
 #define ENABLE_FEATURE_SHARED_BUSYBOX if True 
@@ -14478,16 +15461,21 @@
 		(__VA_ARGS__...) if True
 
 
+#define IF_FEATURE_TELNET_TTYPE if True 
+	expansions 
+		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TELNET_TTYPE)
+		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TELNET_TTYPE)
+
+
 #define ENABLE_FEATURE_FANCY_ECHO if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_FANCY_ECHO)
 		 => 1 if def(CONFIG_FEATURE_FANCY_ECHO)
 
 
-#define IF_FEATURE_TELNET_TTYPE if True 
+#define __UINT_LEAST64_MAX__ if True 
 	expansions 
-		(__VA_ARGS__...) if !def(CONFIG_FEATURE_TELNET_TTYPE)
-		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_FEATURE_TELNET_TTYPE)
+		 => 18446744073709551615UL if True
 
 
 #define ENABLE_FEATURE_INSTALLER if True 
@@ -14518,6 +15506,17 @@
 	expansions 
 		 => 0 if !def(CONFIG_VCONFIG)
 		 => 1 if def(CONFIG_VCONFIG)
+
+
+#define __WINT_MAX__ if True 
+	expansions 
+		 => 4294967295U if True
+
+
+#define IF_NOT_HUSH_MODE_X if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_HUSH_MODE_X)
+		(__VA_ARGS__...) if def(CONFIG_HUSH_MODE_X)
 
 
 #define ENABLE_FTPD if True 
@@ -14588,6 +15587,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_DF_FANCY)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_DF_FANCY)
+
+
+#define __DEC_EVAL_METHOD__ if True 
+	expansions 
+		 => 2 if True
 
 
 #define IF_NOT_FEATURE_MOUNT_FAKE if True 
@@ -14673,6 +15677,17 @@
 		(__VA_ARGS__...) => __VA_ARGS__ if def(CONFIG_RTCWAKE)
 
 
+#define IF_NOT_FEATURE_SETFONT_TEXTUAL_MAP if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_SETFONT_TEXTUAL_MAP)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_SETFONT_TEXTUAL_MAP)
+
+
+#define __FLT_EPSILON__ if True 
+	expansions 
+		 => 1.19209289550781250000e-7F if True
+
+
 #define ENABLE_FEATURE_VOLUMEID_SYSV if True 
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_VOLUMEID_SYSV)
@@ -14725,6 +15740,11 @@
 	expansions 
 		 => 0 if !def(CONFIG_FEATURE_GREP_FGREP_ALIAS)
 		 => 1 if def(CONFIG_FEATURE_GREP_FGREP_ALIAS)
+
+
+#define __DEC128_MANT_DIG__ if True 
+	expansions 
+		 => 34 if True
 
 
 #define CONFIG_START_STOP_DAEMON if (def(CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS)|def(CONFIG_START_STOP_DAEMON)) 
@@ -14885,6 +15905,11 @@
 		(__VA_ARGS__...) if def(CONFIG_DEPMOD)
 
 
+#define __DBL_MAX_EXP__ if True 
+	expansions 
+		 => 1024 if True
+
+
 #define IF_NOT_FEATURE_CHAT_IMPLICIT_CR if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_CHAT_IMPLICIT_CR)
@@ -14903,10 +15928,9 @@
 		(__VA_ARGS__...) if def(CONFIG_TR)
 
 
-#define IF_NOT_FEATURE_TR_CLASSES if True 
+#define __SSE2_MATH__ if True 
 	expansions 
-		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_TR_CLASSES)
-		(__VA_ARGS__...) if def(CONFIG_FEATURE_TR_CLASSES)
+		 => 1 if True
 
 
 #define IF_MKTEMP if True 
@@ -15029,6 +16053,16 @@
 		 => 1 if def(CONFIG_USE_BB_SHADOW)
 
 
+#define __SIZEOF_SIZE_T__ if True 
+	expansions 
+		 => 8 if True
+
+
+#define __SIZE_MAX__ if True 
+	expansions 
+		 => 18446744073709551615UL if True
+
+
 #define IF_FEATURE_DPKG_DEB_EXTRACT_ONLY if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_DPKG_DEB_EXTRACT_ONLY)
@@ -15051,6 +16085,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_CHCON_LONG_OPTIONS)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_CHCON_LONG_OPTIONS)
+
+
+#define __SIZEOF_LONG_LONG__ if True 
+	expansions 
+		 => 8 if True
 
 
 #define ENABLE_CHATTR if True 
@@ -15111,6 +16150,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_LESS_WINCH)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_LESS_WINCH)
+
+
+#define __k8 if True 
+	expansions 
+		 => 1 if True
 
 
 #define IF_FEATURE_START_STOP_DAEMON_LONG_OPTIONS if True 
@@ -15184,6 +16228,11 @@
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_HTTPD_PROXY)
 
 
+#define __UINT32_MAX__ if True 
+	expansions 
+		 => 4294967295U if True
+
+
 #define IF_FEATURE_HTTPD_SET_REMOTE_PORT_TO_ENV if True 
 	expansions 
 		(__VA_ARGS__...) if !def(CONFIG_FEATURE_HTTPD_SET_REMOTE_PORT_TO_ENV)
@@ -15212,6 +16261,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_FANCY_TAIL)
 		(__VA_ARGS__...) if def(CONFIG_FEATURE_FANCY_TAIL)
+
+
+#define __DBL_DIG__ if True 
+	expansions 
+		 => 15 if True
 
 
 #define ENABLE_FEATURE_VI_SETOPTS if True 
@@ -15273,6 +16327,11 @@
 		 => 1 if def(CONFIG_INSTALL_APPLET_DONT)
 
 
+#define __INT16_C if True 
+	expansions 
+		(c) => c if True
+
+
 #define IF_NOT_FEATURE_GREP_FGREP_ALIAS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_GREP_FGREP_ALIAS)
@@ -15315,6 +16374,17 @@
 		 => 1 if def(CONFIG_FEATURE_BUFFERS_GO_ON_STACK)
 
 
+#define IF_NOT_FEATURE_TR_CLASSES if True 
+	expansions 
+		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_TR_CLASSES)
+		(__VA_ARGS__...) if def(CONFIG_FEATURE_TR_CLASSES)
+
+
+#define __INT_LEAST64_TYPE__ if True 
+	expansions 
+		 => long int if True
+
+
 #define IF_NOT_FEATURE_PS_UNUSUAL_SYSTEMS if True 
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_FEATURE_PS_UNUSUAL_SYSTEMS)
@@ -15349,6 +16419,11 @@
 	expansions 
 		(__VA_ARGS__...) => __VA_ARGS__ if !def(CONFIG_BBCONFIG)
 		(__VA_ARGS__...) if def(CONFIG_BBCONFIG)
+
+
+#define __DEC32_MANT_DIG__ if True 
+	expansions 
+		 => 7 if True
 
 
 #define IF_FEATURE_FIND_INUM if True 
@@ -15409,4 +16484,4 @@
 
 
 Statistics (macros,macros with >1 alternative expansions,>2,>3,>4,non-trivial presence conditions):
-2598;2417;0;0;0;22
+2813;2417;0;0;0;22

@@ -8686,7 +8686,7 @@
    
    
 #endif
-#line 1 "examples/coreutils.ls.6b01b71e/old.processed.bak.c" 1
+#line 1 "examples/coreutils.ls.6b01b71e.unsat.m11/old.processed.bak.c" 1
 typedef signed char smallint;
 typedef unsigned long int __dev_t;
 typedef unsigned int __uid_t;
@@ -8755,10 +8755,10 @@ enum  {
 static  int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __time_t st_atim_tv_sec2 , __time_t st_ctim_tv_sec1 , __time_t st_ctim_tv_sec2, __time_t st_mtim_tv_sec1 , __time_t st_mtim_tv_sec2 , __mode_t st_mode1 , __mode_t st_mode2 , int strcoll12 , int strcmp12 , unsigned all_fmt , _Bool sort_size, _Bool sort_atime, _Bool sort_ctime, _Bool sort_mtime, _Bool sort_dir, _Bool sort_reverse ) {
   off_t dif = 0;
   if (sort_size) {
-    (dif = (st_size2 - st_size1));
+    (dif = (st_size2 + st_size1));
   }
   else if (sort_atime) {
-    (dif = (st_atim_tv_sec2 - st_atim_tv_sec1));
+    (dif = (st_atim_tv_sec2 + st_atim_tv_sec1));
   }
 
   else if (sort_ctime) {

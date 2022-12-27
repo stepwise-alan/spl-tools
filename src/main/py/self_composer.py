@@ -351,19 +351,21 @@ def merge(old, new, well_formed=True):
         old_loop_node_index = []
         new_loop_node_index = []
 
-        for i in range(len(old_blocks)):
-            block = old_blocks[i]
-            if (isinstance(block, c_ast.For) or
-                    isinstance(block, c_ast.While) or
-                    isinstance(block, c_ast.DoWhile)):
-                old_loop_node_index.append(i)
+        if old_blocks is not None:
+            for i in range(len(old_blocks)):
+                block = old_blocks[i]
+                if (isinstance(block, c_ast.For) or
+                        isinstance(block, c_ast.While) or
+                        isinstance(block, c_ast.DoWhile)):
+                    old_loop_node_index.append(i)
 
-        for i in range(len(new_blocks)):
-            block = new_blocks[i]
-            if (isinstance(block, c_ast.For) or
-                    isinstance(block, c_ast.While) or
-                    isinstance(block, c_ast.DoWhile)):
-                new_loop_node_index.append(i)
+        if new_blocks is not None:
+            for i in range(len(new_blocks)):
+                block = new_blocks[i]
+                if (isinstance(block, c_ast.For) or
+                        isinstance(block, c_ast.While) or
+                        isinstance(block, c_ast.DoWhile)):
+                    new_loop_node_index.append(i)
 
         cur_old_i = 0
         cur_new_i = 0
@@ -379,7 +381,9 @@ def merge(old, new, well_formed=True):
             cur_new_i = cur_new_loop_i + 1
             merging_loop_index += 1
 
-        list_merge(old_blocks, new_blocks, cur_old_i, cur_new_i, len(old_blocks), len(new_blocks), merged)
+        list_merge(old_blocks, new_blocks, cur_old_i, cur_new_i,
+                   0 if old_blocks is None else len(old_blocks),
+                   0 if new_blocks is None else len(new_blocks), merged)
 
         return c_ast.Compound(merged)
 
