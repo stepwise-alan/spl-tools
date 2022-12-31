@@ -30,9 +30,9 @@ object Evaluation {
           ("old.op.fe.c", "new.op.fe.c")
         )) {
           val oldFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
-            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$oldFilename"
+            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.spl$i/$oldFilename"
           val newFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
-            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$newFilename"
+            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.spl$i/$newFilename"
           val seaPath = "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea"
           val z3Path = "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3"
           val typeChefBusyboxAnalysisPath = "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis"
