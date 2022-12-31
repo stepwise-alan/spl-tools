@@ -63,7 +63,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   off_t dif =  0;
   if (sort_size) {
     
-    #if (definedEx(F2) && definedEx(F6) && !definedEx(F1))
+    #if (definedEx(F6) && definedEx(F2) && !definedEx(F1))
     (dif = (st_size2 - st_size1));
     #endif
     

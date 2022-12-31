@@ -13,18 +13,18 @@ import ExecutionContext.Implicits.global
 object Evaluation {
   def main(args: Array[String]): Unit = {
     val timeString = LocalDateTime.now.format(DateTimeFormatter.ofPattern("YYYYMMdd_HHmmss"))
-    val parDirectory = s"/home/shuolin/$timeString"
-    Files.createDirectories(Paths.get(parDirectory))
-    val filepath = s"$parDirectory/results.txt"
+    val outDirectory = s"/home/shuolin/$timeString"
+    Files.createDirectories(Paths.get(outDirectory))
+    val filepath = s"$outDirectory/results.txt"
     val bw = new BufferedWriter(new FileWriter(new File(filepath)))
     //    val timeout = 600000
     val timeout = 10.minutes
     for (i <- 1 to 5) {
-      for (newFeatureCount <- 6 to 10) {
-        val directory = s"$parDirectory/$newFeatureCount"
+      for (newFeatureCount <- List(8, 9, 7, 10, 6)) {
+        val directory = s"/home/shuolin/IdeaProjects/spl-tools/examples/hard/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(
-//          ("old.c", "new.c"),
+          ("old.c", "new.c"),
           ("old.fe.c", "new.fe.c"),
           ("old.op.c", "new.op.c"),
           ("old.op.fe.c", "new.op.fe.c")
