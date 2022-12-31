@@ -13,15 +13,15 @@ import ExecutionContext.Implicits.global
 object Evaluation {
   def main(args: Array[String]): Unit = {
     val timeString = LocalDateTime.now.format(DateTimeFormatter.ofPattern("YYYYMMdd_HHmmss"))
-    val outDirectory = s"/home/shuolin/$timeString"
-    Files.createDirectories(Paths.get(outDirectory))
-    val filepath = s"$outDirectory/results.txt"
+    val parDirectory = s"/home/shuolin/$timeString"
+    Files.createDirectories(Paths.get(parDirectory))
+    val filepath = s"$parDirectory/results.txt"
     val bw = new BufferedWriter(new FileWriter(new File(filepath)))
     //    val timeout = 600000
     val timeout = 10.minutes
     for (i <- 1 to 5) {
       for (newFeatureCount <- List(8, 9, 7, 10, 6)) {
-        val directory = s"/home/shuolin/IdeaProjects/spl-tools/examples/hard/$newFeatureCount"
+        val directory = s"$parDirectory/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(
           ("old.c", "new.c"),
@@ -29,6 +29,15 @@ object Evaluation {
           ("old.op.c", "new.op.c"),
           ("old.op.fe.c", "new.op.fe.c")
         )) {
+          val oldFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
+            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$oldFilename"
+          val newFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
+            s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$newFilename"
+          val seaPath = "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea"
+          val z3Path = "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3"
+          val typeChefBusyboxAnalysisPath = "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis"
+          val args = Array(oldFilepath, newFilepath, "sortcmp", seaPath, z3Path, typeChefBusyboxAnalysisPath)
+
           bw.write(s"Alg 1, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
           print(s"Alg 1, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
           try {
@@ -40,14 +49,7 @@ object Evaluation {
             val t1 = Await.result(Future {
               Console.withOut(outStream) {
                 Console.withErr(errStream) {
-                  EquivalenceChecker.main(Array(
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$oldFilename",
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$newFilename",
-                    "sortcmp",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3",
-                    "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis",
-                  ))
+                  EquivalenceChecker.main(args)
                 }
               }
               currentTimeMillis()
@@ -82,14 +84,7 @@ object Evaluation {
             val t1 = Await.result(Future {
               Console.withOut(outStream) {
                 Console.withErr(errStream) {
-                  EquivalenceCheckerV1.main(Array(
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$oldFilename",
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$newFilename",
-                    "sortcmp",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3",
-                    "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis",
-                  ))
+                  EquivalenceCheckerV1.main(args)
                 }
               }
               currentTimeMillis()
@@ -124,14 +119,7 @@ object Evaluation {
             val t1 = Await.result(Future {
               Console.withOut(outStream) {
                 Console.withErr(errStream) {
-                  BaselineEquivalenceChecker.main(Array(
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$oldFilename",
-                    s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.hard.spl$i/$newFilename",
-                    "sortcmp",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea",
-                    "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3",
-                    "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis",
-                  ))
+                  BaselineEquivalenceChecker.main(args)
                 }
               }
               currentTimeMillis()
