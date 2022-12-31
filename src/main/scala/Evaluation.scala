@@ -24,7 +24,7 @@ object Evaluation {
         val directory = s"$parDirectory/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(
-          ("old.c", "new.c"),
+//          ("old.c", "new.c"),
           ("old.fe.c", "new.fe.c"),
           ("old.op.c", "new.op.c"),
           ("old.op.fe.c", "new.op.fe.c")
