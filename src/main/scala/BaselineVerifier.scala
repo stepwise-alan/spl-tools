@@ -6,7 +6,7 @@ import org.bytedeco.javacpp.LLVM.*
 
 import java.io.{BufferedWriter, File, FileWriter}
 import scala.collection.mutable
-import scala.sys.process.Process
+import scala.sys.process.{Process, ProcessLogger}
 
 class BaselineVerifier(seaPath: String, z3Path: String) {
   val ndPrefix = "_nd_"
@@ -186,7 +186,7 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
     )))
     bw.close()
 
-    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!
+    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!(ProcessLogger(_ => ()))
     val result = seaOutput.linesIterator.toList.last
     if (result == "unsat") {
       None
@@ -198,7 +198,7 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
         s"fp.xform.subsumption_checker=false fp.xform.inline_eager=false " +
         s"fp.xform.inline_linear=false " +
         s"fp.spacer.trace_file=$traceFilepath -v:2 $newSmtFilepath"
-      val z3Output = Process(command).!!
+      val z3Output = Process(command).!!(ProcessLogger(_ => ()))
       assert(z3Output.linesIterator.next().trim == "sat")
 
       val traceSource = io.Source.fromFile(traceFilepath)

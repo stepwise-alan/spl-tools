@@ -1,6 +1,5 @@
 import java.lang.System.{currentTimeMillis, nanoTime}
-import scala.sys.process.Process
-
+import scala.sys.process.{Process, ProcessLogger}
 import de.fosd.typechef.crewrite.ProductDerivation
 
 object BaselineEquivalenceChecker {
@@ -54,7 +53,7 @@ object BaselineEquivalenceChecker {
       val outputFilePath = s"$i.c"
       Process(f"python3 /home/shuolin/IdeaProjects/spl-tools/src/main/py/self_composer.py " +
         f"--old $oldFilepath --new $newFilepath --function ${args(2)} --out $outputFilePath"
-      ).!!
+      ).!!(ProcessLogger(_ => ()))
       val selfComposition = Util.parse(frontendArgs :+ outputFilePath)._1
       val t1 = currentTimeMillis()
 
