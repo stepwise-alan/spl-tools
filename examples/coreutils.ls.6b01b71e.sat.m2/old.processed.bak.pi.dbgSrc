@@ -1,9 +1,0 @@
-push file /home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis/busybox/config.h -- True (True)
-pop file /home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis/busybox/config.h
-push file examples/coreutils.ls.6b01b71e.sat.m2/old.processed.bak.c -- True (True)
-pop file examples/coreutils.ls.6b01b71e.sat.m2/old.processed.bak.c
-
-
-
-Statistics (max_nesting,header_count,distinct files):
-1;2;2

@@ -29,7 +29,9 @@ class MutantGenerator(newFeatures: List[SingleFeatureExpr],
       "++" -> "--", "--" -> "++",
       "|" -> "&", "&" -> "|",
       "||" -> "&&", "&&" -> "||",
-      "<<" -> ">>", ">>" -> "<<"
+      "<<" -> ">>", ">>" -> "<<",
+//      "<" -> ">=", ">" -> "<=",
+//      "<=" -> ">", ">=" -> "<",
     ).getOrElse(op, op) else op
 
   private def mutateFeatureExpr(x: SATFeatureExpr): SATFeatureExpr = x match {
@@ -183,10 +185,10 @@ object MutantGenerator {
     assert(newFunctionDefs.size == 1)
     val newFunctionDef = newFunctionDefs.head
 
-    val enableNewFeatureProbability = 0.3
-    val disableNewFeatureProbability = 0.2
-    val operatorMutationProbability = 0.3
-    val featureExprMutationProbability = 0.1
+    val enableNewFeatureProbability = 0.150
+    val disableNewFeatureProbability = 0.075
+    val operatorMutationProbability = 0.150
+    val featureExprMutationProbability = 0.075
 
     for (newFeatureCount <- 6 to 10) {
       val newFeatures = (0 to newFeatureCount).toList.map(
