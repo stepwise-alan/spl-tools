@@ -185,7 +185,7 @@ object MutantGenerator {
     assert(newFunctionDefs.size == 1)
     val newFunctionDef = newFunctionDefs.head
 
-    val enableNewFeatureProbability = 0.150
+    val enableNewFeatureProbability = 0.250
     val disableNewFeatureProbability = 0.075
     val operatorMutationProbability = 0.150
     val featureExprMutationProbability = 0.075

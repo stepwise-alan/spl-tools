@@ -70,7 +70,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   } 
   else if (sort_atime) {
     
-    #if (definedEx(F5) && definedEx(F6))
+    #if (definedEx(F2) && definedEx(F5) && definedEx(F6))
     (dif = (st_atim_tv_sec2 - st_atim_tv_sec1));
     #endif
     
@@ -94,7 +94,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_dir) {
     
-    #if (definedEx(F6) && definedEx(F7) && definedEx(F8) && definedEx(F9))
+    #if (definedEx(F3) && definedEx(F8) && definedEx(F9) && definedEx(F2) && definedEx(F6) && definedEx(F7))
     (dif = (((st_mode2 & 0170000) == 0040000) - ((st_mode1 & 0170000) == 0040000)));
     #endif
     
@@ -120,12 +120,12 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
         #endif
         
         
-        #if !definedEx(CONFIG_LFS)
+        #if definedEx(CONFIG_LFS)
         (dif = ((int ) (((uoff_t_1 ) dif) >> (8 * (sizeof(dif) - sizeof(int ))))));
         #endif
         
         
-        #if (definedEx(F3) && !definedEx(F1))
+        #if (definedEx(F0) && definedEx(F3) && !definedEx(F1))
         (dif += (dif % 2));
         #endif
         
@@ -134,7 +134,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
     else {
       while (((dif & (~ ((off_t ) 2147483647))) != 0)) {
         
-        #if definedEx(F0)
+        #if !definedEx(F0)
         (dif >>= (sizeof(int ) * 8 / 2));
         #endif
         

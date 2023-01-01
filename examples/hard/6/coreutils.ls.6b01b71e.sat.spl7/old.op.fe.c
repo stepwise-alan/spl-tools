@@ -94,7 +94,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_dir) {
     
-    #if definedEx(F0)
+    #if (definedEx(F0) && definedEx(F3))
     (dif = (((st_mode2 & 0170000) == 0040000) - ((st_mode1 & 0170000) == 0040000)));
     #endif
     

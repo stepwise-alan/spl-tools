@@ -70,7 +70,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   } 
   else if (sort_atime) {
     
-    #if (!definedEx(F0) && !definedEx(F3))
+    #if (definedEx(F6) && definedEx(F7) && !definedEx(F0) && !definedEx(F3))
     (dif = (st_atim_tv_sec2 - st_atim_tv_sec1));
     #endif
     
@@ -86,7 +86,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_mtime) {
     
-    #if (!definedEx(F3) && definedEx(F4) && !definedEx(F6))
+    #if (definedEx(F4) && !definedEx(F3) && !definedEx(F6))
     (dif = (st_mtim_tv_sec2 - st_mtim_tv_sec1));
     #endif
     

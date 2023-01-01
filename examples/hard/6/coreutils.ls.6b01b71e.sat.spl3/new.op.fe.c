@@ -62,11 +62,15 @@ enum  {
 int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __time_t st_atim_tv_sec2 , __time_t st_ctim_tv_sec1 , __time_t st_ctim_tv_sec2 , __time_t st_mtim_tv_sec1 , __time_t st_mtim_tv_sec2 , __mode_t st_mode1 , __mode_t st_mode2 , int strcoll12 , int strcmp12 , unsigned all_fmt , _Bool sort_size , _Bool sort_atime , _Bool sort_ctime , _Bool sort_mtime , _Bool sort_dir , _Bool sort_reverse )  {
   off_t dif =  0;
   if (sort_size) {
+    
+    #if definedEx(F6)
     (dif = (st_size2 - st_size1));
+    #endif
+    
   } 
   else if (sort_atime) {
     
-    #if !definedEx(F2)
+    #if (definedEx(F3) && definedEx(F4) && !definedEx(F2))
     (dif = (st_atim_tv_sec2 - st_atim_tv_sec1));
     #endif
     
@@ -74,7 +78,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_ctime) {
     
-    #if definedEx(F2)
+    #if !definedEx(F2)
     (dif = (st_ctim_tv_sec2 - st_ctim_tv_sec1));
     #endif
     
@@ -82,7 +86,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_mtime) {
     
-    #if (definedEx(F4) && definedEx(F6) && definedEx(F5))
+    #if (definedEx(F4) && definedEx(F6) && !definedEx(F5))
     (dif = (st_mtim_tv_sec2 + st_mtim_tv_sec1));
     #endif
     
@@ -90,14 +94,14 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   
   else if (sort_dir) {
     
-    #if (!definedEx(F1) && definedEx(F0) && definedEx(F4) && definedEx(F6) && !definedEx(F5))
+    #if (!definedEx(F0) && !definedEx(F1) && !definedEx(F4) && definedEx(F2) && definedEx(F6) && !definedEx(F5))
     (dif = (((st_mode2 & 0170000) == 0040000) - ((st_mode1 & 0170000) == 0040000)));
     #endif
     
   } 
   if ((dif == 0)) {
     
-    #if !definedEx(CONFIG_LOCALE_SUPPORT)
+    #if definedEx(CONFIG_LOCALE_SUPPORT)
     (dif = strcoll12);
     #endif
     
@@ -115,12 +119,12 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
       #endif
       
       
-      #if definedEx(CONFIG_LFS)
+      #if !definedEx(CONFIG_LFS)
       (dif = ((int ) (((uoff_t_1 ) dif) >> (8 * (sizeof(dif) - sizeof(int ))))));
       #endif
       
       
-      #if !definedEx(F1)
+      #if (definedEx(F0) && definedEx(F1))
       (dif += (dif % 2));
       #endif
       
