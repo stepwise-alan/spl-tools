@@ -18,9 +18,9 @@ object Evaluation {
     Files.createDirectories(Paths.get(parDirectory))
     val filepath = s"$parDirectory/results.txt"
     val bw = new BufferedWriter(new FileWriter(new File(filepath)))
-    val timeout = 30.minutes
-    for (i <- List(1)) {
-      for (newFeatureCount <- List(12, 14, 16, 18, 20)) {
+    val timeout = 10.minutes
+    for (newFeatureCount <- 1 to 19) {
+      for (i <- List(2, 3)) {
         val directory = s"$parDirectory/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(

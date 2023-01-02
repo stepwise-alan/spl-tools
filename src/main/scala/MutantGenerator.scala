@@ -194,7 +194,7 @@ object MutantGenerator {
     val operatorMutationProbability = 0.1
     val featureExprMutationProbability = 0.05
 
-    for (newFeatureCount <- 1 to 20) {
+    for (newFeatureCount <- 20 to 40) {
       val newFeatures = (0 to newFeatureCount).toList.map(
         i => FeatureExprFactory.createDefinedExternal(s"F$i"))
       //    val maxEnabledFeatures = 5
