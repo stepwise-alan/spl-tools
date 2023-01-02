@@ -8,12 +8,16 @@ import java.nio.file.{Files, Paths}
 import scala.util.Random
 
 class MutantGenerator(newFeatures: List[SingleFeatureExpr],
-                      splRandom: Random, operatorMutationRandom: Random, featureExprMutationRandom: Random,
-                      maxEnabledFeatures: Int, maxDisabledFeatures: Int,
-                      operatorMutationProbability: Double, featureExprMutationProbability: Double) extends Converter {
+                      seed: Int, maxEnabledFeatures: Int, maxDisabledFeatures: Int,
+                      operatorMutationSeed: Int, operatorMutationProbability: Double,
+                      featureExprMutationSeed: Int, featureExprMutationProbability: Double) extends Converter {
+  private val random = Random(seed)
+  private val operatorMutationRandom = Random(operatorMutationSeed)
+  private val featureExprMutationRandom = Random(featureExprMutationSeed)
+
   override def convert[U](using trace: Trace)(x: Opt[U])(using f: F[U]): Opt[U] = x match {
     case Opt(condition, entry) if condition == FeatureExprFactory.True && entry.isInstanceOf[ExprStatement] =>
-      val r = Random(splRandom.nextInt())
+      val r = Random(random.nextInt())
       val shuffled = r.shuffle(newFeatures)
 
       val enabled = shuffled.take(r.nextInt(maxEnabledFeatures))
@@ -185,16 +189,19 @@ object MutantGenerator {
     assert(newFunctionDefs.size == 1)
     val newFunctionDef = newFunctionDefs.head
 
-    val enableNewFeatureProbability = 0.250
-    val disableNewFeatureProbability = 0.075
-    val operatorMutationProbability = 0.150
-    val featureExprMutationProbability = 0.075
+    val enableNewFeatureProbability = 0.1
+    val disableNewFeatureProbability = 0.05
+    val operatorMutationProbability = 0.1
+    val featureExprMutationProbability = 0.05
 
-    for (newFeatureCount <- 6 to 10) {
+    for (newFeatureCount <- 1 to 20) {
       val newFeatures = (0 to newFeatureCount).toList.map(
         i => FeatureExprFactory.createDefinedExternal(s"F$i"))
       //    val maxEnabledFeatures = 5
       //    val maxDisabledFeatures = 3
+
+//      val maxDisabledFeatures = 3
+//      val maxEnabledFeatures = newFeatureCount - 3
 
       for (i <- 1 to 20) {
         val directory = s"examples/hard/${newFeatureCount}/coreutils.ls.6b01b71e.sat.spl$i"
@@ -233,6 +240,40 @@ object MutantGenerator {
           MutantGenerator2(newFeatures, 9 * i, enableNewFeatureProbability, disableNewFeatureProbability,
             9 * i + 7, operatorMutationProbability, 9 * i + 8, featureExprMutationProbability
           ).apply(newFunctionDef)), s"$directory/new.op.fe.c")
+
+        // Util.writeToFile(TranslationUnit(oldExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     0, 0, 0, 0
+        //   ).apply(oldFunctionDef)), s"$directory/old.c")
+        // Util.writeToFile(TranslationUnit(oldExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     9 * i + 1, operatorMutationProbability, 0, 0
+        //   ).apply(oldFunctionDef)), s"$directory/old.op.c")
+        // Util.writeToFile(TranslationUnit(oldExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     0, 0, 9 * i + 2, featureExprMutationProbability
+        //   ).apply(oldFunctionDef)), s"$directory/old.fe.c")
+        // Util.writeToFile(TranslationUnit(oldExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     9 * i + 3, operatorMutationProbability, 9 * i + 4, featureExprMutationProbability
+        //   ).apply(oldFunctionDef)), s"$directory/old.op.fe.c")
+        //
+        // Util.writeToFile(TranslationUnit(newExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     0, 0, 0, 0
+        //   ).apply(newFunctionDef)), s"$directory/new.c")
+        // Util.writeToFile(TranslationUnit(newExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     9 * i + 5, operatorMutationProbability, 0, 0
+        //   ).apply(newFunctionDef)), s"$directory/new.op.c")
+        // Util.writeToFile(TranslationUnit(newExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     0, 0, 9 * i + 6, featureExprMutationProbability
+        //   ).apply(newFunctionDef)), s"$directory/new.fe.c")
+        // Util.writeToFile(TranslationUnit(newExternalDefs :+
+        //   MutantGenerator(newFeatures, 9 * i, maxEnabledFeatures, maxDisabledFeatures,
+        //     9 * i + 7, operatorMutationProbability, 9 * i + 8, featureExprMutationProbability
+        //   ).apply(newFunctionDef)), s"$directory/new.op.fe.c")
       }
     }
   }

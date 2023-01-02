@@ -18,16 +18,16 @@ object Evaluation {
     Files.createDirectories(Paths.get(parDirectory))
     val filepath = s"$parDirectory/results.txt"
     val bw = new BufferedWriter(new FileWriter(new File(filepath)))
-    val timeout = 10.minutes
-    for (i <- List(1, 2, 3, 4, 5)) {
-      for (newFeatureCount <- List(8, 9, 7, 10, 6)) {
+    val timeout = 30.minutes
+    for (i <- List(1)) {
+      for (newFeatureCount <- List(12, 14, 16, 18, 20)) {
         val directory = s"$parDirectory/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(
-//          ("old.c", "new.c"),
+          ("old.c", "new.c"),
+          ("old.fe.c", "new.fe.c"),
           ("old.op.c", "new.op.c"),
-//          ("old.fe.c", "new.fe.c"),
-//          ("old.op.fe.c", "new.op.fe.c")
+          ("old.op.fe.c", "new.op.fe.c")
         )) {
           val oldFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
             s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.spl$i/$oldFilename"

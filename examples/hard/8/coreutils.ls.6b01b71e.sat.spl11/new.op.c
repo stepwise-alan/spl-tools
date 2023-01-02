@@ -65,11 +65,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
     (dif = (st_size2 - st_size1));
   } 
   else if (sort_atime) {
-    
-    #if (definedEx(F3) && definedEx(F8) && !definedEx(F4))
     (dif = (st_atim_tv_sec2 - st_atim_tv_sec1));
-    #endif
-    
   }
   
   else if (sort_ctime) {
@@ -77,11 +73,7 @@ int sortcmp(__off_t st_size1 , __off_t st_size2 , __time_t st_atim_tv_sec1 , __t
   }
   
   else if (sort_mtime) {
-    
-    #if (definedEx(F0) && definedEx(F1) && definedEx(F3))
     (dif = (st_mtim_tv_sec2 - st_mtim_tv_sec1));
-    #endif
-    
   }
   
   else if (sort_dir) {
