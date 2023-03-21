@@ -4,7 +4,7 @@ CLEVER V2
 ## Getting Started
 ### Prerequisites:
 1. Clone the repository
-   ```shell
+   ```
    git clone https://github.com/stepwise-alan/spl-tools.git
    cd spl-tools
    ```
@@ -12,7 +12,7 @@ CLEVER V2
 2. Install Python 3.10
 
 3. Install the requirements
-   ```shell
+   ```
    pip3 install -r requirements.txt
    ```
 
@@ -26,6 +26,11 @@ CLEVER V2
    ```
    # On Arch based Linux
    sudo pacman -S sbt
+   ```
+
+6. Install the Scala Requirements
+   ```
+   sbt # in the same directory as build.sbt
    ```
 
 ## Usage
