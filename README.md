@@ -28,8 +28,23 @@ CLEVER V2
    sudo pacman -S sbt
    ```
 
-6. Install the Scala Requirements
+6. Install the latest fork of TypeChef
    ```
+   cd ~
+   git clone https://github.com/stepwise-alan/TypeChef
+   # Follow the instruction in this repository to build from source
+   # But this instruction should be something like
+   cd TypeChef
+   java -Xmx512M -Xss10m -jar sbt-launch.jar clean update compile
+
+   sbt mkrun
+   ```
+
+7. Install the Scala Requirements
+   ```
+   make build
+
+   # alternatively you can run
    sbt # in the same directory as build.sbt
    ```
 
@@ -43,6 +58,17 @@ It is a good practice to prefix the commands with a ``timeout 2m``
 sbt "runMain LiftedEquivalenceCheckerV1 OLD_FILE NEW_FILE FUNCTION_NAME"
 ```
 **where `OLD_FILE`/`NEW_FILE` is the path to the old/new file, and `FUNCTION_NAME` is the function name.**
+
+There is a toy shell that runs the toy example. 
+You can invoke it by running
+```
+make run
+```
+
+or by running the file itself.
+```
+./example_toy.sh
+```
 
 ## Examples
 ```shell
