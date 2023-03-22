@@ -6,4 +6,7 @@ build:
 	sbt
 
 run:
+	sbt run
+
+run_toy:
 	./example_toy.sh

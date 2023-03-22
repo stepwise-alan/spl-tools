@@ -1,6 +1,10 @@
 # Lifted Functional Equivalence
 CLEVER V2
 
+## Introduction
+
+TODO insert content
+
 ## Getting Started
 ### Prerequisites:
 1. Clone the repository
@@ -33,14 +37,19 @@ CLEVER V2
    cd ~
    git clone https://github.com/stepwise-alan/TypeChef
    # Follow the instruction in this repository to build from source
+
    # But this instruction should be something like
    cd TypeChef
-   java -Xmx512M -Xss10m -jar sbt-launch.jar clean update compile
-
-   sbt mkrun
+   sbt publishLocal
    ```
 
-7. Install the Scala Requirements
+7. Install [Seahorne](https://github.com/seahorn/seahorn/)
+
+This may be any version, but we have used version [dev14](https://github.com/seahorn/seahorn/tree/dev14), and we recommend you to do the same. 
+
+8. Install [Z3](https://github.com/Z3Prover/z3)
+
+9. Install the Scala Requirements
    ```
    make build
 
@@ -48,21 +57,47 @@ CLEVER V2
    sbt # in the same directory as build.sbt
    ```
 
+### To Run the other examples
+10. Build the BusyBox analyser
+
+Use the instructions for the Busybox analysis
+You can just clone the model, and it should come with the model. 
+If you would like to find other examples, follow the instructions and use this script to evaluate the examples ``BusyBoxAnalyzer.scala``
+
+11. Build
+
 ## Usage
 
 ### Timeouts
 In early usage, giving the wrong file, can clog your system into a non-halting situation. 
 It is a good practice to prefix the commands with a ``timeout 2m``
 
+### Arguments
+
+TODO fill
+
+#### Module
+
+TODO fill
+
+### Ways of Running
+
 ```shell
-sbt "runMain LiftedEquivalenceCheckerV1 OLD_FILE NEW_FILE FUNCTION_NAME"
+sbt "runMain EquivalenceCheckerV1 OLD_FILE NEW_FILE FUNCTION_NAME"
 ```
 **where `OLD_FILE`/`NEW_FILE` is the path to the old/new file, and `FUNCTION_NAME` is the function name.**
+
+You can also simply run
+```
+sbt run
+# or equivalently
+make run
+```
 
 There is a toy shell that runs the toy example. 
 You can invoke it by running
 ```
-make run
+make run_toy
 ```
 
 or by running the file itself.
