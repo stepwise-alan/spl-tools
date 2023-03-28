@@ -19,8 +19,8 @@ object Evaluation {
     val filepath = s"$parDirectory/results.txt"
     val bw = new BufferedWriter(new FileWriter(new File(filepath)))
     val timeout = 10.minutes
-    for (newFeatureCount <- 1 to 19) {
-      for (i <- List(2, 3)) {
+    for (i <- 1 to 6) {
+      for (newFeatureCount <- 1 to 13) {
         val directory = s"$parDirectory/$newFeatureCount"
         Files.createDirectories(Paths.get(directory))
         for ((oldFilename, newFilename) <- List(
@@ -108,40 +108,40 @@ object Evaluation {
           }
           bw.write("\n")
 
-//          bw.write(s"Baseline, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
-//          print(s"Baseline, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
-//          try {
-//            val t0 = currentTimeMillis()
-//            val outStream = new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.out1.txt")
-//            val errStream = new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.err1.txt")
-//            System.setOut(new PrintStream(new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.out2.txt")))
-//            System.setErr(new PrintStream(new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.err2.txt")))
-//            val t1 = Await.result(Future {
-//              Console.withOut(outStream) {
-//                Console.withErr(errStream) {
-//                  BaselineEquivalenceChecker.main(args)
-//                }
-//              }
-//              currentTimeMillis()
-//            }, timeout)
-//            System.setOut(System.out)
-//            System.setErr(System.err)
-//            bw.write(s"${t1 - t0}")
-//            println(s"${t1 - t0}")
-//          } catch {
-//            case _: concurrent.TimeoutException =>
-//              System.setOut(System.out)
-//              System.setErr(System.err)
-//              bw.write("timeout")
-//              println("timeout")
-//            case e: Throwable =>
-//              System.setOut(System.out)
-//              System.setErr(System.err)
-//              bw.write("error")
-//              println("error")
-//              println(e.getMessage)
-//          }
-//          bw.write("\n")
+          bw.write(s"Baseline, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
+          print(s"Baseline, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
+          try {
+            val t0 = currentTimeMillis()
+            val outStream = new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.out1.txt")
+            val errStream = new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.err1.txt")
+            System.setOut(new PrintStream(new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.out2.txt")))
+            System.setErr(new PrintStream(new FileOutputStream(s"$directory/baseline.$i.$oldFilename.$newFilename.err2.txt")))
+            val t1 = Await.result(Future {
+              Console.withOut(outStream) {
+                Console.withErr(errStream) {
+                  BaselineEquivalenceChecker.main(args)
+                }
+              }
+              currentTimeMillis()
+            }, timeout)
+            System.setOut(System.out)
+            System.setErr(System.err)
+            bw.write(s"${t1 - t0}")
+            println(s"${t1 - t0}")
+          } catch {
+            case _: concurrent.TimeoutException =>
+              System.setOut(System.out)
+              System.setErr(System.err)
+              bw.write("timeout")
+              println("timeout")
+            case e: Throwable =>
+              System.setOut(System.out)
+              System.setErr(System.err)
+              bw.write("error")
+              println("error")
+              println(e.getMessage)
+          }
+          bw.write("\n")
         }
       }
     }

@@ -140,14 +140,17 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
       + smtVariableNameAndTypeNamePairs.map("(" + _ + " " + _ + ")").mkString(" ")
       + ") (=> " + targetCall + " " + pInitCall + ")))")
     bw.newLine()
-    ruleLines.foreach(line => {
-      if (line.trim == "true") {
+    ruleLines.foldLeft(false)((found, line) => {
+      if (!found && line.trim == "true") {
         bw.write(line.takeWhile(_.isSpaceChar))
         bw.write(pInitCall)
         bw.newLine()
+        true
+      } else {
+        bw.write(line)
+        bw.newLine()
+        found
       }
-      bw.write(line)
-      bw.newLine()
     })
     bw.close()
 
