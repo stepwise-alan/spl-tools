@@ -43,11 +43,33 @@ TODO insert content
    sbt publishLocal
    ```
 
-7. Install [Seahorne](https://github.com/seahorn/seahorn/)
+7. Install [Z3](https://github.com/Z3Prover/z3)
 
-This may be any version, but we have used version [dev14](https://github.com/seahorn/seahorn/tree/dev14), and we recommend you to do the same. 
+Refer to the installation guide for the exact steps, but it should look something like
+   ```
+   git clone https://github.com/Z3Prover/z3
+   cd z3
+   python scripts/mk_make.py
+   cd build
+   make
+   sudo make install
+   ```
 
-8. Install [Z3](https://github.com/Z3Prover/z3)
+
+8. Install [Seahorn](https://github.com/seahorn/seahorn/)
+
+Note that Seahorn requires Z3.
+
+This may be any version, but we have used version 
+[dev14](https://github.com/seahorn/seahorn/tree/dev14), 
+and we recommend you to do the same. 
+
+Refer to the installation guide for the exact steps, but it should look something like
+   ```
+   git clone https://github.com/seahorn/seahorn
+   cd seahorn
+   git checkout dev 14 # for dev branch 14
+   ```
 
 9. Install the Scala Requirements
    ```

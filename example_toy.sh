@@ -28,3 +28,5 @@ timeout $timeout_time sbt "runMain $module $old_file $new_file $func_name"
 # /mnt/c/Users/shuolin/CLionProjects/seahorn/build/run/bin/sea
 # /mnt/c/Users/shuolin/CLionProjects/seahorn/build/run/bin/z3
 # /mnt/c/Users/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis
+
+# sbt runMain "MutantGenerator"
