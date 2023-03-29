@@ -15,7 +15,7 @@ TODO insert content
 
 2. Install Python 3.10
 
-3. Install the requirements
+3. Install the Python requirements
    ```
    pip3 install -r requirements.txt
    ```
@@ -34,7 +34,7 @@ TODO insert content
 
 6. Install the latest fork of TypeChef
    ```
-   cd ~
+   cd ~ # or any other parent directory
    git clone https://github.com/stepwise-alan/TypeChef
    # Follow the instruction in this repository to build from source
 
@@ -45,14 +45,14 @@ TODO insert content
 
 7. Install [Z3](https://github.com/Z3Prover/z3)
 
-Refer to the installation guide for the exact steps, but it should look something like
+Refer to the installation guide for the exact steps. 
+Here are some useful tips.
    ```
-   git clone https://github.com/Z3Prover/z3
-   cd z3
-   python scripts/mk_make.py
-   cd build
-   make
-   sudo make install
+   # you can also use the docker image for a quicker install
+
+   # on Arch based distribution, z3 is in the package manager
+   # and can be simply installed by running
+   sudo pacman -S z3
    ```
 
 
@@ -64,14 +64,23 @@ This may be any version, but we have used version
 [dev14](https://github.com/seahorn/seahorn/tree/dev14), 
 and we recommend you to do the same. 
 
-Refer to the installation guide for the exact steps, but it should look something like
+Refer to the installation guide for the exact steps. 
+Here are some useful tips.
    ```
-   git clone https://github.com/seahorn/seahorn
-   cd seahorn
-   git checkout dev 14 # for dev branch 14
+   # The easier way to install seahorn is with docker
+   docker pull seahorn/seahorn-llvm10:nightly
+   docker run --rm -it seahorn/seahorn-llvm10:nightly
    ```
 
-9. Install the Scala Requirements
+9. Install [TypeChef-BusyboxAnalysis](https://github.com/ckaestne/TypeChef-BusyboxAnalysis) 
+
+   ```
+   # This should already be downloaded as the submodule, but you can still run
+   git submodule update --init --recursive
+   ```
+
+
+10. Install the Scala Requirements
    ```
    make build
 
@@ -107,7 +116,7 @@ TODO fill
 ```shell
 sbt "runMain EquivalenceCheckerV1 OLD_FILE NEW_FILE FUNCTION_NAME"
 ```
-**where `OLD_FILE`/`NEW_FILE` is the path to the old/new file, and `FUNCTION_NAME` is the function name.**
+**Where `OLD_FILE`/`NEW_FILE` is the path to the old/new file, and `FUNCTION_NAME` is the function name.**
 
 You can also simply run
 ```
@@ -122,7 +131,7 @@ You can invoke it by running
 make run_toy
 ```
 
-or by running the file itself.
+Or by running the file itself
 ```
 ./example_toy.sh
 ```
