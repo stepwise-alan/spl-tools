@@ -3,7 +3,7 @@ import scala.sys.process.Process
 
 object EquivalenceChecker {
   def main(args: Array[String]): Unit = {
-    val system = "ubuntu"
+    val system = "redhat"
 
     val srcPath = "busybox-1.18.5"
 

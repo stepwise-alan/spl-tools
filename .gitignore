@@ -1,3 +1,18 @@
+.vscode/
+.metals/
+
+target/*
+project/*
+
+new.pi*
+old.pi*
+
+0.c
+0.pi*
+1.c
+new.c
+old.c
+
 *.class
 *.log
 
@@ -180,3 +195,4 @@ project/plugins/project/
 
 
 .bsp/
+examples/toy/new.pi
