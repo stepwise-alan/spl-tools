@@ -6,7 +6,7 @@ new_file=$dir/"new.c"
 func_name="lib"
 z3_path="z3"
 seahorn_path="./seahorn_docker_run.sh"
-typechef_bb_path="./TypeChef-BusyboxAnalysis"
+typechef_bb_path="../TypeChef-BusyboxAnalysis/"
 
 module="EquivalenceChecker"
 
