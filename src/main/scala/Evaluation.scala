@@ -29,13 +29,13 @@ object Evaluation {
           ("old.op.c", "new.op.c"),
           ("old.op.fe.c", "new.op.fe.c")
         )) {
-          val oldFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
+          val oldFilepath = s"/home/aliraeis/Projekte/spl-tools/" +
             s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.spl$i/$oldFilename"
-          val newFilepath = s"/home/shuolin/IdeaProjects/spl-tools/" +
+          val newFilepath = s"/home/aliraeis/Projekte/spl-tools/" +
             s"examples/hard/$newFeatureCount/coreutils.ls.6b01b71e.sat.spl$i/$newFilename"
-          val seaPath = "/home/shuolin/CLionProjects/seahorn/build/run/bin/sea"
-          val z3Path = "/home/shuolin/CLionProjects/seahorn/build/run/bin/z3"
-          val typeChefBusyboxAnalysisPath = "/home/shuolin/IdeaProjects/TypeChef-BusyboxAnalysis"
+          val seaPath = "/home/aliraeis/Projekte/seahorn/build/run/bin/sea"
+          val z3Path = "/home/aliraeis/Projekte/seahorn/build/run/bin/z3"
+          val typeChefBusyboxAnalysisPath = "/home/aliraeis/Projekte/TypeChef-BusyboxAnalysis"
           val args = Array(oldFilepath, newFilepath, "sortcmp", seaPath, z3Path, typeChefBusyboxAnalysisPath)
 
           bw.write(s"Alg 1, SPL $i, $newFeatureCount new features, $oldFilename, $newFilename, ")
