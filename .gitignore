@@ -1,5 +1,7 @@
 .vscode/
 
+new.pi*
+old.pi*
 
 *.class
 *.log
@@ -183,3 +185,4 @@ project/plugins/project/
 
 
 .bsp/
+examples/toy/new.pi
