@@ -1,4 +1,8 @@
 .vscode/
+.metals/
+
+target/*
+project/*
 
 new.pi*
 old.pi*
