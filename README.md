@@ -73,24 +73,31 @@ docker pull seahorn/seahorn-llvm10:nightly
 docker run --rm -it seahorn/seahorn-llvm10:nightly
 ```
 
-9. Install [TypeChef-BusyboxAnalysis](https://github.com/ckaestne/TypeChef-BusyboxAnalysis) 
+9. Install [TypeChef-BusyboxAnalysis](https://github.com/stepwise-alan/TypeChef-BusyboxAnalysis) 
 
 ```
-# This should already be downloaded as the submodule, but you can still run
-git submodule update --init --recursive
-
+cd ~
+git clone https://github.com/stepwise-alan/TypeChef-BusyboxAnalysis
 ```
 
 The Java version needs to be 1.8
-If the Java version was switched, go through the TypeChef ``sbt publishLocal`` step again. 
-Then,
-
+In Arch based Linux it can be set by using the ``archlinux-java`` command. Here is the [documentation](https://wiki.archlinux.org/title/Java).
+If the Java version was switched, you may need to publish TypeChef again. 
 ```
+# remove any cached publishes
+rm -rf ~/.ivy2/local/de.fosd.typechef
+cd ~/TypeChef
+sbt publishLocal
+```
+
+Once, TypeChef is published with the right version of Java, follow these steps for the TypeChef-BusyboxAnalysis
+```
+cd ~/TypeChef-BusyboxAnalysis
 sbt mkrun # under Java version 1.8
 ```
 
 
-10. Install the Scala Requirements
+10. Install the Scala Requirements in this repository
    ```
    make build
 
@@ -98,8 +105,9 @@ sbt mkrun # under Java version 1.8
    sbt # in the same directory as build.sbt
    ```
 
-### To Run Complex Inputs
-12. Build the BusyBox analyser
+### To Run Complex Input
+
+Build the BusyBox analyser
 
 Use the instructions for the Busybox analysis
 You can just clone the model, and it should come with the model. 
