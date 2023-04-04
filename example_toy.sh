@@ -5,8 +5,8 @@ old_file=$dir/"old.c"
 new_file=$dir/"new.c"
 func_name="lib"
 z3_path="z3"
-seahorn_path="./seahorn_docker_run.sh"
-typechef_bb_path="../TypeChef-BusyboxAnalysis/"
+seahorn_path="/home/aliraeis/Projekte/spl-tools/seahorn_docker_run.sh"
+typechef_bb_path="/home/aliraeis/Projekte/TypeChef-BusyboxAnalysis"
 
 module="EquivalenceChecker"
 
