@@ -193,7 +193,7 @@ class Verifier(seaPath: String, z3Path: String) {
     bw.close()
 
     val t0 = currentTimeMillis()
-    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!(ProcessLogger(_ => ()))
+    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!
     val t1 = currentTimeMillis()
     println(s"SeaHorn: ${t1 - t0} ms")
     val result = seaOutput.linesIterator.toList.last
