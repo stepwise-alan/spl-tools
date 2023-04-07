@@ -4,7 +4,7 @@ import de.fosd.typechef.crewrite.ProductDerivation
 
 object BaselineEquivalenceChecker {
   def main(args: Array[String]): Unit = {
-    val system = "ubuntu"
+    val system = "redhat"
 
     val srcPath = "busybox-1.18.5"
 
@@ -51,7 +51,7 @@ object BaselineEquivalenceChecker {
       val newFilepath = s"$i.new.c"
       Util.writeToFile(products._2, newFilepath)
       val outputFilePath = s"$i.c"
-      Process(f"python3 /home/shuolin/IdeaProjects/spl-tools/src/main/py/self_composer.py " +
+      Process(f"python3 /home/aliraeis/Projekte/spl-tools/src/main/py/self_composer.py " +
         f"--old $oldFilepath --new $newFilepath --function ${args(2)} --out $outputFilePath"
       ).!!(ProcessLogger(_ => ()))
       val selfComposition = Util.parse(frontendArgs :+ outputFilePath)._1
