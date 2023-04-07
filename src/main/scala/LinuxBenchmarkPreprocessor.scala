@@ -1,17 +1,17 @@
 import de.fosd.typechef.featureexpr.{FeatureExprFactory, FeatureModel}
 import de.fosd.typechef.parser.c.TranslationUnit
 
-object BusyBoxBenchmarkPreprocessor extends Preprocessor with BusyBox {
+object LinuxBenchmarkPreprocessor extends Preprocessor with Linux {
   override val filePaths: Iterator[String] = List(
-    "busybox-1.18.5/util-linux/fsck_minix.c",
+    "linux26333/linux/net/sunrpc/addr.c",
   ).iterator
 
   private val getFunctionName: Map[String, String] = Map(
-    ("busybox-1.18.5/util-linux/fsck_minix.c", "check_counts"),
+    ("linux26333/linux/net/sunrpc/addr.c", "rpc_uaddr2sockaddr"),
   )
 
   private val getNewFilePath: Map[String, String] = Map(
-    ("busybox-1.18.5/util-linux/fsck_minix.c", "fsck_minix.preprocessed.c"),
+    ("linux26333/linux/net/sunrpc/addr.c", "addr.preprocessed.c"),
   )
 
   override def process(translationUnit: TranslationUnit, filePath: String, featureModel: FeatureModel, features: Set[String]): Unit = {

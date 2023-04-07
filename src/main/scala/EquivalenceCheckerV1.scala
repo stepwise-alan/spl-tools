@@ -23,7 +23,8 @@ object EquivalenceCheckerV1 {
       "-U CONFIG_EXTRA_COMPAT " +
       "-D_GNU_SOURCE "
 
-    val frontendArgs = (partialPreprocessFlags + flags).split(' ')
+//    val frontendArgs = (partialPreprocessFlags + flags).split(' ')
+    val frontendArgs = Array[String]()
 
     val t0 = currentTimeMillis()
     val (oldTranslationUnit, _, oldFeatures) = Util.parse(frontendArgs :+ args(0), parserResults = true)

@@ -8,13 +8,13 @@ trait Linux extends CaseStudy {
 
   private val source = Source.fromFile(f"$srcPath/pcs/x86.flist")
 
-  override val filePaths: Iterator[String] = source.getLines().map(line => s"$srcPath/linux-2.6.33.3/$line.c")
+  override val filePaths: Iterator[String] = source.getLines().map(line => s"$srcPath/linux/$line.c")
 
   override val frontendArgs: Array[String] = (
     "--bdd " +
       "-x CONFIG_ " +
       // "--xtc " +
-//      s"--smallFeatureModelFExpr $srcPath/approx.fm " +
+      s"--smallFeatureModelFExpr $srcPath/approx.fm " +
       s"--featureModelDimacs=$srcPath/pcs/x86.dimacs " +
       s"--include=$srcPath/pcs/x86.completed.h " +
       s"--include=$srcPath/pcs/x86.nonbool.h " +
@@ -25,8 +25,8 @@ trait Linux extends CaseStudy {
       "--errorXML --interface " +
       "--dumpcfg --parserstatistics " +
       "--adjustLines " +
-      s"-I $srcPath/linux-2.6.33.3/include " +
-      s"-I $srcPath/linux-2.6.33.3/arch/x86/include " +
+      s"-I $srcPath/linux/include " +
+      s"-I $srcPath/linux/arch/x86/include " +
       "-D __KERNEL__ " +
       "-DCONFIG_AS_CFI=1 " +
       "-DCONFIG_AS_CFI_SIGNAL_FRAME=1 " +

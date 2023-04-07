@@ -5,6 +5,7 @@ import org.bytedeco.javacpp.BytePointer
 import org.bytedeco.javacpp.LLVM.*
 
 import java.io.{BufferedWriter, File, FileWriter}
+import java.lang.System.currentTimeMillis
 import scala.collection.mutable
 import scala.sys.process.{Process, ProcessLogger}
 
@@ -140,14 +141,17 @@ class Verifier(seaPath: String, z3Path: String) {
       + smtVariableNameAndTypeNamePairs.map("(" + _ + " " + _ + ")").mkString(" ")
       + ") (=> " + targetCall + " " + pInitCall + ")))")
     bw.newLine()
-    ruleLines.foreach(line => {
-      if (line.trim == "true") {
+    ruleLines.foldLeft(false)((found, line) => {
+      if (!found && line.trim == "true") {
         bw.write(line.takeWhile(_.isSpaceChar))
         bw.write(pInitCall)
         bw.newLine()
+        true
+      } else {
+        bw.write(line)
+        bw.newLine()
+        found
       }
-      bw.write(line)
-      bw.newLine()
     })
     bw.close()
 
@@ -188,7 +192,11 @@ class Verifier(seaPath: String, z3Path: String) {
     )))
     bw.close()
 
-    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!(ProcessLogger(_ => ()))
+    val t0 = currentTimeMillis()
+    println(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath")
+    val seaOutput = Process(s"$seaPath -m64 smt --solve -O0 $cFilepath -o $smtFilepath --oll=$llFilepath").!!
+    val t1 = currentTimeMillis()
+    println(s"SeaHorn: ${t1 - t0} ms")
     val result = seaOutput.linesIterator.toList.last
     if (result == "unsat") {
       counterExamples
@@ -200,7 +208,10 @@ class Verifier(seaPath: String, z3Path: String) {
         s"fp.xform.subsumption_checker=false fp.xform.inline_eager=false " +
         s"fp.xform.inline_linear=false " +
         s"fp.spacer.trace_file=$traceFilepath -v:2 $newSmtFilepath"
+      val t2 = currentTimeMillis()
       val z3Output = Process(command).!!(ProcessLogger(_ => ()))
+      val t3 = currentTimeMillis()
+      println(s"Z3: ${t3 - t2} ms")
       assert(z3Output.linesIterator.next().trim == "sat")
 
       val traceSource = io.Source.fromFile(traceFilepath)

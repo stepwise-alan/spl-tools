@@ -19,7 +19,7 @@ object CleverSelfComposer extends SelfComposer {
     val outputFilePath = "0.c"
     Process(f"python3 /home/aliraeis/Projekte/spl-tools/src/main/py/self_composer.py " +
       f"--old $oldFilepath --new $newFilepath --function $oldFunctionName --out $outputFilePath"
-    ).!!(ProcessLogger(_ => ()))
+    ).!!
     Util.parse(frontendArgs :+ outputFilePath)._1
   }
 
