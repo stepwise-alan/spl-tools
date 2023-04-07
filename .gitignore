@@ -16,6 +16,11 @@ old.c
 *.class
 *.log
 
+
+.bsp/
+examples/toy/new.pi
+project/build.properties
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
@@ -193,6 +198,3 @@ project/plugins/project/
 .cache
 .lib/
 
-
-.bsp/
-examples/toy/new.pi
