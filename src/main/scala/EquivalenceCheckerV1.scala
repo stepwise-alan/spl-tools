@@ -36,8 +36,8 @@ object EquivalenceCheckerV1 {
     VariabilitySearcher(featureModel)(newTranslationUnit)
     val t2 = currentTimeMillis()
 
-    val oldSuperposition = Superposer(featureModel)(oldTranslationUnit, features)
-    val newSuperposition = Superposer(featureModel)(newTranslationUnit, features)
+    val oldSuperposition = Superposer(featureModel, features)(oldTranslationUnit)
+    val newSuperposition = Superposer(featureModel, features)(newTranslationUnit)
     val t3 = currentTimeMillis()
 
     val selfComposition = CleverSelfComposer(oldSuperposition, args(2), newSuperposition, args(2), frontendArgs)

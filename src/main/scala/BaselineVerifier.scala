@@ -28,12 +28,13 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
     PostfixExpr(Id(getNdFunctionName(variableName)), FunctionCall(ExprList(List())))
   }
 
-  def ndDecl(variableName: String, specifiers: List[Opt[Specifier]]): Opt[Declaration] = {
+  def ndDecl(variableName: String,
+             pointersAndSpecifiers: (List[Opt[Pointer]], List[Opt[Specifier]])): Opt[Declaration] = {
     Util.optTrue(Declaration(
-      Util.optTrue(ExternSpecifier()) +: specifiers,
+      Util.optTrue(ExternSpecifier()) +: pointersAndSpecifiers._2,
       List(Util.optTrue(InitDeclaratorI(
         AtomicNamedDeclarator(
-          List(),
+          pointersAndSpecifiers._1,
           Id(getNdFunctionName(variableName)),
           List(Util.optTrue(DeclParameterDeclList(List(
             Util.optTrue(PlainParameterDeclaration(List(Util.optTrue(VoidSpecifier())), List()))
@@ -219,7 +220,7 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
   }
 
   def apply(translationUnit: TranslationUnit, features: Set[String], numberOfIterations: Int): Option[(String, String)] = {
-    val variableNameToSpecifiers = mutable.Map[String, List[Opt[Specifier]]]()
+    val variableNameToSpecifiers = mutable.Map[String, (List[Opt[Pointer]], List[Opt[Specifier]])]()
 
     val (mainFunctionDefs, externalDefs) = translationUnit.defs
       .partitionMap[Opt[FunctionDef], Opt[ExternalDef]](_.entry match {
@@ -237,7 +238,7 @@ class BaselineVerifier(seaPath: String, z3Path: String) {
       .partitionMap[Opt[DeclarationStatement], Opt[Statement]](_.entry match {
         case DeclarationStatement(Declaration(declSpecs, List(Opt(_, InitDeclaratorI(declarator, attributes, None)))))
           if !declSpecs.exists(_.entry.isInstanceOf[TypedefSpecifier]) =>
-          variableNameToSpecifiers += declarator.getName -> declSpecs
+          variableNameToSpecifiers += declarator.getName -> (declarator.pointers, declSpecs)
           Left(Util.optTrue(DeclarationStatement(Declaration(
             declSpecs,
             List(Util.optTrue(InitDeclaratorI(

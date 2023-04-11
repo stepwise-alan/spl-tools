@@ -4,7 +4,9 @@ import de.fosd.typechef.featureexpr.{FeatureExpr, FeatureExprFactory, FeatureMod
 import de.fosd.typechef.parser.c.*
 import org.apache.commons.lang3.NotImplementedException
 
-class Superposer(val featureModel: FeatureModel) {
+class Superposer(val featureModel: FeatureModel, val features: Set[String]) {
+  val definedFunctions: scala.collection.mutable.Set[String] = scala.collection.mutable.Set()
+
   def convertClausesToExpr(clauses: Set[SATFeatureExpr], operator: String): Expr = {
     if (clauses.isEmpty) {
       if (operator == "&&") {
@@ -36,16 +38,16 @@ class Superposer(val featureModel: FeatureModel) {
     }
   }
 
-  def convertStringLitName(name: List[Opt[String]], name0: List[Opt[String]]): Expr = {
+  def convertStringLitName(name: List[Opt[String]], acc: List[Opt[String]] = List()): Expr = {
     if (name.isEmpty) {
-      StringLit(name0)
+      StringLit(acc)
     } else if (name.head.condition == FeatureExprFactory.True) {
-      convertStringLitName(name.tail, name0 :+ name.head)
+      convertStringLitName(name.tail, acc :+ name.head)
     } else {
       ConditionalExpr(
         convertFeatureExpr(name.head.condition),
-        Some(convertStringLitName(name.tail, name0 :+ Util.optTrue(name.head.entry))),
-        convertStringLitName(name.tail, name0)
+        Some(convertStringLitName(name.tail, acc :+ Util.optTrue(name.head.entry))),
+        convertStringLitName(name.tail, acc)
       )
     }
   }
@@ -56,29 +58,60 @@ class Superposer(val featureModel: FeatureModel) {
         expr match {
           case id: Id => id
           case constant: Constant => constant
-          case StringLit(name) => convertStringLitName(name, List())
-          case BuiltinOffsetof(typeName, offsetofMemberDesignator) => ???
-          case BuiltinTypesCompatible(typeName1, typeName2) => ???
-          case BuiltinVaArgs(expr, typeName) => ???
-          case CompoundStatementExpr(compoundStatement) => ???
+          case StringLit(name) => convertStringLitName(name)
+          case BuiltinOffsetof(typeName, offsetofMemberDesignator) => expr
+          case BuiltinTypesCompatible(typeName1, typeName2) => expr
+          case BuiltinVaArgs(expr, typeName) => expr
+          case CompoundStatementExpr(compoundStatement) =>
+            CompoundStatementExpr(convertCompoundStatement(compoundStatement))
         }
-      case PostfixExpr(p, s) => ???
-      case UnaryExpr(kind, e) => ???
-      case SizeOfExprT(typeName) => ???
-      case SizeOfExprU(expr) => ???
-      case CastExpr(typeName, expr) => ???
-      case PointerDerefExpr(castExpr) => ???
-      case PointerCreationExpr(castExpr) => ???
-      case UnaryOpExpr(kind, castExpr) => ???
-      case NAryExpr(e, others) => ???
-      case ConditionalExpr(condition, thenExpr, elseExpr) => ???
-      case AssignExpr(target, operation, source) => ???
-      case ExprList(exprs) => ???
-      case LcurlyInitializer(inits) => ???
-      case AlignOfExprT(typeName) => ???
-      case AlignOfExprU(expr) => ???
-      case GnuAsmExpr(isVolatile, isGoto, expr, stuff) => ???
-      case RangeExpr(from, to) => ???
+      case PostfixExpr(p, s) =>
+        PostfixExpr(convertExpr(p), s match {
+          case SimplePostfixSuffix(t) => s
+          case PointerPostfixSuffix(kind, id) => s
+          case FunctionCall(params) =>
+            p match {
+              case Id(name) if definedFunctions contains name =>
+                FunctionCall(ExprList(params.exprs.map(optExpr => Util.optTrue(convertExpr(optExpr.entry)))
+                  ++ features.map(f => Util.optTrue(Id(f)))))
+              case _ =>
+                FunctionCall(ExprList(params.exprs.map(optExpr => Util.optTrue(convertExpr(optExpr.entry)))))
+            }
+          case ArrayAccess(expr) => ArrayAccess(convertExpr(expr))
+        })
+      case UnaryExpr(kind, e) => UnaryExpr(kind, convertExpr(e))
+      case SizeOfExprT(typeName) => expr
+      case SizeOfExprU(expr) => SizeOfExprU(convertExpr(expr))
+      case CastExpr(typeName, expr) => CastExpr(typeName, convertExpr(expr))
+      case PointerDerefExpr(castExpr) => PointerDerefExpr(convertExpr(castExpr))
+      case PointerCreationExpr(castExpr) => PointerCreationExpr(convertExpr(castExpr))
+      case UnaryOpExpr(kind, castExpr) => UnaryOpExpr(kind, convertExpr(castExpr))
+      case NAryExpr(e, others) =>
+        NAryExpr(convertExpr(e), others.map(f => Util.optTrue(NArySubExpr(f.entry.op, convertExpr(f.entry.e)))))
+      case ConditionalExpr(condition, thenExpr, elseExpr) =>
+        ConditionalExpr(convertExpr(condition), thenExpr.map(e => convertExpr(e)), convertExpr(elseExpr))
+      case AssignExpr(target, operation, source) => AssignExpr(convertExpr(target), operation, convertExpr(source))
+      case ExprList(exprs) => ExprList(exprs.map(f => Util.optTrue(f.entry)))
+      case LcurlyInitializer(inits) =>
+        LcurlyInitializer(inits.map(f => Util.optTrue(convertInitializer(f.entry))))
+      case AlignOfExprT(typeName) => expr
+      case AlignOfExprU(expr) => AlignOfExprU(convertExpr(expr))
+      case GnuAsmExpr(isVolatile, isGoto, expr, stuff) => expr
+      case RangeExpr(from, to) => RangeExpr(convertExpr(from), convertExpr(to))
+    }
+  }
+
+  def convertInitializer(initializer: Initializer): Initializer = {
+    Initializer(initializer.initializerElementLabel.map(convertInitializerElementLabel), convertExpr(initializer.expr))
+  }
+
+  def convertInitializerElementLabel(initializerElementLabel: InitializerElementLabel): InitializerElementLabel = {
+    initializerElementLabel match {
+      case InitializerArrayDesignator(expr) => InitializerArrayDesignator(convertExpr(expr))
+      case InitializerDesignatorC(id) => initializerElementLabel
+      case InitializerDesignatorD(id) => initializerElementLabel
+      case InitializerAssigment(designators) =>
+        InitializerAssigment(designators.map(f => Util.optTrue(convertInitializerElementLabel(f.entry))))
     }
   }
 
@@ -111,7 +144,7 @@ class Superposer(val featureModel: FeatureModel) {
             convertConditionalExpr(elseBranch)
           )
         }
-      case One(value) => value
+      case One(value) => convertExpr(value)
     }
   }
 
@@ -123,24 +156,25 @@ class Superposer(val featureModel: FeatureModel) {
             val compoundStatement = convertCompoundStatement(statement)
             (List(Util.optTrue(compoundStatement)), List())
           case statement: EmptyStatement => (List(Util.optTrue(statement)), List())
-          case statement: ExprStatement => (List(Util.optTrue(statement)), List())
+          case ExprStatement(expr) => (List(Util.optTrue(ExprStatement(convertExpr(expr)))), List())
           case WhileStatement(expr, s) =>
-            (List(Util.optTrue(WhileStatement(expr, convertConditionalStatement(s)))), List())
+            (List(Util.optTrue(WhileStatement(convertExpr(expr), convertConditionalStatement(s)))), List())
           case DoStatement(expr, s) =>
-            (List(Util.optTrue(DoStatement(expr, convertConditionalStatement(s)))), List())
+            (List(Util.optTrue(DoStatement(convertExpr(expr), convertConditionalStatement(s)))), List())
           case ForStatement(expr1, expr2, expr3, s) =>
-            (List(Util.optTrue(ForStatement(expr1, expr2, expr3, convertConditionalStatement(s)))), List())
-          case statement: GotoStatement => (List(Util.optTrue(statement)), List())
+            (List(Util.optTrue(ForStatement(expr1.map(convertExpr), expr2.map(convertExpr), expr3.map(convertExpr),
+              convertConditionalStatement(s)))), List())
+          case GotoStatement(target) => (List(Util.optTrue(GotoStatement(convertExpr(target)))), List())
           case statement: ContinueStatement => (List(Util.optTrue(statement)), List())
           case statement: BreakStatement => (List(Util.optTrue(statement)), List())
-          case statement: ReturnStatement => (List(Util.optTrue(statement)), List())
+          case ReturnStatement(expr) => (List(Util.optTrue(ReturnStatement(expr.map(convertExpr)))), List())
           case statement: LabelStatement => (List(Util.optTrue(statement)), List())
-          case statement: CaseStatement => (List(Util.optTrue(statement)), List())
+          case CaseStatement(c) => (List(Util.optTrue(CaseStatement(convertExpr(c)))), List())
           case statement: DefaultStatement => (List(Util.optTrue(statement)), List())
           case IfStatement(condition, thenBranch, elifs, elseBranch) =>
             (
               List(Util.optTrue(IfStatement(
-                condition,
+                One(convertConditionalExpr(condition)),
                 convertConditionalStatement(thenBranch),
                 elifs.map(elif => elif match
                   case Opt(condition, ElifStatement(condition1, thenBranch)) =>
@@ -156,7 +190,7 @@ class Superposer(val featureModel: FeatureModel) {
               List()
             )
           case SwitchStatement(expr, s) =>
-            (List(Util.optTrue(SwitchStatement(expr, convertConditionalStatement(s)))), List())
+            (List(Util.optTrue(SwitchStatement(convertExpr(expr), convertConditionalStatement(s)))), List())
           case declaration: CompoundDeclaration => declaration match {
             case DeclarationStatement(decl) =>
               if (decl.declSpecs.exists(_.entry.isInstanceOf[TypedefSpecifier])) {
@@ -170,11 +204,11 @@ class Superposer(val featureModel: FeatureModel) {
                   ) match {
                     case Some(a) =>
                       acc._1 :+ Util.optTrue(if (optInitDeclarator.condition == FeatureExprFactory.True) {
-                        ExprStatement(a)
+                        ExprStatement(convertExpr(a))
                       } else {
                         IfStatement(
                           One(convertFeatureExpr(optInitDeclarator.condition)),
-                          One(ExprStatement(a)), List(), None
+                          One(ExprStatement(convertExpr(a))), List(), None
                         )
                       })
                     case None => acc._1
@@ -204,7 +238,7 @@ class Superposer(val featureModel: FeatureModel) {
     CompoundStatement(optDeclarationStatements ++ optStatements)
   }
 
-  def convertFunctionDeclarator(declarator: Declarator, features: Set[String]): Declarator = {
+  def convertFunctionDeclarator(declarator: Declarator): Declarator = {
     declarator match {
       case AtomicNamedDeclarator(pointers, id, extensions) =>
         AtomicNamedDeclarator(pointers, id, extensions.map(optDeclaratorExtension =>
@@ -226,14 +260,22 @@ class Superposer(val featureModel: FeatureModel) {
     }
   }
 
-  def apply(translationUnit: TranslationUnit, features: Set[String]): TranslationUnit = {
+  def apply(translationUnit: TranslationUnit): TranslationUnit = {
+    translationUnit.defs.foreach(e => e.entry match {
+      case _: Declaration =>
+      case _: AsmExpr =>
+      case functionDef: FunctionDef => definedFunctions += functionDef.getName
+      case _: EmptyExternalDef =>
+      case _: TypelessDeclaration =>
+      case _: Pragma =>
+    })
     TranslationUnit(translationUnit.defs.map(e => e.entry match {
       case _: Declaration => Util.optTrue(e.entry)
       case _: AsmExpr => Util.optTrue(e.entry)
       case FunctionDef(specifiers, declarator, oldStyleParameters, stmt) =>
         Util.optTrue(FunctionDef(
           specifiers,
-          convertFunctionDeclarator(declarator, features),
+          convertFunctionDeclarator(declarator),
           if (oldStyleParameters.isEmpty) {
             oldStyleParameters
           } else {
@@ -255,7 +297,7 @@ object Superposer {
   def main(args: Array[String]): Unit = {
     val (translationUnit, featureModel, features) = Util.parse(Array("examples/coreutils.ls.6b01b71e/new.processed.bak.c"))
     println("-------")
-    val superposition = Superposer(featureModel)(translationUnit, features)
+    val superposition = Superposer(featureModel, features)(translationUnit)
     VariabilitySearcher(featureModel)(superposition)
     Util.print(superposition)
   }

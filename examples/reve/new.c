@@ -5,8 +5,10 @@
 #define IPV6_SCOPE_ID_LEN sizeof("%nnnnnnnnnn")
 #define IPV6_SCOPE_DELIMITER '%'
 #define INET_ADDRSTRLEN (16)
+#define AF_INET (2)
+#define AF_INET6 (10)
 
-typedef enum {AF_INET, AF_INET6} family;
+typedef unsigned short sa_family_t;
 
 typedef int size_t;
 
@@ -24,11 +26,9 @@ typedef __u16 __be16;
 
 typedef __u32 __be32;
 
-struct net {
-};
-
 struct sockaddr {
-    family sa_family;
+    sa_family_t sa_family;
+    char sa_data[14];
 };
 
 struct in_addr {
@@ -52,7 +52,7 @@ struct in6_addr {
 struct sockaddr_in6 {
     unsigned short int sin6_family;    /* AF_INET6 */
     int sin6_port;
-    struct in6_addr sin6_addr
+    struct in6_addr sin6_addr;
 };
 
 extern int memcpy(char*, const char*, int);
@@ -60,55 +60,6 @@ extern char * strrchr(char*, int);
 extern int strlen(char*);
 extern int strict_strtoul(char*, int, unsigned long*);
 extern int htons(int);
-
-size_t rpc_uaddr2sockaddr(struct net *net, const char *uaddr,
-        const size_t uaddr_len, struct sockaddr *sap,
-        const size_t salen)
-{
-    char *c, buf[RPCBIND_MAXUADDRLEN];
-    unsigned long portlo, porthi;
-    unsigned short port = 0;
-    int r = 0;
-
-    if (uaddr_len > RPCBIND_MAXUADDRLEN - 2) {
-        r = 1;
-        return 0;
-    }
-
-    memcpy(buf, uaddr, uaddr_len);
-
-    buf[uaddr_len] = '\0';
-    c = strrchr(buf, '.');
-
-    if (unlikely(c == NULL))
-        return 0;
-    if (unlikely(strict_strtoul(c + 1, 10, &portlo) != 0))
-        return 0;
-    if (unlikely(portlo > 255))
-        return 0;
-
-    *c = '\0';
-    c = strrchr(buf, '.');
-    if (unlikely(c == NULL))
-        return 0;
-    if (unlikely(strict_strtoul(c + 1, 10, &porthi) != 0))
-        return 0;
-    if (unlikely(porthi > 255))
-        return 0;
-
-    *c = '\0';
-    if (rpc_pton(net, buf, strlen(buf), sap, salen) == 0)
-        return 0;
-
-    if (sap->sa_family == AF_INET) {
-        ((struct sockaddr_in *)sap)->sin_port = htons(port);
-        return sizeof(struct sockaddr_in);
-    } else if (sap->sa_family == AF_INET6) {
-        ((struct sockaddr_in6 *)sap)->sin6_port = htons(port);
-        return sizeof(struct sockaddr_in6);
-    }
-    return 0;
-}
 
 static size_t rpc_pton6(const char *buf, const size_t buflen,
             struct sockaddr *sap, const size_t salen)
@@ -155,7 +106,7 @@ static size_t rpc_pton4(const char *buf, const size_t buflen,
     return sizeof(struct sockaddr_in);;
 }
 
-size_t rpc_pton(struct net*, const char *buf, const size_t buflen,
+size_t rpc_pton(const char *buf, const size_t buflen,
         struct sockaddr *sap, const size_t salen)
 {
     unsigned int i;
@@ -164,4 +115,95 @@ size_t rpc_pton(struct net*, const char *buf, const size_t buflen,
         if (buf[i] == ':')
             return rpc_pton6(buf, buflen, sap, salen);
     return rpc_pton4(buf, buflen, sap, salen);
+}
+
+size_t rpc_uaddr2sockaddr(const char *uaddr,
+        const size_t uaddr_len, struct sockaddr *sap,
+        const size_t salen)
+{
+    _Bool returned = 0;
+    size_t return_value;
+    char *c, buf[RPCBIND_MAXUADDRLEN];
+    unsigned long portlo, porthi;
+    unsigned short port = 0;
+    int r = 0;
+
+    if (uaddr_len > RPCBIND_MAXUADDRLEN - 2) {
+        r = 1;
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+    }
+
+    memcpy(buf, uaddr, uaddr_len);
+
+    buf[uaddr_len] = '\0';
+    c = strrchr(buf, '.');
+
+    if (unlikely(c == NULL))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+    if (unlikely(strict_strtoul(c + 1, 10, &portlo) != 0))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+    if (unlikely(portlo > 255))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+
+    *c = '\0';
+    c = strrchr(buf, '.');
+    if (unlikely(c == NULL))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+    if (unlikely(strict_strtoul(c + 1, 10, &porthi) != 0))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+    if (unlikely(porthi > 255))
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+
+    *c = '\0';
+    if (rpc_pton(buf, strlen(buf), sap, salen) == 0)
+//        return 0;
+        if (!returned) {
+            returned = 1;
+            return_value = 0;
+        }
+
+    if (sap->sa_family == AF_INET) {
+        ((struct sockaddr_in *)sap)->sin_port = htons(port);
+//        return sizeof(struct sockaddr_in);
+        if (!returned) {
+            returned = 1;
+            return_value = sizeof(struct sockaddr_in);
+        }
+    } else if (sap->sa_family == AF_INET6) {
+        ((struct sockaddr_in6 *)sap)->sin6_port = htons(port);
+//        return sizeof(struct sockaddr_in6);
+        if (!returned) {
+            returned = 1;
+            return_value = sizeof(struct sockaddr_in6);
+        }
+    }
+    return return_value;
 }

@@ -29,12 +29,13 @@ class Verifier(seaPath: String, z3Path: String) {
     PostfixExpr(Id(getNdFunctionName(variableName)), FunctionCall(ExprList(List())))
   }
 
-  def ndDecl(variableName: String, specifiers: List[Opt[Specifier]]): Opt[Declaration] = {
+  def ndDecl(variableName: String,
+             pointersAndSpecifiers: (List[Opt[Pointer]], List[Opt[Specifier]])): Opt[Declaration] = {
     Util.optTrue(Declaration(
-      Util.optTrue(ExternSpecifier()) +: specifiers,
+      Util.optTrue(ExternSpecifier()) +: pointersAndSpecifiers._2,
       List(Util.optTrue(InitDeclaratorI(
         AtomicNamedDeclarator(
-          List(),
+          pointersAndSpecifiers._1,
           Id(getNdFunctionName(variableName)),
           List(Util.optTrue(DeclParameterDeclList(List(
             Util.optTrue(PlainParameterDeclaration(List(Util.optTrue(VoidSpecifier())), List()))
@@ -209,6 +210,7 @@ class Verifier(seaPath: String, z3Path: String) {
         s"fp.xform.inline_linear=false " +
         s"fp.spacer.trace_file=$traceFilepath -v:2 $newSmtFilepath"
       val t2 = currentTimeMillis()
+      println(command)
       val z3Output = Process(command).!!(ProcessLogger(_ => ()))
       val t3 = currentTimeMillis()
       println(s"Z3: ${t3 - t2} ms")
@@ -232,7 +234,7 @@ class Verifier(seaPath: String, z3Path: String) {
   }
 
   def apply(translationUnit: TranslationUnit, features: Set[String]): Unit = {
-    val variableNameToSpecifiers = mutable.Map[String, List[Opt[Specifier]]]()
+    val variableNameToSpecifiers = mutable.Map[String, (List[Opt[Pointer]], List[Opt[Specifier]])]()
 
     val (mainFunctionDefs, externalDefs) = translationUnit.defs
       .partitionMap[Opt[FunctionDef], Opt[ExternalDef]](_.entry match {
@@ -250,7 +252,7 @@ class Verifier(seaPath: String, z3Path: String) {
       .partitionMap[Opt[DeclarationStatement], Opt[Statement]](_.entry match {
         case DeclarationStatement(Declaration(declSpecs, List(Opt(_, InitDeclaratorI(declarator, attributes, None)))))
           if !declSpecs.exists(_.entry.isInstanceOf[TypedefSpecifier]) =>
-          variableNameToSpecifiers += declarator.getName -> declSpecs
+          variableNameToSpecifiers += declarator.getName -> (declarator.pointers, declSpecs)
           Left(Util.optTrue(DeclarationStatement(Declaration(
             declSpecs,
             List(Util.optTrue(InitDeclaratorI(
