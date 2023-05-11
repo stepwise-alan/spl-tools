@@ -20,11 +20,11 @@ cd spl-tools
 pip3 install -r requirements.txt
 ```
 
-4. Install [Scala](https://www.scala-lang.org/download/)
+<!-- 4. Install [Scala](https://www.scala-lang.org/download/)
 ```
 # On Arch based Linux
 sudo pacman -S scala
-```
+``` -->
 
 5. Install [SBT](https://www.scala-sbt.org/download.html)
 ```
