@@ -20,19 +20,28 @@ cd spl-tools
 pip3 install -r requirements.txt
 ```
 
-<!-- 4. Install [Scala](https://www.scala-lang.org/download/)
-```
-# On Arch based Linux
-sudo pacman -S scala
-``` -->
 
-5. Install [SBT](https://www.scala-sbt.org/download.html)
+4. Install [Java](https://ubuntu.com/tutorials/install-jre#2-installing-openjdk-jre)
+
+5. Install Java Version 1.8
 ```
-# On Arch based Linux
-sudo pacman -S sbt
+sudo apt install openjdk-8-jdk
 ```
 
-6. Install the latest fork of TypeChef
+6. Switch to Java version 1.8.
+```
+# On Ubuntu 
+update-java-alternatives --list
+sudo update-java-alternatives --set /usr/lib/jvm/java-1.8.0-openjdk-amd64 # or whatever the path is from the previous command
+
+java -version
+# Should return 
+# openjdk version "1.8.0_362"
+```
+
+7. Install [SBT](https://www.scala-sbt.org/download.html)
+
+8. Install the latest fork of TypeChef
 ```
 cd ~ # or any other parent directory
 git clone https://github.com/stepwise-alan/TypeChef
@@ -43,20 +52,39 @@ cd TypeChef
 sbt publishLocal
 ```
 
-7. Install [Z3](https://github.com/Z3Prover/z3)
-
-Refer to the installation guide for the exact steps. 
-Here are some useful tips.
+9. Install [Z3](https://github.com/Z3Prover/z3)
 ```
-# you can also use the docker image for a quicker install
-
-# on Arch based distribution, z3 is in the package manager
-# and can be simply installed by running
-sudo pacman -S z3
+sudo apt install z3
 ```
 
+10. Install [Seahorn](https://github.com/seahorn/seahorn/)
 
-8. Install [Seahorn](https://github.com/seahorn/seahorn/)
+Installed clang-14
+installed ninja through repository and
+sudo apt install ninja-build
+installed lld
+sudo apt install libstdc++-12-dev
+sudo apt-get install libgmp3-dev
+
+cmake .. -GNinja \
+                                                -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                                                -DZ3_ROOT=/opt/z3-4.8.9 \
+                                                -DYICES2_HOME=/opt/yices-2.6.1 \
+                                                -DCMAKE_INSTALL_PREFIX=run \
+                                                -DCMAKE_CXX_COMPILER=clang++-14 \
+                                                -DCMAKE_C_COMPILER=clang-14 \
+                                                -DSEA_ENABLE_LLD=ON \
+                                                -DCPACK_GENERATOR="TGZ" \
+                                                -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && \
+                                                cmake --build . --target extra  && cmake .. && \
+                                                cmake --build . --target crab  && cmake .. && \
+                                                cmake --build . --target install && \
+                                                cmake --build . --target units_z3 && \
+                                                cmake --build . --target units_yices2 && \
+                                                cmake --build . --target test_type_checker && \
+                                                cmake --build . --target test_hex_dump && \
+                                                cmake --build . --target package
+
 
 Note that Seahorn requires Z3.
 Be aware of the version compatibility of Z3 and Seahorn. 
